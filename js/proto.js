@@ -5,6 +5,8 @@
    - 더미 데이터만 사용, 서버 통신 없음
    ================================================================ */
 (function(){
+  var modalReturnFocus = null;
+
   // To-Be GNB 6 상위메뉴 × 2Depth — 정보구조_IA_개편안.md §3 그대로.
   //   (기업서비스는 GNB 메뉴가 아니라 신설 페이지 — 유틸바로 별도 진입.)
   //   [메뉴명, 상위 링크키, [[하위명, 링크키], ...]]
@@ -181,6 +183,7 @@
         '</span>'+
       '</div>';
     document.body.insertBefore(bar, document.body.firstChild);
+    if(window.JobabaFeatureDefinitions) window.JobabaFeatureDefinitions.init();
   }
 
   function renderHeader(user){
@@ -427,8 +430,32 @@
     var btn = document.querySelector(".header__search-icon");
     if(btn) btn.focus();
   }
+
+  function openModal(modal, trigger){
+    if(!modal) return;
+    modalReturnFocus = trigger || document.activeElement;
+    modal.classList.add("is-open");
+    modal.setAttribute("aria-hidden", "false");
+    document.body.classList.add("is-modal-open");
+    var firstControl = modal.querySelector("[data-modal-close], a[href], button");
+    if(firstControl) firstControl.focus();
+  }
+
+  function closeModal(modal){
+    if(!modal) return;
+    modal.classList.remove("is-open");
+    modal.setAttribute("aria-hidden", "true");
+    document.body.classList.remove("is-modal-open");
+    if(modalReturnFocus && document.contains(modalReturnFocus)) modalReturnFocus.focus();
+    modalReturnFocus = null;
+  }
+
   document.addEventListener("keydown", function(e){
-    if(e.key === "Escape"){ closeSearchOverlay(); closeChatWindow(); }
+    if(e.key === "Escape"){
+      closeSearchOverlay();
+      closeChatWindow();
+      closeModal(document.querySelector(".modal.is-open"));
+    }
   });
 
   /* ---- 인터랙션 위임 ---- */
@@ -492,19 +519,18 @@
     if(need){
       e.preventDefault();
       var m = document.getElementById("login-modal");
-      if(m) m.classList.add("is-open");
+      openModal(m, need);
     }
     // 지정 모달 열기 (예: 기업 상세의 잡아바 입사지원)
     var opener = e.target.closest("[data-modal-open]");
     if(opener){
       e.preventDefault();
       var target = document.getElementById(opener.getAttribute("data-modal-open"));
-      if(target) target.classList.add("is-open");
+      openModal(target, opener);
     }
     // 모달 닫기
     if(e.target.closest("[data-modal-close]") || e.target.classList.contains("modal")){
-      var mm = document.querySelector(".modal.is-open");
-      if(mm) mm.classList.remove("is-open");
+      closeModal(e.target.closest(".modal") || document.querySelector(".modal.is-open"));
     }
   });
 

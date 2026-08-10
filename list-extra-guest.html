@@ -1,0 +1,115 @@
+<!doctype html>
+<html lang="ko"><head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>잡아바 프로토타입 — 공모·대외활동 목록(로그인 전)</title>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css">
+<link rel="stylesheet" href="css/proto.css?v=1266">
+<link rel="stylesheet" href="css/theme-neutral.css?v=6">
+<link rel="stylesheet" href="css/proto-linkmark.css?v=5">
+<script src="https://unpkg.com/lucide@latest"></script>
+<script src="js/proto.js?v=1266"></script>
+</head>
+<body data-user="guest">
+<div id="site-header"></div>
+
+<!-- ================================================================
+     공모·대외활동 목록 (로그인 전) — 현 운영 /extrActv/list.do 대응
+
+     [구조 결정] 지원정책(jobSprt)과 필드·JSP·테이블이 다른 별도 페이지로 유지.
+       · 목록 통합·탭 통합·AJAX 통합 모두 하지 않음(현 운영 방식 유지).
+       · 진입 : 지원정책 목록 좌측 '공모·서포터즈' 배너 → 이 페이지로 이동.
+     [개편 핵심] 기존 이 페이지 상단에 상속되던 '지원정책 Hot issue 4배너' 제거.
+       (맥락 불일치 + 9건뿐인 목록을 아래로 밀어냄)
+     [정리] 9건 규모라 좌측 필터는 의미가 없어 제거 — 전체폭 단순 목록 + 정렬만.
+     ================================================================ -->
+<main class="container section">
+  <p class="small muted"><a href="main-guest-a.html">홈</a> › <a href="list-policy-guest.html">정책·지원 찾기</a> › 공모·대외활동</p>
+
+  <div class="result-head" style="margin-top:8px">
+    <h1 class="section__title" style="margin:0">공모·서포터즈 <span class="muted" style="font-weight:400">9건</span></h1>
+    <div class="result-head__tools">
+      <select class="select"><option>마감임박순</option><option>최신순</option><option>모집시작순</option></select>
+      <select class="select"><option>20개씩</option><option>50개씩</option></select>
+    </div>
+  </div>
+  <p class="muted small" style="margin-top:8px">청년이 참여할 수 있는 공모전·서포터즈·대외활동을 모았습니다. 활동기간·활동장소를 확인하고 신청하세요.
+    · <a href="list-policy-guest.html">← 정책·지원 찾기로 돌아가기</a></p>
+
+  <!-- [개발 연동] 대외활동 목록(extrActv). 카드 = 주관기관·제목·활동기간·활동장소·해시태그 / 관심·알림 액션.
+       정책 카드와 달리 '지원내용·자격요건'이 아니라 '활동기간·활동장소'가 핵심 필드. -->
+  <div class="grid" style="gap:12px;margin-top:20px">
+    <div class="policard">
+      <a class="card" href="detail-policy-guest.html">
+        <div class="card__badges"><span class="badge badge--solid">NEW</span><span class="badge badge--danger">D-5</span><span class="badge">공모전</span></div>
+        <span class="card__org">경기콘텐츠진흥원</span>
+        <div class="card__title">2026 경기 지역자원 활용 미드폼 제작지원 공모전</div>
+        <p class="small muted">지원금 최대 6,000만원 · 경기 지역자원을 활용한 미드폼 영상 제작을 지원합니다.</p>
+        <dl class="actinfo">
+          <dt>모집기간</dt><dd>2026-07-09(목) ~ 2026-07-30(목) 14:00</dd>
+          <dt>활동기간</dt><dd>2026-06-01(월) ~ 2026-12-20(일)</dd>
+          <dt>활동장소</dt><dd>경기콘텐츠진흥원</dd>
+        </dl>
+        <div class="card__tags"><span class="card__tag">#미드폼제작</span><span class="card__tag">#영상제작공모전</span><span class="card__tag">#경기지역자원활용영상</span></div>
+      </a>
+      <!-- [프로토타입] 로그인 전: 관심/알림 클릭 시 로그인 유도 모달 -->
+      <div class="policard__actions">
+        <button type="button" class="policard__act" data-need-login aria-label="관심활동 등록"><i data-lucide="heart" aria-hidden="true"></i></button>
+        <button type="button" class="policard__act" data-need-login aria-label="마감 알림 신청"><i data-lucide="bell-plus" aria-hidden="true"></i></button>
+      </div>
+    </div>
+
+    <div class="policard">
+      <a class="card" href="detail-policy-guest.html">
+        <div class="card__badges"><span class="badge badge--solid">NEW</span><span class="badge badge--danger">D-6</span><span class="badge">공모전</span></div>
+        <span class="card__org">경기복지재단</span>
+        <div class="card__title">2027년 신규사업 발굴 아이디어 공모전</div>
+        <p class="small muted">복지 분야 신규사업 아이디어를 제안하고 사업화 기회를 얻는 공모전입니다.</p>
+        <dl class="actinfo">
+          <dt>모집기간</dt><dd>2026-07-01(수) ~ 2026-07-31(금)</dd>
+          <dt>활동기간</dt><dd>2026-07-01(수) ~ 2026-07-31(금)</dd>
+          <dt>활동장소</dt><dd>경기복지재단</dd>
+        </dl>
+        <div class="card__tags"><span class="card__tag">#신규사업</span><span class="card__tag">#사업아이디어</span><span class="card__tag">#아이디어공모전</span></div>
+      </a>
+      <div class="policard__actions">
+        <button type="button" class="policard__act" data-need-login aria-label="관심활동 등록"><i data-lucide="heart" aria-hidden="true"></i></button>
+        <button type="button" class="policard__act" data-need-login aria-label="마감 알림 신청"><i data-lucide="bell-plus" aria-hidden="true"></i></button>
+      </div>
+    </div>
+
+    <div class="policard">
+      <a class="card" href="detail-policy-guest.html">
+        <div class="card__badges"><span class="badge badge--danger">D-10</span><span class="badge">공모전</span></div>
+        <span class="card__org">대전정보문화산업진흥원</span>
+        <div class="card__title">2026년 물류데이터·AI 활용 및 분석 아이디어 공모전</div>
+        <p class="small muted">물류데이터와 AI를 활용한 분석 아이디어를 겨루는 전국 단위 공모전입니다.</p>
+        <dl class="actinfo">
+          <dt>모집기간</dt><dd>2026-06-05(금) ~ 2026-08-04(화) 14:00</dd>
+          <dt>활동기간</dt><dd>2026-06-05(금) ~ 2026-08-04(화) 14:00</dd>
+          <dt>활동장소</dt><dd>(재)대전정보문화산업진흥원</dd>
+        </dl>
+        <div class="card__tags"><span class="card__tag">#물류데이터</span><span class="card__tag">#AI활용</span><span class="card__tag">#공모전</span></div>
+      </a>
+      <div class="policard__actions">
+        <button type="button" class="policard__act" data-need-login aria-label="관심활동 등록"><i data-lucide="heart" aria-hidden="true"></i></button>
+        <button type="button" class="policard__act" data-need-login aria-label="마감 알림 신청"><i data-lucide="bell-plus" aria-hidden="true"></i></button>
+      </div>
+    </div>
+  </div>
+  <p class="small muted" style="text-align:center;margin-top:24px">1 · 다음 →</p>
+</main>
+
+<!-- 로그인 유도 모달 -->
+<div class="modal" id="login-modal">
+  <div class="modal__box">
+    <h3>로그인이 필요해요</h3>
+    <p>로그인하면 관심 활동을 저장하고 마감 알림을 받을 수 있어요.</p>
+    <div class="modal__actions">
+      <button class="btn btn--block" data-modal-close>닫기</button>
+      <a class="btn btn--primary btn--block" href="list-extra-member.html">로그인</a>
+    </div>
+  </div>
+</div>
+
+<div id="site-footer"></div>
+</body></html>

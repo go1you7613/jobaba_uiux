@@ -1,0 +1,303 @@
+<!doctype html>
+<html lang="ko"><head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>잡아바 프로토타입 — 기업채용 상세(로그인 전)</title>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css">
+<link rel="stylesheet" href="css/proto.css?v=1264">
+<link rel="stylesheet" href="css/theme-neutral.css?v=6">
+<link rel="stylesheet" href="css/page-detail.css?v=5">
+<link rel="stylesheet" href="css/proto-linkmark.css?v=5">
+<script src="https://unpkg.com/lucide@latest"></script>
+<script src="js/proto.js?v=1270"></script>
+<script src="js/page-detail.js?v=1"></script>
+</head>
+<body data-user="guest">
+<div id="site-header"></div>
+
+<!-- ================================================================
+     기업채용 상세 (로그인 전)
+
+     방향 : 현행 "요약 카드형" 구조 유지 + 배치·디자인만 정리.
+       · 상단 : 요약 카드(회사/제목 + 채용조건·근무환경·기업정보 + CTA)
+       · 하단 : 상세내용(모집분야 및 자격요건/근무조건/복리후생/전형절차/제출서류/접수/유의사항)
+                + 기업의 다른 채용공고 + 유사공고
+     지원 : 기업채용은 "잡아바 내부 지원"(지원하기 버튼 → 입사지원).
+            로그인 전에는 지원·관심 클릭 시 로그인 유도.
+     로그인 전이므로 매칭 라벨은 노출하지 않는다.
+     ================================================================ -->
+<main class="container section" data-detail-anchor-root>
+  <div class="detail-toolbar">
+    <p class="small muted"><a href="list-corp-guest.html">일자리 찾기</a> › 기업채용</p>
+    <!-- [개발 연동] 현재 공고 URL·제목을 공유 채널별 파라미터로 전달 -->
+    <div class="detail-share" aria-label="공고 공유">
+      <span>공유</span>
+      <button type="button" class="detail-share__btn" data-share="facebook" aria-label="페이스북으로 공유"><i data-lucide="share-2" aria-hidden="true"></i></button>
+      <button type="button" class="detail-share__btn" data-share="mobile" aria-label="모바일로 공유"><i data-lucide="smartphone" aria-hidden="true"></i></button>
+      <button type="button" class="detail-share__btn" data-share="url" aria-label="공고 URL 복사"><i data-lucide="link" aria-hidden="true"></i></button>
+    </div>
+  </div>
+
+  <div class="corp-detail-layout">
+  <div class="corp-detail-main">
+  <!-- 상단 요약 카드 -->
+  <div class="jobsum" style="margin-top:var(--sp-4)">
+    <div class="jobsum__head">
+      <div>
+        <div class="jobsum__org">(주)채우라</div>
+        <h1 class="jobsum__title">[북부특화] (주)채우라 _ 기계설계·생산</h1>
+        <p class="jobsum__date">접수기간 2026-04-17 ~ 2026-08-31 <b>(D-37)</b></p>
+      </div>
+      <button type="button" class="jobsum__like" data-need-login aria-label="관심공고 등록"><i data-lucide="heart" aria-hidden="true"></i></button>
+    </div>
+
+    <div class="jobsum__cols">
+      <div class="jobsum__col">
+        <h3>채용조건</h3>
+        <dl>
+          <dt>모집분야</dt><dd>기계</dd>
+          <dt>고용형태</dt><dd>정규직</dd>
+          <dt>경력</dt><dd>신입/경력</dd>
+          <dt>채용인원</dt><dd>2명</dd>
+        </dl>
+      </div>
+      <div class="jobsum__col">
+        <h3>근무환경</h3>
+        <dl>
+          <dt>급여</dt><dd>2,500~3,000만원</dd>
+          <dt>근무지역</dt><dd>고양시</dd>
+          <dt>채용기간</dt><dd>~2026-08-31</dd>
+        </dl>
+      </div>
+      <div class="jobsum__col">
+        <h3>기업정보</h3>
+        <dl>
+          <dt>업종</dt><dd>응용소프트웨어 개발 및 공급업</dd>
+        </dl>
+      </div>
+    </div>
+
+    <!-- CTA : 잡아바 내부 지원(로그인 전 → 로그인 유도) -->
+    <div class="jobsum__cta">
+      <button class="btn btn--primary btn--lg" data-need-login><i data-lucide="send" aria-hidden="true"></i>지원하기</button>
+      <button class="btn btn--outline" data-need-login><i data-lucide="heart" aria-hidden="true"></i>관심채용</button>
+      <button class="btn btn--outline" data-need-login><i data-lucide="bell-plus" aria-hidden="true"></i>알림 신청</button>
+    </div>
+  </div>
+
+  <nav class="detail-anchor-nav" data-detail-anchor-nav aria-label="채용공고 상세 섹션">
+    <a href="#job-overview" aria-current="true">상세내용</a>
+    <a href="#same-company-jobs">다른 채용공고</a>
+    <a href="#similar-jobs">유사공고</a>
+  </nav>
+
+  <!-- 상세내용 -->
+  <div class="detail-body" id="job-overview" data-detail-anchor-section>
+    <h2 class="detail-body__tit">상세내용</h2>
+
+    <div class="dbsec">
+      <div class="dbsec__tit">모집분야 및 자격요건</div>
+      <table class="reqtable">
+        <tr>
+          <th>모집분야명<br>(2명)</th>
+          <td>
+            <p class="sub">담당업무</p>
+            <ul><li>3D 프린터 기계 조립, 구동, 설계</li></ul>
+            <p class="sub">자격요건</p>
+            <ul><li>북부소재 특성화고 또는 전문대 졸업(예정)자</li><li>관련직무 경력자 / 19~39세 / 경기도 거주</li></ul>
+            <p class="sub">우대사항</p>
+            <ul><li>운전면허 보유 / 군필</li></ul>
+          </td>
+        </tr>
+      </table>
+    </div>
+
+    <div class="dbsec">
+      <div class="dbsec__tit">근무조건</div>
+      <ul>
+        <li>근무일시 : 내규에 따름</li>
+        <li>근무조건 : 3개월 수습 후 정규직 전환 협의</li>
+        <li>근무장소 : 경기도 &gt; 고양시</li>
+        <li>근무요일 : 주 5일</li>
+        <li>근무시간 : 09:00 ~ 18:00</li>
+        <li>급여조건 : 면접 후 결정 (경력자 협의 가능)</li>
+      </ul>
+    </div>
+
+    <div class="dbsec">
+      <div class="dbsec__tit">복리후생</div>
+      <div class="taglist"><span>식대지원</span><span>유연근무제</span></div>
+    </div>
+
+    <div class="dbsec">
+      <div class="dbsec__tit">전형절차</div>
+      <ul>
+        <li>서류전형 &gt; 면접 &gt; 최종합격</li>
+        <li>면접일정은 추후 통보됩니다.</li>
+      </ul>
+    </div>
+
+    <div class="dbsec">
+      <div class="dbsec__tit">제출서류</div>
+      <ul><li>입사지원서 / 자격증(증명용 서류)</li></ul>
+    </div>
+
+    <div class="dbsec" id="application-info" data-detail-anchor-section>
+      <div class="dbsec__tit">접수기간 및 방법</div>
+      <ul>
+        <li>접수기간 : 2026년 4월 17일(금) ~ 2026년 8월 31일(월) 24시까지</li>
+        <li>접수방법 : 잡아바 입사지원</li>
+      </ul>
+    </div>
+
+    <div class="dbsec">
+      <div class="dbsec__tit">유의사항</div>
+      <ul><li>허위사실이 발견될 경우 채용이 취소될 수 있습니다.</li></ul>
+    </div>
+
+    <div class="dbsec" id="company-info" data-detail-anchor-section>
+      <div class="dbsec__tit">기업정보 및 콘텐츠</div>
+      <ul>
+        <li>업종 : 응용소프트웨어 개발 및 공급업</li>
+        <li>기업 소개와 채용 관련 콘텐츠는 등록된 기업 콘텐츠 페이지에서 확인할 수 있습니다.</li>
+      </ul>
+    </div>
+
+    <p class="detail-source-note">본 채용정보는 등록 기업이 제공한 자료를 기준으로 노출하며, 무단복제 및 재배포를 금지합니다.</p>
+    <div class="detail-body__actions">
+      <button class="btn btn--primary" data-need-login><i data-lucide="send" aria-hidden="true"></i>입사지원</button>
+      <a class="btn btn--outline" href="list-corp-guest.html">목록</a>
+    </div>
+  </div>
+
+  <!-- [개발 연동] 동일 기업 ID의 진행중 공고 중 현재 공고 제외, 최대 2건 -->
+  <section class="related-jobs" id="same-company-jobs" data-detail-anchor-section data-source="same-company-jobs" data-limit="2" aria-labelledby="same-company-title">
+    <h2 class="related-jobs__title" id="same-company-title">기업의 다른 채용공고</h2>
+    <div class="related-job-list">
+      <article class="related-job">
+        <div class="related-job__head"><h3>생산직 모집합니다.</h3><strong>D-36</strong></div>
+        <p>기타 기계 조립 · 검사원</p>
+        <p>월급 230만원 ~ 300만원 · 기간의 정함이 있는 근로계약 2개월 · 경력 · 고졸</p>
+        <p class="muted">경기도 고양시 일산동구 성현로 532-9</p>
+        <a class="btn btn--sm" href="detail-corp-guest.html">상세보기</a>
+      </article>
+      <article class="related-job">
+        <div class="related-job__head"><h3>자재관리</h3><strong>D-45</strong></div>
+        <p>경영 · 사무 · 금융 · 보험직</p>
+        <p>월급 270만원 · 기간의 정함이 없는 근로계약 · 경력 · 학력무관</p>
+        <p class="muted">경기도 고양시 일산동구 성현로 532-9</p>
+        <a class="btn btn--sm" href="detail-corp-guest.html">상세보기</a>
+      </article>
+    </div>
+  </section>
+
+  <!-- [개발 연동] 현재 공고의 직무·지역·고용형태 기준 유사공고, 최대 5건 -->
+  <section class="related-jobs" id="similar-jobs" data-detail-anchor-section data-source="similar-company-jobs" data-limit="5" aria-labelledby="similar-jobs-title">
+    <h2 class="related-jobs__title" id="similar-jobs-title">유사공고</h2>
+    <div class="related-job-list">
+      <article class="related-job related-job--similar">
+        <div class="related-job__company">(사)한국산지환경연구회</div>
+        <div class="related-job__body"><h3>[북부특화] 토양 물리 화학성 분석 보조</h3><p>2,500만원 이하 · 정규직 · 신입/경력 · 학력무관</p><p class="muted">남양주시</p></div>
+        <div class="related-job__actions"><strong>D-7</strong><button type="button" class="jobsum__like" data-need-login aria-label="관심공고 등록"><i data-lucide="heart" aria-hidden="true"></i></button><a class="btn btn--sm" href="detail-corp-guest.html">지원하기</a></div>
+      </article>
+      <article class="related-job related-job--similar">
+        <div class="related-job__company">농진담파머스</div>
+        <div class="related-job__body"><h3>[북부특화] 판매관리</h3><p>2,500만원 이하 · 정규직 · 신입/경력 · 학력무관</p><p class="muted">가평군</p></div>
+        <div class="related-job__actions"><strong>D-7</strong><button type="button" class="jobsum__like" data-need-login aria-label="관심공고 등록"><i data-lucide="heart" aria-hidden="true"></i></button><a class="btn btn--sm" href="detail-corp-guest.html">지원하기</a></div>
+      </article>
+      <article class="related-job related-job--similar">
+        <div class="related-job__company">농진담파머스</div>
+        <div class="related-job__body"><h3>[북부특화] 온라인 마케터</h3><p>2,500만원 이하 · 정규직 · 신입/경력 · 학력무관</p><p class="muted">가평군</p></div>
+        <div class="related-job__actions"><strong>D-7</strong><button type="button" class="jobsum__like" data-need-login aria-label="관심공고 등록"><i data-lucide="heart" aria-hidden="true"></i></button><a class="btn btn--sm" href="detail-corp-guest.html">지원하기</a></div>
+      </article>
+      <article class="related-job related-job--similar">
+        <div class="related-job__company">비포레스트</div>
+        <div class="related-job__body"><h3>[일반] 마케팅</h3><p>3,000~4,000만원 · 정규직 · 신입/경력 · 학력무관</p><p class="muted">수원시</p></div>
+        <div class="related-job__actions"><strong>D-7</strong><button type="button" class="jobsum__like" data-need-login aria-label="관심공고 등록"><i data-lucide="heart" aria-hidden="true"></i></button><a class="btn btn--sm" href="detail-corp-guest.html">지원하기</a></div>
+      </article>
+      <article class="related-job related-job--similar">
+        <div class="related-job__company">비포레스트</div>
+        <div class="related-job__body"><h3>[일반] 사무행정</h3><p>3,000~4,000만원 · 정규직 · 신입/경력 · 학력무관</p><p class="muted">수원시</p></div>
+        <div class="related-job__actions"><strong>D-7</strong><button type="button" class="jobsum__like" data-need-login aria-label="관심공고 등록"><i data-lucide="heart" aria-hidden="true"></i></button><a class="btn btn--sm" href="detail-corp-guest.html">지원하기</a></div>
+      </article>
+    </div>
+  </section>
+
+  </div>
+
+  <!-- [개발 연동] 기업 리뷰 평점 API, AI 역량검사 페이지, 관련 정보 및 서비스 -->
+  <aside class="corp-detail-side" aria-label="기업 리뷰 및 관련 정보 서비스">
+    <div class="corp-detail-side__sticky">
+      <section class="corp-side-card corp-review" data-source="company-review">
+        <h2>전체 리뷰 평점 <span>(3명)</span></h2>
+        <div class="corp-review__score"><strong>3.3</strong><span aria-label="5점 중 3.3점">★★★★<i aria-hidden="true">★</i></span></div>
+        <div class="corp-review__items">
+          <div><span>복지/급여</span><span class="corp-review__bar"><i style="--score:60%"></i></span><b>3.0</b></div>
+          <div><span>사내문화</span><span class="corp-review__bar"><i style="--score:86%"></i></span><b>4.3</b></div>
+          <div><span>경영진</span><span class="corp-review__bar"><i style="--score:66%"></i></span><b>3.3</b></div>
+          <div><span>워라밸</span><span class="corp-review__bar"><i style="--score:86%"></i></span><b>4.3</b></div>
+          <div><span>승진기회</span><span class="corp-review__bar"><i style="--score:46%"></i></span><b>2.3</b></div>
+        </div>
+        <p><i data-lucide="info" aria-hidden="true"></i>기업 리뷰와 평점 정보는 잡플래닛에서 제공합니다.</p>
+      </section>
+
+      <a class="corp-ai-banner" href="prep-hub-guest.html">
+        <img src="image/ai-competency-banner.png" alt="AI 역량검사 - 나의 진짜 역량을 확인해 보세요">
+      </a>
+
+      <div class="std-foot__grid std-foot__grid--side">
+        <!-- [개발 연동] 통합접수 신청사업: 대상유형 일치 + 등록일 최신순, 최대 4건 -->
+        <div class="std-foot__col" data-source="integrated-apply" data-limit="4">
+          <h3>이런 사업도 있어요</h3>
+          <ul>
+            <li><a href="apply-guest.html">청년 노동자 통장 (현금성)</a></li>
+            <li><a href="apply-guest.html">청년도전 지원사업 (참여수당)</a></li>
+            <li><a href="apply-guest.html">경기청년 면접수당</a></li>
+            <li><a href="apply-guest.html">미래내일 일경험</a></li>
+          </ul>
+        </div>
+        <div class="std-foot__col" data-link-type="static">
+          <h3>취업 준비가 고민이라면</h3>
+          <ul>
+            <li><a href="prep-hub-guest.html">취업진단으로 내 강점 찾기</a></li>
+            <li><a href="prep-hub-guest.html">자소서 첨삭 · AI 역량검사</a></li>
+          </ul>
+          <a class="btn btn--sm" href="prep-hub-guest.html"><i data-lucide="clipboard-list"></i>취업진단 시작</a>
+        </div>
+        <!-- [개발 연동] 잡학사전: 등록일 최신순, 최대 3건 -->
+        <div class="std-foot__col" data-source="job-dictionary" data-limit="3">
+          <h3>알아두면 좋은 정보</h3>
+          <ul>
+            <li><a>정책용어 풀이 ‘기준중위소득’</a></li>
+            <li><a>교통비 환급받는 방법</a></li>
+            <li><a>0.5 &amp; 0.75 잡이란?</a></li>
+          </ul>
+        </div>
+        <div class="std-foot__col std-foot__col--member" data-link-type="static">
+          <h3>회원이면 더 편해요</h3>
+          <ul>
+            <li>잡아바 입사지원 · 이력서 관리</li>
+            <li>관심채용 · 마감 알림</li>
+            <li>내 조건 맞춤 공고 추천</li>
+          </ul>
+          <a class="btn btn--primary btn--sm" href="main-member-a.html"><i data-lucide="user-plus"></i>간편가입 · 로그인</a>
+        </div>
+      </div>
+    </div>
+  </aside>
+  </div>
+</main>
+
+<!-- 로그인 유도 모달 -->
+<div class="modal" id="login-modal">
+  <div class="modal__box">
+    <h3>로그인이 필요해요</h3>
+    <p>로그인하면 이 공고에 잡아바에서 바로 지원하고, 관심채용·알림을 이용할 수 있어요.</p>
+    <div class="modal__actions">
+      <button class="btn btn--outline btn--block" data-modal-close>닫기</button>
+      <a class="btn btn--primary btn--block" href="detail-corp-member.html">로그인</a>
+    </div>
+  </div>
+</div>
+
+<div id="site-footer"></div>
+</body></html>

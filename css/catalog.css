@@ -1,0 +1,94 @@
+/* 기업지원정책·취업교육 공용 목록/상세 보완 */
+.catalog-hot{margin-top:var(--sp-6);}
+.catalog-hot__grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:var(--sp-3);}
+.catalog-hot__card{display:flex;min-height:170px;flex-direction:column;padding:var(--sp-5);border:1px solid var(--c-border);border-radius:var(--r-lg);background:var(--c-bg);}
+.catalog-hot__card:hover{box-shadow:var(--sh-md);}
+.catalog-hot__card small{font-size:var(--fs-12);font-weight:var(--fw-bold);color:var(--c-muted);}
+.catalog-hot__card strong{margin-top:var(--sp-3);font-size:var(--fs-16);line-height:1.45;color:var(--c-heading);}
+.catalog-hot__card span{margin-top:auto;padding-top:var(--sp-3);font-size:var(--fs-13);}
+.catalog-search{margin-top:var(--sp-6);}
+.catalog-search .searchbox{display:block;}
+.catalog-filter{display:grid;grid-template-columns:110px minmax(0,1fr);gap:var(--sp-3);align-items:start;padding:var(--sp-3) 0;border-top:1px solid var(--c-border);}
+.catalog-filter:first-of-type{border-top:0;}
+.catalog-filter__label{padding-top:7px;font-size:var(--fs-14);font-weight:var(--fw-bold);}
+.catalog-filter .chips{display:flex;flex-wrap:wrap;gap:var(--sp-2);}
+.catalog-filter .chip{cursor:pointer;}
+.catalog-filter .chip[aria-pressed="true"]{border-color:var(--c-ink);background:var(--c-heading);color:#fff;}
+.catalog-applied{display:flex;min-height:32px;align-items:center;gap:var(--sp-2);flex-wrap:wrap;}
+.catalog-applied .chip{font-size:var(--fs-12);}
+.catalog-results{margin-top:var(--sp-7);}
+.catalog-result-head{display:flex;align-items:center;justify-content:space-between;gap:var(--sp-3);margin-bottom:var(--sp-4);}
+.catalog-result-head p{margin:0;font-size:var(--fs-16);}
+.catalog-list{display:grid;grid-template-columns:1fr 1fr;gap:var(--sp-3);}
+.catalog-card{position:relative;display:grid;grid-template-columns:150px minmax(0,1fr);gap:var(--sp-4);min-height:190px;padding:var(--sp-4);border:1px solid var(--c-border);border-radius:var(--r-lg);background:var(--c-bg);}
+.catalog-card:hover{box-shadow:var(--sh-md);}
+.catalog-card[hidden]{display:none;}
+.catalog-card__thumb{display:grid;place-items:center;min-height:150px;border:1px solid var(--c-border);border-radius:var(--r-md);background:var(--c-bg-subtle);}
+.catalog-card__thumb svg{width:34px;height:34px;color:var(--c-muted);}
+.catalog-card__body{display:flex;min-width:0;flex-direction:column;}
+.catalog-card__org{font-size:var(--fs-13);font-weight:var(--fw-bold);color:var(--c-muted);}
+.catalog-card__title{margin-top:6px;font-size:var(--fs-17);font-weight:var(--fw-bold);line-height:1.45;color:var(--c-heading);}
+.catalog-card__meta{display:grid;gap:4px;margin-top:var(--sp-3);font-size:var(--fs-13);color:var(--c-muted);}
+.catalog-card__tags{display:flex;gap:6px;flex-wrap:wrap;margin-top:auto;padding-top:var(--sp-3);}
+.catalog-empty{padding:var(--sp-8);border:1px dashed var(--c-border-strong);border-radius:var(--r-lg);text-align:center;}
+.catalog-detail__hero{display:flex;align-items:flex-start;justify-content:space-between;gap:var(--sp-4);}
+.catalog-detail__hero .detail-title{margin-top:var(--sp-2);}
+.catalog-detail__status{flex:none;}
+.catalog-detail__poster{display:grid;min-height:260px;place-items:center;margin-top:var(--sp-5);border:1px solid var(--c-border);border-radius:var(--r-lg);background:var(--c-bg-subtle);text-align:center;}
+.catalog-detail__poster span{display:block;font-size:var(--fs-13);font-weight:var(--fw-bold);color:var(--c-muted);}
+.catalog-detail__poster strong{display:block;margin-top:var(--sp-2);font-size:var(--fs-24);line-height:1.35;}
+.catalog-member-note{display:flex;align-items:center;gap:8px;margin:0 0 var(--sp-4);padding:var(--sp-3) var(--sp-4);border:1px solid var(--c-border);border-radius:var(--r-md);background:var(--c-bg-subtle);font-size:var(--fs-13);}
+.catalog-member-note svg{width:17px;height:17px;}
+
+/* 기업지원정책 목록: 일자리 지원정책과 동일한 발견·조건검색·목록 패턴 */
+.business-catalog{padding-bottom:calc(var(--sp-12) + var(--sp-4));}
+.business-catalog .business-hot-grid .card{min-width:0;}
+.business-catalog .business-hot-grid .hotissue__thumb{min-height:130px;}
+.business-catalog .listfilter{border:1px solid var(--neutral-border);border-radius:10px;background:#fff;padding:4px 18px;}
+.business-catalog .listfilter__row{display:flex;align-items:flex-start;gap:14px;flex-wrap:wrap;padding:12px 0;border-top:1px solid var(--neutral-border);}
+.business-catalog .listfilter__row:first-child{border-top:0;}
+.business-catalog .listfilter__label{flex:none;width:70px;padding-top:7px;font-size:14px;font-weight:700;line-height:1;}
+.business-catalog .listfilter__row .chips{flex:1;min-width:0;}
+.business-catalog .listfilter__foot{display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap;margin-top:12px;padding:12px 18px;border:1px solid var(--neutral-border);border-radius:10px;background:var(--neutral-surface);}
+.business-catalog .listfilter__sel{display:flex;align-items:center;gap:8px;flex-wrap:wrap;}
+.business-catalog .business-funding{display:inline-flex;align-items:center;gap:8px;min-height:30px;font-size:14px;font-weight:600;cursor:pointer;}
+.business-catalog .business-funding input{width:16px;height:16px;accent-color:var(--c-ink);}
+.business-policy-list{grid-template-columns:1fr;}
+.business-catalog .policard--thumb .card{display:flex;gap:20px;align-items:flex-start;padding:16px;}
+.business-catalog .policard__thumb{flex:none;width:200px;height:140px;display:grid;place-items:center;border:1px solid var(--neutral-border);border-radius:10px;background:var(--neutral-surface);overflow:hidden;}
+.business-catalog .policard__thumb svg{width:32px;height:32px;}
+.business-catalog .policard__body{position:relative;flex:1;min-width:0;}
+.business-catalog .policard__orgline{display:flex;align-items:center;gap:6px;flex-wrap:wrap;padding-right:64px;}
+.business-catalog .policard__orgline .card__org{display:inline;margin:0;font-weight:700;font-size:14px;}
+.business-catalog .policard__head{display:flex;align-items:center;gap:10px;margin:6px 0 12px;}
+.business-catalog .policard__head .card__title{flex:1;min-width:0;margin:0;font-size:17px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
+.business-catalog .policard__dday{position:absolute;top:0;right:0;z-index:1;}
+.business-catalog .policard__info{margin:0;font-size:13px;}
+.business-catalog .policard__info>div{display:flex;gap:6px;margin-top:5px;min-width:0;}
+.business-catalog .policard__info dt{flex:none;font-weight:700;}
+.business-catalog .policard__info dt::after{content:":";}
+.business-catalog .policard__info dd{margin:0;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;}
+.business-catalog .policard--thumb .card__tags{display:flex;align-items:center;gap:12px;flex-wrap:wrap;margin-top:14px;}
+.business-catalog .policard--thumb .card__tag{display:inline-flex;align-items:center;gap:3px;font-size:12px;}
+.business-catalog .catalog-empty{margin-top:16px;}
+
+@media(max-width:1024px){
+  .catalog-hot__grid{grid-template-columns:1fr 1fr;}
+  .catalog-list{grid-template-columns:1fr;}
+}
+@media(max-width:640px){
+  .catalog-hot__grid{grid-template-columns:1fr;}
+  .catalog-filter{grid-template-columns:1fr;}
+  .catalog-filter__label{padding-top:0;}
+  .catalog-card{grid-template-columns:1fr;}
+  .catalog-card__thumb{min-height:120px;}
+  .catalog-detail__hero{display:block;}
+  .catalog-detail__status{margin-top:var(--sp-3);}
+  .business-catalog .business-hot-grid{grid-template-columns:1fr 1fr;}
+  .business-catalog{padding-bottom:var(--sp-12);}
+  .business-catalog .listfilter__label{width:100%;padding-top:0;}
+  .business-catalog .policard--thumb .card{flex-wrap:wrap;}
+  .business-catalog .policard__thumb{width:100%;height:170px;}
+  .business-catalog .policard__orgline{padding-right:58px;}
+  .business-catalog .policard__head .card__title,.business-catalog .policard__info dd{white-space:normal;}
+}

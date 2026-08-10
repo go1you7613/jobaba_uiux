@@ -1,0 +1,161 @@
+<!doctype html>
+<html lang="ko"><head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>잡아바 프로토타입 — 정보구조 AS-IS vs TO-BE</title>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css">
+<link rel="stylesheet" href="css/proto.css?v=1264">
+<link rel="stylesheet" href="css/theme-neutral.css?v=6">
+<link rel="stylesheet" href="css/index.css?v=4">
+<link rel="stylesheet" href="css/ia-compare.css?v=2">
+<script src="https://unpkg.com/lucide@latest"></script>
+</head>
+<body data-user="guest" class="idx-body">
+
+<!-- [프로토타입] 정보구조 개편 비교 안내 페이지. GNB/proto.js 미주입 정적 문서. -->
+<div class="proto-bar">
+  <div class="proto-bar__left">
+    <span class="proto-bar__title">프로토타입</span>
+    <a class="proto-bar__btn" href="index.html">안내페이지 가기</a>
+  </div>
+  <div class="proto-bar__right">
+    <span class="proto-bar__page">정보구조 AS-IS vs TO-BE</span>
+    <span class="proto-bar__state">공통</span>
+    <span class="proto-bar__note">현행 메뉴구조와 개편안을 대조하는 설계 문서 페이지입니다.</span>
+  </div>
+</div>
+
+<main class="container idx">
+  <header class="idx-head">
+    <p class="idx-eyebrow">INFORMATION ARCHITECTURE · AS-IS vs TO-BE</p>
+    <h1>정보구조 개편안 대조</h1>
+    <p class="idx-lead">
+      현행 GNB <strong>5개 상위메뉴</strong>를 사용자 목적 중심의 <strong>6개 상위메뉴</strong>로 재편합니다. 기업서비스는 메뉴가 아닌 별도 신설 페이지입니다.<br>
+      기능 중심 분류(채용·정책·취업지원)를 과업 흐름(찾기 → 신청 → 준비 → 관리)으로 정렬했습니다.
+    </p>
+    <div class="idx-meta">
+      <span><b>근거</b> 정보구조_IA_개편안.md</span>
+      <span><b>기준일</b> 2026-07-24</span>
+      <span><b>상태</b> 확정</span>
+    </div>
+  </header>
+
+  <!-- 1. GNB 상위메뉴 대조 -->
+  <section class="idx-sec">
+    <div class="idx-sec__head">
+      <h2>GNB 상위메뉴 대조</h2>
+      <p>좌측 현행 5메뉴 → 우측 개편 6메뉴. 우측의 <strong>신설·이동</strong> 표기는 변경 지점입니다.</p>
+    </div>
+
+    <div class="iac-cols">
+      <!-- AS-IS -->
+      <div class="iac-col iac-col--asis">
+        <div class="iac-col__head">
+          <h3>AS-IS · 현행 5메뉴</h3>
+          <span>기능 중심 분류 · 대상별 서비스 GNB 밖 산재</span>
+        </div>
+        <ul class="iac-menu">
+          <li>
+            <div class="iac-menu__top"><span class="iac-menu__num">1</span>채용정보</div>
+            <ul class="iac-menu__subs"><li>공공채용</li><li>기업채용</li><li>온라인 채용관</li><li>테마채용관</li></ul>
+          </li>
+          <li>
+            <div class="iac-menu__top"><span class="iac-menu__num">2</span>지원정책</div>
+            <ul class="iac-menu__subs"><li>일자리지원정책</li><li>기업지원정책</li><li>취업교육</li><li>정책활용꿀팁</li></ul>
+            <p class="iac-menu__note">취업교육이 정책에 혼재(취업지원과 중복 축).</p>
+          </li>
+          <li>
+            <div class="iac-menu__top"><span class="iac-menu__num">3</span>취업지원</div>
+            <ul class="iac-menu__subs"><li>자소서첨삭</li><li>취업진단</li><li>AI 역량검사</li><li>동영상 강의</li></ul>
+            <p class="iac-menu__note">동영상 강의는 현행 숨김 처리 메뉴.</p>
+          </li>
+          <li>
+            <div class="iac-menu__top"><span class="iac-menu__num">4</span>통합접수</div>
+            <ul class="iac-menu__subs"><li>지원사업</li><li>기간제 채용관</li></ul>
+            <p class="iac-menu__note">전체가 외부 apply.jobaba.net.</p>
+          </li>
+          <li>
+            <div class="iac-menu__top"><span class="iac-menu__num">5</span>참여소통</div>
+            <ul class="iac-menu__subs"><li>이벤트</li><li>공지사항</li><li>Q&amp;A</li><li>잡학사전</li></ul>
+            <p class="iac-menu__note">고객지원 + 콘텐츠 혼재.</p>
+          </li>
+        </ul>
+      </div>
+
+      <!-- TO-BE -->
+      <div class="iac-col iac-col--tobe">
+        <div class="iac-col__head">
+          <h3>TO-BE · 개편 6메뉴</h3>
+          <span>사용자 목적 중심 · 대상별 허브화</span>
+        </div>
+        <ul class="iac-menu">
+          <li>
+            <div class="iac-menu__top"><span class="iac-menu__num">1</span>일자리 찾기</div>
+            <ul class="iac-menu__subs"><li>공공채용</li><li>기업채용</li><li>온라인 채용관</li><li>테마채용관</li></ul>
+          </li>
+          <li>
+            <div class="iac-menu__top"><span class="iac-menu__num">2</span>정책·지원 찾기</div>
+            <ul class="iac-menu__subs">
+              <li>일자리 지원정책</li><li>기업 지원정책</li><li>정책활용꿀팁</li>
+            </ul>
+            <p class="iac-menu__note">대상별 정책은 별도 메뉴로 두지 않고 대상별 서비스 허브에서 제공.</p>
+          </li>
+          <li>
+            <div class="iac-menu__top"><span class="iac-menu__num">3</span>신청·접수</div>
+            <ul class="iac-menu__subs"><li>지원사업</li><li>기간제 채용관</li></ul>
+            <p class="iac-menu__note">통합접수(어플라이) 명칭 명확화.</p>
+          </li>
+          <li>
+            <div class="iac-menu__top"><span class="iac-menu__num">4</span>취업 준비·역량강화</div>
+            <ul class="iac-menu__subs">
+              <li>취업진단</li><li>자소서첨삭</li><li>AI 역량검사</li><li>취업교육</li>
+              <li>동영상강의</li><li>잡학사전</li>
+            </ul>
+          </li>
+          <li>
+            <div class="iac-menu__top"><span class="iac-menu__num">5</span>대상별 서비스 <span class="iac-tag iac-tag--new">신설</span></div>
+            <ul class="iac-menu__subs"><li>청년</li><li>중장년</li><li>장애인</li><li>여성</li></ul>
+            <p class="iac-menu__note">GNB 드롭다운 미노출 — 허브 화면 내 탭으로만 제공.</p>
+          </li>
+          <li>
+            <div class="iac-menu__top"><span class="iac-menu__num">6</span>고객지원</div>
+            <ul class="iac-menu__subs"><li>공지사항</li><li>Q&amp;A</li><li>이벤트</li></ul>
+            <p class="iac-menu__note">참여소통의 고객지원 기능 분리.</p>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- 2. As-Is → To-Be 이관 매핑 -->
+  <section class="idx-sec">
+    <div class="idx-sec__head">
+      <h2>이관 매핑</h2>
+      <p>현행 요소가 개편 6메뉴(+ 기업서비스 신설 페이지) 어디로 흡수되는지 정리했습니다.</p>
+    </div>
+    <table class="iac-table">
+      <caption>As-Is → To-Be 이관표</caption>
+      <thead>
+        <tr><th scope="col">As-Is 위치</th><th scope="col">To-Be 위치</th><th scope="col">처리</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>채용정보(공공/기업/온라인/테마)</td><td><b>일자리 찾기</b></td><td>화면 분리 유지 · 직무중심 분류 공통 진입축</td></tr>
+        <tr><td>지원정책(일자리/기업) · 정책활용꿀팁</td><td><b>정책·지원 찾기</b></td><td>일자리·기업 축으로 재구성</td></tr>
+        <tr><td>지원정책 &gt; 취업교육</td><td><b>취업 준비·역량강화</b></td><td>이동(중복 해소)</td></tr>
+        <tr><td>취업지원(자소서·진단·AI)</td><td><b>취업 준비·역량강화</b></td><td>통합</td></tr>
+        <tr><td>취업지원 &gt; 동영상 강의</td><td><b>취업 준비·역량강화</b></td><td>편입 확정 · lms open_class 외부링크</td></tr>
+        <tr><td>통합접수(apply)</td><td><b>신청·접수</b></td><td>명칭 명확화(어플라이 통합)</td></tr>
+        <tr><td>GNB 밖 대상별 특화관 8종</td><td><b>대상별 서비스</b></td><td>허브 신설 · 내부 채용관+외부링크 통합</td></tr>
+        <tr><td>기업채용·기업지원정책·우수기업</td><td><b>기업서비스(신설 페이지)</b></td><td>메뉴 아님 · 유틸바 진입</td></tr>
+        <tr><td>참여소통(이벤트·공지·Q&amp;A)</td><td><b>고객지원</b></td><td>기능 분리 재배치</td></tr>
+        <tr><td>참여소통 &gt; 잡학사전</td><td><b>취업 준비·역량강화</b></td><td>이동(하위 마지막)</td></tr>
+        <tr><td class="muted">검색 카테고리 &gt; 대외활동</td><td class="muted">정책·지원 찾기 목록 필터값</td><td class="muted">메뉴 아님(콘텐츠 유형 코드)</td></tr>
+      </tbody>
+    </table>
+  </section>
+
+</main>
+
+<script>
+  if(window.lucide) lucide.createIcons();
+</script>
+</body></html>

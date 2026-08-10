@@ -1,0 +1,132 @@
+<!doctype html>
+<html lang="ko"><head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>잡아바 프로토타입 — 정책 상세(로그인 전)</title>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css">
+<link rel="stylesheet" href="css/proto.css?v=1264">
+<link rel="stylesheet" href="css/theme-neutral.css?v=6">
+<link rel="stylesheet" href="css/page-detail.css?v=6">
+<link rel="stylesheet" href="css/proto-linkmark.css?v=5">
+<script src="https://unpkg.com/lucide@latest"></script>
+<script src="js/proto.js?v=1267"></script>
+</head>
+<body data-user="guest">
+<div id="site-header"></div>
+
+<!-- 현행 정책 상세의 문서형 2단 구성을 유지하고 공공채용 상세와 동일한 배치 골격을 적용한다. -->
+<main class="container section public-detail">
+  <p class="small muted"><a href="list-policy-guest.html">정책·지원 찾기</a> › 현금성 지원</p>
+
+  <div class="detail-cols" style="margin-top:var(--sp-4)">
+    <!-- 좌 : 정책 본문 → 첨부자료 → 안내문 → 하단 액션 -->
+    <div class="public-detail__main">
+      <section class="public-detail__document">
+      <div class="detail-head">
+        <p class="public-detail__meta"><strong>경기도일자리재단</strong><span>자산형성 지원</span></p>
+        <h1 class="detail-title">청년 노동자 통장 (경기)</h1>
+      </div>
+
+        <!-- [개발 연동] 운영 등록방식에 따라 포스터 이미지·HTML 또는 구조화 본문을 이 영역에 출력 -->
+        <div class="public-detail__body policy-origin-content" aria-label="정책공고 상세 콘텐츠">
+          <table class="info-table">
+            <tr><th>지원내용</th><td>본인 저축 월 10만원 + 경기도 지원금 매칭 (2년 만기 시 최대 580만원)</td></tr>
+            <tr><th>지원대상</th><td>경기도 거주 만 18~34세 청년 노동자</td></tr>
+            <tr><th>자격요건</th><td>공고일 기준 경기도 3개월 이상 거주 · 주 30시간 이상 근로 · 기준중위소득 100% 이하</td></tr>
+            <tr><th>제출서류</th><td>신청서, 주민등록초본, 재직증명서, 건강보험 자격득실확인서, 소득 증빙</td></tr>
+            <tr><th>문의</th><td>031-270-9988</td></tr>
+          </table>
+
+          <h2 style="font-size:18px;margin:28px 0 8px">지원 절차</h2>
+          <ol class="small" style="padding-left:18px;list-style:decimal;line-height:2">
+            <li>온라인 신청 (잡아바 어플라이)</li>
+            <li>자격 검증 및 서류 심사</li>
+            <li>선정자 발표 및 약정 체결</li>
+            <li>매월 저축 및 지원금 매칭 적립</li>
+          </ol>
+
+          <h2 style="font-size:18px;margin:28px 0 8px">유의사항</h2>
+          <p class="small">중복 지원 불가 사업이 있습니다. 타 자산형성 사업(청년내일저축계좌 등) 참여 중인 경우 신청이 제한될 수 있습니다.</p>
+          <p class="public-detail__notice"><i data-lucide="lightbulb" aria-hidden="true"></i>기타 자세한 모집요강 및 세부 내용은 첨부된 공고문을 참고하시기 바랍니다.</p>
+        </div>
+      </section>
+
+      <div class="attach">
+        <div class="attach__tit">첨부자료</div>
+        <a><i data-lucide="paperclip" aria-hidden="true"></i>청년 노동자 통장 사업 공고문.pdf</a>
+        <a><i data-lucide="paperclip" aria-hidden="true"></i>신청서 및 제출서류 양식.hwp</a>
+      </div>
+
+      <div class="detail-disclaimer">
+        <p>본 정보는 경기도일자리재단이 각 기관 및 홈페이지에서 제공하거나 수집한 내용을 토대로 편집, 그 표현방법을 수정하여 완성한 것으로 재단의 동의없이 무단전재 및 재배포, 재가공할 수 없습니다. 재단은 자료에 대한 오류와 사용자가 이를 신뢰하여 취한 조치에 대해 책임을 지지 않습니다.</p>
+        <p>해당 정보는 서비스 제공기관의 사정, 기간변경 등 다양한 원인으로 언제든지 변경될 수 있으며, 현행화의 시간차이 등으로 100% 정확하지 않을 수 있으니, 반드시 해당기관의 홈페이지 또는 전화문의를 통하여 확인하시기 바랍니다.</p>
+        <p>정보통신망법 제50조에 따라 본 게시물 상의 연락처는 내용상의 서비스 제공에 대한 문의 외에 사전동의 없이 전자메일 등으로 광고성 정보를 전송 및 연락하는 행위를 하면 안됩니다.</p>
+      </div>
+
+      <div class="public-detail__actions">
+        <a class="btn btn--outline" href="list-policy-guest.html">목록으로</a>
+        <a class="btn btn--primary" href="apply-guest.html"><i data-lucide="send" aria-hidden="true"></i>신청하기</a>
+      </div>
+    </div>
+
+    <!-- 우 : 진행상태·신청정보·관련 서비스 4종을 하나의 스티키 aside로 묶음 -->
+    <aside class="public-detail__side" aria-label="정책 신청 및 관련 정보">
+      <div class="public-detail__side-sticky">
+        <div class="apply-box public-detail__status">
+          <div class="side-status"><span>진행 상태</span><span class="side-status__val"><b>D-3</b><span class="badge badge--solid">모집중</span></span></div>
+          <a class="btn btn--primary btn--block btn--lg" href="apply-guest.html"><i data-lucide="send" aria-hidden="true"></i>신청하기</a>
+        </div>
+
+        <div class="apply-box public-detail__summary">
+          <dl class="sidesum">
+            <div><dt>모집일정</dt><dd>2026.07.01 ~ 2026.07.21</dd></div>
+            <div><dt>지원대상</dt><dd>경기도 거주 만 18~34세 청년 노동자</dd></div>
+            <div><dt>신청방법</dt><dd>잡아바 어플라이 온라인 신청</dd></div>
+            <div><dt>태그</dt><dd class="side-badges"><span class="badge">#청년통장</span><span class="badge">#자산형성</span><span class="badge">#재직청년</span></dd></div>
+          </dl>
+        </div>
+
+        <section class="std-foot std-foot--side" aria-label="관련 정보 및 서비스">
+          <div class="std-foot__grid std-foot__grid--side">
+            <div class="std-foot__col" data-source="integrated-apply" data-limit="4">
+              <h3>이런 사업도 있어요</h3>
+              <ul>
+                <li><a href="detail-policy-guest.html">청년도전 지원사업 (참여수당)</a></li>
+                <li><a href="detail-policy-guest.html">경기청년 면접수당</a></li>
+                <li><a href="detail-policy-guest.html">역량강화 기회 지원사업</a></li>
+                <li><a href="list-policy-guest.html">미래내일 일경험</a></li>
+              </ul>
+            </div>
+            <div class="std-foot__col" data-link-type="static">
+              <h3>취업 준비가 고민이라면</h3>
+              <ul>
+                <li><a href="prep-hub-guest.html">취업진단으로 내 강점 찾기</a></li>
+                <li><a href="prep-hub-guest.html">자소서 첨삭 · AI 역량검사</a></li>
+              </ul>
+              <a class="btn btn--sm" href="prep-hub-guest.html"><i data-lucide="clipboard-list"></i>취업진단 시작</a>
+            </div>
+            <div class="std-foot__col" data-source="job-dictionary" data-limit="3">
+              <h3>알아두면 좋은 정보</h3>
+              <ul>
+                <li><a>정책용어 풀이 ‘기준중위소득’</a></li>
+                <li><a>교통비 환급받는 방법</a></li>
+                <li><a>0.5 &amp; 0.75 잡이란?</a></li>
+              </ul>
+            </div>
+            <div class="std-foot__col std-foot__col--member" data-link-type="static">
+              <h3>회원이면 더 편해요</h3>
+              <ul>
+                <li><a href="main-member-a.html">자격 적합 여부 자동 판정</a></li>
+                <li><a href="main-member-a.html">제출서류 체크리스트 제공</a></li>
+                <li><a href="main-member-a.html">마감 D-day 알림</a></li>
+              </ul>
+              <a class="btn btn--primary btn--sm" href="main-member-a.html"><i data-lucide="user-plus"></i>간편가입 · 로그인</a>
+            </div>
+          </div>
+        </section>
+      </div>
+    </aside>
+  </div>
+</main>
+
+<div id="site-footer"></div>
+</body></html>

@@ -1,0 +1,91 @@
+/* ================================================================
+   잡아바 디자인시스템 테마 — 블루 주조 + 앰버 보조 (v0.2)
+   컨셉      : 활기·청년 친화
+   주조색    : GJF Blue (경기도일자리재단 전용색상)
+   보조색    : Amber (블루의 보색 — 활기 강조, 소량 사용)
+   변경(v0.1→v0.2): 녹색(GJF Green) 제거, 주색을 Blue로 전환, 보조색 Amber 신설
+   접근성    : WCAG AA — 버튼 블루 #2f66a6(흰글씨 5.88), 브랜드 블루 #3777bc(4.64),
+              앰버 #ef9f27은 흰글씨 2.17로 부적합 → fill+진한글씨(#854f0b 6.73)만 사용
+   적용      : proto.css(그레이스케일) 뒤 로드
+   ================================================================ */
+:root{
+  /* --- GJF Blue 원색 & 공식 틴트 --- */
+  --gjf-blue:#3777bc; --gjf-blue-70:#5f92c9; --gjf-blue-50:#87add7; --gjf-blue-30:#afc9e4; --gjf-blue-10:#d7e4f2;
+  /* --- GJF Red (마감·경고) --- */
+  --gjf-red:#ed1c24;  --gjf-red-70:#f14950;  --gjf-red-50:#f4777c;  --gjf-red-30:#f8a4a7;  --gjf-red-10:#fbd2d3;
+  /* --- Amber 보조 램프 --- */
+  --amber:#ef9f27; --amber-70:#f3b45a; --amber-50:#f7c98c; --amber-30:#fadfbe; --amber-10:#faeeda; --amber-ink:#854f0b;
+
+  /* --- 시맨틱 토큰 --- */
+  --c-primary:#2f66a6;         /* 주 액션(버튼) — 흰 글씨 AA 5.88 (GJF Blue 딥) */
+  --c-primary-hover:#285a8f;   /* hover — 7.12 */
+  --c-primary-bright:#3777bc;  /* 브랜드 블루 강조(GNB·배지·매칭) */
+  --c-primary-weak:#d7e4f2;    /* 선택·옅은 배경 */
+  --c-accent:#ef9f27;          /* 보조·강조 fill(진한 글씨 전용) — NEW·추천·인기 */
+  --c-accent-ink:#854f0b;      /* 앰버 텍스트/아이콘 on white — AA 6.73 */
+  --c-accent-weak:#faeeda;
+  --c-danger:#ed1c24;          /* 마감·경고·에러 */
+  --c-danger-weak:#fbd2d3;
+  --c-focus:#3777bc;           /* 포커스 링 */
+}
+
+/* --- 링크 hover --- */
+a:hover{color:var(--c-primary);}
+
+/* --- 버튼 --- */
+.btn--primary{background:var(--c-primary);color:#fff;border-color:var(--c-primary);}
+.btn--primary:hover{background:var(--c-primary-hover);opacity:1;}
+.btn--outline{color:var(--c-primary);border-color:var(--c-primary);}
+.btn--outline:hover{background:var(--c-primary-weak);}
+/* 보조 CTA(앰버) — 필요 시 .btn--accent 로 사용 */
+.btn--accent{background:var(--c-accent);color:var(--c-accent-ink);border-color:var(--c-accent);}
+.btn--accent:hover{background:var(--amber-70);}
+
+/* --- GNB 현재 위치 --- */
+.gnb__item[aria-current="page"]{border-bottom-color:var(--c-primary-bright);color:var(--c-primary);}
+
+/* --- 칩 / 탭 선택 --- */
+.chip[aria-pressed="true"]{background:var(--c-primary);border-color:var(--c-primary);color:#fff;}
+.tab[aria-selected="true"]{color:var(--c-primary);border-bottom-color:var(--c-primary-bright);}
+
+/* --- 배지 매핑 ---
+   badge--solid : NEW·매칭율·긍정 강조 → 브랜드 블루(흰 글씨)
+   badge--accent: 추천·인기·이벤트 강조 → 앰버(진한 글씨)  *신규
+   badge--danger: 마감·경고 → 레드(흰 글씨)  *신규(4단계 마감임박 배지에 적용 권장) */
+.badge--solid{background:var(--c-primary-bright);border-color:var(--c-primary-bright);color:#fff;}
+.badge--accent{background:var(--c-accent);border-color:var(--c-accent);color:var(--c-accent-ink);}
+.badge--danger{background:var(--c-danger);border-color:var(--c-danger);color:#fff;}
+
+/* --- 검색바 / 입력 포커스 --- */
+.searchbar{border-color:var(--c-primary);}
+.input:focus,.select:focus{outline:2px solid var(--c-focus);outline-offset:1px;border-color:var(--c-focus);}
+
+/* --- 매칭율(개인화 핵심) : 브랜드 블루 --- */
+.match{border-color:var(--c-primary-bright);background:var(--c-primary-weak);}
+.match__num{color:var(--c-primary);}
+
+/* --- 강조 숫자(통계·활동요약) --- */
+.stat__num{color:var(--c-primary);}
+
+/* --- 토글 ON --- */
+.toggle[aria-checked="true"]{background:var(--c-primary);}
+
+/* --- 목적 선택(Hero) hover --- */
+.purpose__item:hover{border-color:var(--c-primary);background:var(--c-primary-weak);}
+
+/* --- 마이페이지 LNB 활성 --- */
+.lnb__link[aria-current="page"]{border-left-color:var(--c-primary-bright);color:var(--c-primary);}
+
+/* --- 상세 정보 테이블 상단선 --- */
+.info-table{border-top-color:var(--c-primary);}
+
+/* ================================================================
+   접근성 포커스 표준화
+   proto.css의 리뷰용 파란 상시 아웃라인을 해제하고,
+   키보드 포커스(:focus-visible)에만 GJF Blue 링을 노출한다.
+   ================================================================ */
+a, [data-show], [data-need-login], [data-modal-close]{outline:none;outline-offset:0;}
+a:focus-visible, button:focus-visible, input:focus-visible, select:focus-visible,
+.chip:focus-visible, .tab:focus-visible, .toggle:focus-visible, [tabindex]:focus-visible{
+  outline:2px solid var(--c-focus); outline-offset:2px; border-radius:2px;
+}

@@ -1,0 +1,336 @@
+<!doctype html>
+<html lang="ko"><head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>잡아바 프로토타입 — 일자리 지원정책 목록(로그인 후)</title>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css">
+<link rel="stylesheet" href="css/proto.css?v=1267">
+<link rel="stylesheet" href="css/theme-neutral.css?v=6">
+<link rel="stylesheet" href="css/proto-linkmark.css?v=5">
+<script src="https://unpkg.com/lucide@latest"></script>
+<script src="js/proto.js?v=1267"></script>
+<style>
+/* 로그인 전 정책 목록과 동일한 가로 조건필터·썸네일 목록 구조 */
+.listfilter{border:1px solid var(--neutral-border);border-radius:10px;background:#fff;padding:4px 18px;}
+.listfilter__row{display:flex;align-items:flex-start;gap:14px;flex-wrap:wrap;padding:12px 0;border-top:1px solid var(--neutral-border);}
+.listfilter__row:first-child{border-top:0;}
+.listfilter__label{flex:none;width:70px;padding-top:7px;font-size:14px;font-weight:700;line-height:1;}
+.listfilter__row .chips{flex:1;min-width:0;}
+.listfilter__foot{display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap;margin-top:12px;padding:12px 18px;border:1px solid var(--neutral-border);border-radius:10px;background:var(--neutral-surface);}
+.listfilter__sel{display:flex;align-items:center;gap:8px;flex-wrap:wrap;}
+
+.policard--thumb .card{display:flex;gap:20px;align-items:flex-start;padding:16px 76px 16px 16px;}
+.policard__thumb{flex:none;width:200px;height:140px;display:grid;place-items:center;border:1px solid var(--neutral-border);border-radius:10px;background:var(--neutral-surface);overflow:hidden;}
+.policard__thumb svg{width:32px;height:32px;}
+.policard__body{position:relative;flex:1;min-width:0;}
+.policard__orgline{display:flex;align-items:center;gap:6px;flex-wrap:wrap;padding-right:64px;}
+.policard__orgline .card__org{display:inline;margin:0;font-weight:700;font-size:14px;}
+.policard__head{display:flex;align-items:center;gap:10px;margin:6px 0 12px;}
+.policard__head .card__title{flex:1;min-width:0;margin:0;font-size:17px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
+.policard__dday{position:absolute;top:0;right:0;z-index:1;}
+.policard__info{margin:0;font-size:13px;}
+.policard__info>div{display:flex;gap:6px;margin-top:5px;min-width:0;}
+.policard__info dt{flex:none;font-weight:700;}
+.policard__info dt::after{content:":";}
+.policard__info dd{margin:0;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;}
+.policard--thumb .card__tags{display:flex;align-items:center;gap:12px;flex-wrap:wrap;margin-top:14px;}
+.policard--thumb .card__tag{display:inline-flex;align-items:center;gap:3px;font-size:12px;}
+.policard--thumb .card__tag svg{width:12px;height:12px;flex:none;}
+.policard--thumb .policard__actions{top:50%;right:16px;transform:translateY(-50%);gap:8px;}
+.policard--thumb .policard__act{width:36px;height:36px;}
+.policard--thumb .policard__act svg{width:17px;height:17px;}
+
+/* 회원 맞춤정책 5건: 실제 매칭 기준을 한 줄에서 함께 확인 */
+.policy-match__criteria{display:flex;justify-content:flex-end;gap:5px;flex-wrap:wrap;}
+.policy-match__criteria .badge{font-size:11px;white-space:nowrap;}
+@media(max-width:760px){
+  .listfilter__label{width:100%;padding-top:0;}
+  .policard--thumb .card{flex-wrap:wrap;padding:16px;}
+  .policard__thumb{width:100%;height:170px;}
+  .policard--thumb .policard__actions{top:24px;right:24px;transform:none;}
+  .policard__orgline{padding-right:58px;}
+  .policard__head .card__title,.policard__info dd{white-space:normal;}
+  .policy-match__criteria{width:100%;justify-content:flex-start;}
+}
+</style>
+</head>
+<body data-user="member">
+<div id="site-header"></div>
+
+<main class="container section">
+  <p class="small muted"><a href="main-member-a.html">홈</a> › 일자리 지원정책</p>
+  <h1 class="section__title" style="margin-top:8px">일자리 지원정책</h1>
+  <p class="muted small"><i data-lucide="user-check"></i> 김청년님의 관심조건(청년 · 수원)을 맞춤정책에 반영했습니다.</p>
+
+  <!-- 로그인 전과 동일: 최신 등록 2건 + 운영자 직접 지정 2건 -->
+  <section class="section" aria-labelledby="hot-title">
+    <div class="section__head"><h2 id="hot-title">지금 주목받는 지원정책</h2></div>
+    <div class="grid grid--4" style="margin-top:12px">
+      <a class="card" href="detail-policy-member.html" data-source="latest">
+        <div class="hotissue__thumb"><i data-lucide="image" aria-hidden="true"></i></div>
+        <div class="card__title">[의정부시] 2026년 청년 AI 소프트웨어 구독비용 지원</div>
+        <p class="hotissue__due">11월 30일(월)까지</p>
+      </a>
+      <a class="card" href="detail-policy-member.html" data-source="latest">
+        <div class="hotissue__thumb"><i data-lucide="image" aria-hidden="true"></i></div>
+        <div class="card__title">2026년 경기 자동차산업 맞춤형 채용지원</div>
+        <p class="hotissue__due">10월 31일(토)까지</p>
+      </a>
+      <a class="card" href="detail-policy-member.html" data-source="curated">
+        <div class="hotissue__thumb"><i data-lucide="image" aria-hidden="true"></i></div>
+        <div class="card__badges"><span class="badge badge--danger">마감임박</span></div>
+        <div class="card__title">[군포시] 2026년 사회연대경제 청년 일경험 시범사업</div>
+        <p class="hotissue__due">7월 27일(월) 12:00까지 · D-1</p>
+      </a>
+      <a class="card" href="detail-policy-member.html" data-source="curated">
+        <div class="hotissue__thumb"><i data-lucide="image" aria-hidden="true"></i></div>
+        <div class="card__badges"><span class="badge badge--danger">마감임박</span></div>
+        <div class="card__title">[평택시] 2026년 청년1인가구 개인형 창고지원사업</div>
+        <p class="hotissue__due">7월 29일(수)까지 · D-3</p>
+      </a>
+    </div>
+  </section>
+
+  <!-- 로그인 전의 마감임박 미리보기 위치를 회원 맞춤정책 5건으로 대체 -->
+  <section class="curation-hot" aria-labelledby="member-match-title" style="margin-top:20px">
+    <div class="section__head" style="margin-bottom:8px">
+      <h3 id="member-match-title" style="font-size:16px">김청년님께 맞는 정책 <span class="small muted">회원정보 기준 · 5건</span></h3>
+    </div>
+    <ul class="dday-list" aria-label="김청년님께 맞는 정책 5건">
+      <li><a href="detail-policy-member.html">
+        <span class="dday-list__title">청년 노동자 통장 (경기)</span>
+        <span class="policy-match__criteria" aria-label="매칭 기준"><span class="badge">연령</span><span class="badge">수원 거주</span><span class="badge">재직</span><span class="badge">소득</span></span>
+      </a></li>
+      <li><a href="detail-policy-member.html">
+        <span class="dday-list__title">[수원시] 청년·신혼 희망터치 보증금 이자지원</span>
+        <span class="policy-match__criteria" aria-label="매칭 기준"><span class="badge">청년</span><span class="badge">수원 거주</span><span class="badge">무주택</span></span>
+      </a></li>
+      <li><a href="detail-policy-member.html">
+        <span class="dday-list__title">2026년 청년도전 지원사업</span>
+        <span class="policy-match__criteria" aria-label="매칭 기준"><span class="badge">청년</span><span class="badge">경기 거주</span><span class="badge">구직중</span></span>
+      </a></li>
+      <li><a href="detail-policy-member.html">
+        <span class="dday-list__title">경기청년 면접수당 지원</span>
+        <span class="policy-match__criteria" aria-label="매칭 기준"><span class="badge">청년</span><span class="badge">경기 거주</span><span class="badge">면접활동</span></span>
+      </a></li>
+      <li><a href="detail-policy-member.html">
+        <span class="dday-list__title">경기청년 역량강화 기회 지원사업</span>
+        <span class="policy-match__criteria" aria-label="매칭 기준"><span class="badge">청년</span><span class="badge">경기 거주</span><span class="badge">취업준비</span></span>
+      </a></li>
+    </ul>
+  </section>
+
+  <div class="region-sep" style="margin-top:28px"><span class="region-sep__label">조건으로 찾기</span></div>
+
+  <!-- 로그인 전과 동일한 전체 목록 조건검색 구조. 회원 기본값만 청년·수원으로 적용 -->
+  <div class="listfilter">
+    <div class="listfilter__row">
+      <span class="listfilter__label">마감유형</span>
+      <div class="chips" role="group" aria-label="마감유형">
+        <button type="button" class="chip" aria-pressed="true" data-action="filter-duetype">전체</button>
+        <button type="button" class="chip" aria-pressed="false" data-action="filter-duetype">기간한정 100</button>
+        <button type="button" class="chip" aria-pressed="false" data-action="filter-duetype">상시모집 95</button>
+      </div>
+    </div>
+    <div class="listfilter__row">
+      <span class="listfilter__label">제공주체</span>
+      <div class="chips" role="group" aria-label="제공주체">
+        <button type="button" class="chip" aria-pressed="true" data-action="filter-authority">전체</button>
+        <button type="button" class="chip" aria-pressed="false" data-action="filter-authority">중앙정부 24</button>
+        <button type="button" class="chip" aria-pressed="false" data-action="filter-authority">경기도 54</button>
+        <button type="button" class="chip" aria-pressed="false" data-action="filter-authority">시·군 117</button>
+      </div>
+    </div>
+    <div class="listfilter__row">
+      <span class="listfilter__label">생애주기</span>
+      <div class="chips" role="group" aria-label="생애주기">
+        <button type="button" class="chip" aria-pressed="false" data-action="filter-life">전체</button>
+        <button type="button" class="chip" aria-pressed="true" data-action="filter-life">청년 19~39세</button>
+        <button type="button" class="chip" aria-pressed="false" data-action="filter-life">중장년 40~64세</button>
+        <button type="button" class="chip" aria-pressed="false" data-action="filter-life">노년 65세~</button>
+      </div>
+    </div>
+    <div class="listfilter__row">
+      <span class="listfilter__label">지역</span>
+      <div class="chips" role="group" aria-label="지역">
+        <button type="button" class="chip" aria-pressed="false" data-action="filter-region">경기 전역</button>
+        <button type="button" class="chip" aria-pressed="true" data-action="filter-region">수원</button>
+        <button type="button" class="chip" aria-pressed="false" data-action="filter-region">성남</button>
+        <button type="button" class="chip" aria-pressed="false" data-action="filter-region">고양</button>
+        <button type="button" class="chip" aria-pressed="false" data-action="filter-region">용인</button>
+        <button type="button" class="chip" aria-pressed="false" data-action="filter-region">부천</button>
+        <button type="button" class="chip" aria-pressed="false" data-action="filter-region">의정부</button>
+        <button type="button" class="chip" aria-pressed="false" data-action="filter-region">안산</button>
+        <button type="button" class="chip" aria-pressed="false" data-action="filter-region">화성</button>
+        <button type="button" class="chip" aria-pressed="false" data-action="filter-region">남양주</button>
+        <button type="button" class="chip" aria-pressed="false" data-action="filter-region">평택</button>
+        <button type="button" class="chip" aria-pressed="false" data-action="filter-region">안양</button>
+        <button type="button" class="chip" aria-pressed="false" data-action="filter-region">시흥</button>
+        <button type="button" class="chip" aria-pressed="false" data-action="filter-region">파주</button>
+        <button type="button" class="chip" aria-pressed="false" data-action="filter-region">김포</button>
+        <button type="button" class="chip" aria-pressed="false" data-action="filter-region">광주</button>
+        <button type="button" class="chip" aria-pressed="false" data-action="filter-region">하남</button>
+        <button type="button" class="chip" aria-pressed="false" data-action="filter-region">광명</button>
+        <button type="button" class="chip" aria-pressed="false" data-action="filter-region">군포</button>
+        <button type="button" class="chip" aria-pressed="false" data-action="filter-region">양주</button>
+        <button type="button" class="chip" aria-pressed="false" data-action="filter-region">오산</button>
+        <button type="button" class="chip" aria-pressed="false" data-action="filter-region">이천</button>
+        <button type="button" class="chip" aria-pressed="false" data-action="filter-region">안성</button>
+        <button type="button" class="chip" aria-pressed="false" data-action="filter-region">구리</button>
+        <button type="button" class="chip" aria-pressed="false" data-action="filter-region">의왕</button>
+        <button type="button" class="chip" aria-pressed="false" data-action="filter-region">포천</button>
+        <button type="button" class="chip" aria-pressed="false" data-action="filter-region">여주</button>
+        <button type="button" class="chip" aria-pressed="false" data-action="filter-region">동두천</button>
+        <button type="button" class="chip" aria-pressed="false" data-action="filter-region">과천</button>
+        <button type="button" class="chip" aria-pressed="false" data-action="filter-region">양평</button>
+        <button type="button" class="chip" aria-pressed="false" data-action="filter-region">가평</button>
+        <button type="button" class="chip" aria-pressed="false" data-action="filter-region">연천</button>
+        <button type="button" class="chip" aria-pressed="false" data-action="filter-region">전국</button>
+        <button type="button" class="chip" aria-pressed="false" data-action="filter-region">인천</button>
+        <button type="button" class="chip" aria-pressed="false" data-action="filter-region">서울 전지역</button>
+      </div>
+    </div>
+    <div class="listfilter__row">
+      <span class="listfilter__label">인기태그</span>
+      <div class="chips" role="group" aria-label="인기태그">
+        <button type="button" class="chip" aria-pressed="false" data-action="filter-tag">#면접</button>
+        <button type="button" class="chip" aria-pressed="false" data-action="filter-tag">#월세지원</button>
+        <button type="button" class="chip" aria-pressed="false" data-action="filter-tag">#청년인턴</button>
+        <button type="button" class="chip" aria-pressed="false" data-action="filter-tag">#중장년</button>
+        <button type="button" class="chip" aria-pressed="false" data-action="filter-tag">#면접정장대여</button>
+        <button type="button" class="chip" aria-pressed="false" data-action="filter-tag">#직업훈련</button>
+      </div>
+    </div>
+  </div>
+
+  <div class="listfilter__foot">
+    <div class="listfilter__sel"><span class="small muted">선택 조건</span></div>
+    <button class="btn btn--sm">조건 초기화</button>
+  </div>
+
+  <section id="policy-result" style="margin-top:24px">
+    <div class="tabs" role="tablist" aria-label="지원정책 분류">
+      <button type="button" role="tab" class="tab" aria-selected="true" data-action="filter-category">전체 12</button>
+      <button type="button" role="tab" class="tab" aria-selected="false" tabindex="-1" data-action="filter-category">취업지원 5</button>
+      <button type="button" role="tab" class="tab" aria-selected="false" tabindex="-1" data-action="filter-category">생활·복지지원 3</button>
+      <button type="button" role="tab" class="tab" aria-selected="false" tabindex="-1" data-action="filter-category">재직지원 2</button>
+      <button type="button" role="tab" class="tab" aria-selected="false" tabindex="-1" data-action="filter-category">일경험지원 2</button>
+    </div>
+    <div class="result-head" style="margin-top:20px">
+      <div><strong>12</strong>건 · <span class="muted small">전체 · 청년 · 수원</span></div>
+      <div class="result-head__tools">
+        <select class="select"><option>매칭율순</option><option>마감임박순</option><option>최신순</option><option>인기순</option></select>
+        <select class="select"><option>20개씩</option><option>30개씩</option><option>50개씩</option></select>
+      </div>
+    </div>
+
+    <div class="grid" style="gap:12px;margin-top:16px">
+      <article class="policard policard--thumb">
+        <a class="card" href="detail-policy-member.html">
+          <div class="policard__thumb"><i data-lucide="image" aria-hidden="true"></i></div>
+          <div class="policard__body">
+            <div class="policard__orgline"><span class="badge">경기도</span><span class="card__org">경기도일자리재단</span></div>
+            <div class="policard__head"><div class="card__title">청년 노동자 통장 (경기)</div><span class="badge badge--solid policard__dday">D-3</span></div>
+            <dl class="policard__info"><div><dt>모집일정</dt><dd>2026-07-01(수) ~ 2026-07-28(화)</dd></div><div><dt>지원대상</dt><dd>경기도 거주 만 18~34세 청년 노동자</dd></div></dl>
+            <div class="card__tags"><span class="card__tag">#자산형성</span><span class="card__tag">#청년통장</span><span class="card__tag">#재직청년</span></div>
+          </div>
+        </a>
+        <div class="policard__actions"><button type="button" class="policard__act" data-action="toggle-interest" aria-pressed="true" aria-label="관심정책 등록됨"><i data-lucide="heart"></i></button><button type="button" class="policard__act" data-action="toggle-alert" aria-pressed="false" aria-label="마감 알림 신청"><i data-lucide="bell-plus"></i></button></div>
+      </article>
+
+      <article class="policard policard--thumb">
+        <a class="card" href="detail-policy-member.html">
+          <div class="policard__thumb"><i data-lucide="image" aria-hidden="true"></i></div>
+          <div class="policard__body">
+            <div class="policard__orgline"><span class="badge">중앙</span><span class="card__org">고용노동부</span></div>
+            <div class="policard__head"><div class="card__title">2026년 청년도전 지원사업</div><span class="badge badge--solid policard__dday">D-7</span></div>
+            <dl class="policard__info"><div><dt>모집일정</dt><dd>2026-07-10(금) ~ 2026-08-01(토)</dd></div><div><dt>지원대상</dt><dd>구직을 단념한 경기지역 청년</dd></div></dl>
+            <div class="card__tags"><span class="card__tag">#취업지원</span><span class="card__tag">#청년도전</span><span class="card__tag">#참여수당</span></div>
+          </div>
+        </a>
+        <div class="policard__actions"><button type="button" class="policard__act" data-action="toggle-interest" aria-pressed="false" aria-label="관심정책 등록"><i data-lucide="heart"></i></button><button type="button" class="policard__act" data-action="toggle-alert" aria-pressed="false" aria-label="마감 알림 신청"><i data-lucide="bell-plus"></i></button></div>
+      </article>
+
+      <article class="policard policard--thumb">
+        <a class="card" href="detail-policy-member.html">
+          <div class="policard__thumb"><i data-lucide="image" aria-hidden="true"></i></div>
+          <div class="policard__body">
+            <div class="policard__orgline"><span class="badge">경기도</span><span class="card__org">경기도일자리재단</span></div>
+            <div class="policard__head"><div class="card__title">경기청년 면접수당 지원</div><span class="badge badge--strong policard__dday">상시</span></div>
+            <dl class="policard__info"><div><dt>모집일정</dt><dd>상시 (예산 소진 시 종료)</dd></div><div><dt>지원대상</dt><dd>면접에 참여한 경기도 거주 청년</dd></div></dl>
+            <div class="card__tags"><span class="card__tag">#면접수당</span><span class="card__tag">#취업지원</span><span class="card__tag">#청년</span></div>
+          </div>
+        </a>
+        <div class="policard__actions"><button type="button" class="policard__act" data-action="toggle-interest" aria-pressed="true" aria-label="관심정책 등록됨"><i data-lucide="heart"></i></button><button type="button" class="policard__act" data-action="toggle-alert" aria-pressed="true" aria-label="마감 알림 신청됨"><i data-lucide="bell-plus"></i></button></div>
+      </article>
+
+      <article class="policard policard--thumb">
+        <a class="card" href="detail-policy-member.html">
+          <div class="policard__thumb"><i data-lucide="image" aria-hidden="true"></i></div>
+          <div class="policard__body">
+            <div class="policard__orgline"><span class="badge">경기도</span><span class="card__org">경기도평생교육진흥원</span></div>
+            <div class="policard__head"><div class="card__title">경기청년 역량강화 기회 지원사업</div><span class="badge badge--strong policard__dday">D-14</span></div>
+            <dl class="policard__info"><div><dt>모집일정</dt><dd>2026-07-05(일) ~ 2026-08-08(토)</dd></div><div><dt>지원대상</dt><dd>어학·자격시험을 준비하는 경기도 청년</dd></div></dl>
+            <div class="card__tags"><span class="card__tag">#역량강화</span><span class="card__tag">#교육비</span><span class="card__tag">#재직지원</span></div>
+          </div>
+        </a>
+        <div class="policard__actions"><button type="button" class="policard__act" data-action="toggle-interest" aria-pressed="false" aria-label="관심정책 등록"><i data-lucide="heart"></i></button><button type="button" class="policard__act" data-action="toggle-alert" aria-pressed="false" aria-label="마감 알림 신청"><i data-lucide="bell-plus"></i></button></div>
+      </article>
+
+      <article class="policard policard--thumb">
+        <a class="card" href="detail-policy-member.html">
+          <div class="policard__thumb"><i data-lucide="image" aria-hidden="true"></i></div>
+          <div class="policard__body">
+            <div class="policard__orgline"><span class="badge">중앙</span><span class="card__org">고용노동부</span></div>
+            <div class="policard__head"><div class="card__title">미래내일 일경험 워크베이스 캠프</div><span class="badge badge--strong policard__dday">상시</span></div>
+            <dl class="policard__info"><div><dt>모집일정</dt><dd>상시 모집</dd></div><div><dt>지원대상</dt><dd>직무경험을 희망하는 미취업 청년</dd></div></dl>
+            <div class="card__tags"><span class="card__tag">#일경험지원</span><span class="card__tag">#미래내일</span><span class="card__tag">#인턴</span></div>
+          </div>
+        </a>
+        <div class="policard__actions"><button type="button" class="policard__act" data-action="toggle-interest" aria-pressed="true" aria-label="관심정책 등록됨"><i data-lucide="heart"></i></button><button type="button" class="policard__act" data-action="toggle-alert" aria-pressed="false" aria-label="마감 알림 신청"><i data-lucide="bell-plus"></i></button></div>
+      </article>
+    </div>
+    <p class="small muted" data-policy-pagination style="text-align:center;margin-top:24px">1 2 · 다음 →</p>
+  </section>
+
+  <!-- 로그인 전과 동일하게 좌측 필터에서 하단으로 옮긴 진입 배너 2종 -->
+  <div class="grid grid--2" style="margin-top:32px;gap:16px">
+    <a class="promo-banner" href="list-extra-member.html">
+      <div class="promo-banner__title">공모·서포터즈 <span class="badge">대외활동</span></div>
+      <p class="promo-banner__desc">청년 참여형 공모·서포터즈 활동 9건을 모아보세요 →</p>
+    </a>
+    <a class="promo-banner" href="target-hub-member.html">
+      <div class="promo-banner__title">대상별 서비스</div>
+      <p class="promo-banner__desc">정책 데이터에 구분값이 없는 대상은 대상별 서비스에서 확인하세요 →</p>
+    </a>
+  </div>
+</main>
+
+<script>
+(function(){
+  var root=document.querySelector('.listfilter');
+  var sel=document.querySelector('.listfilter__sel');
+  if(!root||!sel)return;
+  var groups=[].slice.call(root.querySelectorAll('.chips'));
+  function isTagGroup(g){return !!g.querySelector('[data-action="filter-tag"]');}
+  function chipsOf(g){return [].slice.call(g.querySelectorAll('.chip'));}
+  function labelOf(c){return c.textContent.trim().replace(/\s+\d+$/,'');}
+  function selectSingle(g,chip){chipsOf(g).forEach(function(c){c.setAttribute('aria-pressed',c===chip?'true':'false');});}
+  function resetGroup(g){if(isTagGroup(g))chipsOf(g).forEach(function(c){c.setAttribute('aria-pressed','false');});else selectSingle(g,chipsOf(g)[0]);}
+  function makeBadge(text,onRemove){
+    var b=document.createElement('span');b.className='badge badge--strong';b.setAttribute('role','button');b.setAttribute('tabindex','0');b.setAttribute('aria-label',text+' 조건 제거');b.style.cursor='pointer';b.innerHTML=text+' <i data-lucide="x" aria-hidden="true" style="width:12px;height:12px"></i>';
+    function fire(){onRemove();rebuild();syncTagResults(true);}b.addEventListener('click',fire);b.addEventListener('keydown',function(ev){if(ev.key==='Enter'||ev.key===' '){ev.preventDefault();fire();}});return b;
+  }
+  function rebuild(){
+    [].forEach.call(sel.querySelectorAll('.badge'),function(n){n.remove();});var count=0;
+    groups.forEach(function(g){var chips=chipsOf(g);if(isTagGroup(g)){chips.forEach(function(c){if(c.getAttribute('aria-pressed')==='true'){sel.appendChild(makeBadge(labelOf(c),function(){c.setAttribute('aria-pressed','false');}));count++;}});}else{chips.forEach(function(c,i){if(i>0&&c.getAttribute('aria-pressed')==='true'){sel.appendChild(makeBadge(labelOf(c),function(){resetGroup(g);}));count++;}});}});
+    if(count===0){var empty=document.createElement('span');empty.className='small muted';empty.textContent='선택된 조건 없음 (전체)';sel.appendChild(empty);}if(window.lucide)lucide.createIcons();
+  }
+  function syncTagResults(userInitiated){if(window.applyPolicyTagFilter)window.applyPolicyTagFilter({updateUrl:!!userInitiated,scroll:!!userInitiated});}
+  document.addEventListener('click',function(e){var chip=e.target.closest&&e.target.closest('.chip');if(!chip)return;var g=chip.closest('.chips');if(!g||!root.contains(g))return;e.stopPropagation();if(isTagGroup(g)){var on=chip.getAttribute('aria-pressed')==='true';chip.setAttribute('aria-pressed',on?'false':'true');}else selectSingle(g,chip);rebuild();syncTagResults(isTagGroup(g));},true);
+  var resetBtn=document.querySelector('.listfilter__foot .btn');if(resetBtn)resetBtn.addEventListener('click',function(){groups.forEach(resetGroup);rebuild();syncTagResults(true);});
+  rebuild();syncTagResults(false);
+})();
+</script>
+
+<div id="site-footer"></div>
+</body></html>

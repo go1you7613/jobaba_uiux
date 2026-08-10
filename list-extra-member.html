@@ -1,0 +1,98 @@
+<!doctype html>
+<html lang="ko"><head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>잡아바 프로토타입 — 공모·대외활동 목록(로그인 후)</title>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css">
+<link rel="stylesheet" href="css/proto.css?v=1267">
+<link rel="stylesheet" href="css/theme-neutral.css?v=6">
+<link rel="stylesheet" href="css/proto-linkmark.css?v=5">
+<script src="https://unpkg.com/lucide@latest"></script>
+<script src="js/proto.js?v=1266"></script>
+</head>
+<body data-user="member">
+<div id="site-header"></div>
+
+<!-- ================================================================
+     공모·대외활동 목록 (로그인 후) — 현 운영 /extrActv/list.do 대응
+     로그인 전(list-extra-guest)과 동일 구조 + 개인화(관심·알림 즉시 토글, 참여상태 배지).
+     [구조 결정] 지원정책과 별도 페이지 유지(목록·탭·AJAX 통합 안 함).
+     [개편] 상속되던 지원정책 Hot issue 4배너 제거. 9건 규모라 좌측 필터 없음(전체폭 목록).
+     ================================================================ -->
+<main class="container section">
+  <p class="small muted"><a href="main-member-a.html">홈</a> › <a href="list-policy-member.html">정책·지원 찾기</a> › 공모·대외활동</p>
+
+  <div class="result-head" style="margin-top:8px">
+    <h1 class="section__title" style="margin:0">공모·서포터즈 <span class="muted" style="font-weight:400">9건</span></h1>
+    <div class="result-head__tools">
+      <select class="select"><option>마감임박순</option><option>최신순</option><option>모집시작순</option></select>
+      <select class="select"><option>20개씩</option><option>50개씩</option></select>
+    </div>
+  </div>
+  <p class="muted small" style="margin-top:8px"><i data-lucide="user-check"></i> 김청년님 관심 활동·신청 상태가 함께 표시됩니다.
+    · <a href="list-policy-member.html">← 정책·지원 찾기로 돌아가기</a></p>
+
+  <!-- [개발 연동] 대외활동 목록. 참여상태 배지 + 관심·알림 즉시 토글. -->
+  <div class="grid" style="gap:12px;margin-top:20px">
+    <div class="policard">
+      <a class="card" href="detail-policy-member.html">
+        <div class="card__badges"><span class="badge badge--danger">D-5</span><span class="badge">공모전</span></div>
+        <span class="card__org">경기콘텐츠진흥원</span>
+        <div class="card__title">2026 경기 지역자원 활용 미드폼 제작지원 공모전</div>
+        <p class="small muted">지원금 최대 6,000만원 · 경기 지역자원을 활용한 미드폼 영상 제작 지원.</p>
+        <dl class="actinfo">
+          <dt>모집기간</dt><dd>2026-07-09(목) ~ 2026-07-30(목) 14:00</dd>
+          <dt>활동기간</dt><dd>2026-06-01(월) ~ 2026-12-20(일)</dd>
+          <dt>활동장소</dt><dd>경기콘텐츠진흥원</dd>
+        </dl>
+        <div class="card__tags"><span class="card__tag">#미드폼제작</span><span class="card__tag">#영상제작공모전</span></div>
+      </a>
+      <!-- [프로토타입] 로그인 후: 관심/알림 즉시 토글. aria-pressed=true는 등록됨 상태 -->
+      <div class="policard__actions">
+        <button type="button" class="policard__act" data-action="toggle-interest" aria-pressed="true" aria-label="관심활동 등록됨"><i data-lucide="heart" aria-hidden="true"></i></button>
+        <button type="button" class="policard__act" data-action="toggle-alert" aria-pressed="false" aria-label="마감 알림 신청"><i data-lucide="bell-plus" aria-hidden="true"></i></button>
+      </div>
+    </div>
+
+    <div class="policard">
+      <a class="card" href="detail-policy-member.html">
+        <div class="card__badges"><span class="badge">신청 진행중</span><span class="badge badge--danger">D-6</span><span class="badge">공모전</span></div>
+        <span class="card__org">경기복지재단</span>
+        <div class="card__title">2027년 신규사업 발굴 아이디어 공모전</div>
+        <p class="small muted">작성 중인 신청서가 있습니다. 이어서 접수할 수 있어요.</p>
+        <dl class="actinfo">
+          <dt>모집기간</dt><dd>2026-07-01(수) ~ 2026-07-31(금)</dd>
+          <dt>활동기간</dt><dd>2026-07-01(수) ~ 2026-07-31(금)</dd>
+          <dt>활동장소</dt><dd>경기복지재단</dd>
+        </dl>
+        <div class="card__tags"><span class="card__tag">#신규사업</span><span class="card__tag">#아이디어공모전</span></div>
+      </a>
+      <div class="policard__actions">
+        <button type="button" class="policard__act" data-action="toggle-interest" aria-pressed="true" aria-label="관심활동 등록됨"><i data-lucide="heart" aria-hidden="true"></i></button>
+        <button type="button" class="policard__act" data-action="toggle-alert" aria-pressed="true" aria-label="마감 알림 신청됨"><i data-lucide="bell-plus" aria-hidden="true"></i></button>
+      </div>
+    </div>
+
+    <div class="policard">
+      <a class="card" href="detail-policy-member.html">
+        <div class="card__badges"><span class="badge">이미 신청함</span><span class="badge">공모전</span></div>
+        <span class="card__org">대전정보문화산업진흥원</span>
+        <div class="card__title">2026년 물류데이터·AI 활용 및 분석 아이디어 공모전</div>
+        <p class="small muted">2026.07.10 접수 완료 · 심사중</p>
+        <dl class="actinfo">
+          <dt>모집기간</dt><dd>2026-06-05(금) ~ 2026-08-04(화) 14:00</dd>
+          <dt>활동기간</dt><dd>2026-06-05(금) ~ 2026-08-04(화) 14:00</dd>
+          <dt>활동장소</dt><dd>(재)대전정보문화산업진흥원</dd>
+        </dl>
+        <div class="card__tags"><span class="card__tag">#물류데이터</span><span class="card__tag">#AI활용</span></div>
+      </a>
+      <div class="policard__actions">
+        <button type="button" class="policard__act" data-action="toggle-interest" aria-pressed="true" aria-label="관심활동 등록됨"><i data-lucide="heart" aria-hidden="true"></i></button>
+        <button type="button" class="policard__act" data-action="toggle-alert" aria-pressed="false" aria-label="마감 알림 신청"><i data-lucide="bell-plus" aria-hidden="true"></i></button>
+      </div>
+    </div>
+  </div>
+  <p class="small muted" style="text-align:center;margin-top:24px">1 · 다음 →</p>
+</main>
+
+<div id="site-footer"></div>
+</body></html>

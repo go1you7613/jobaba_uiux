@@ -1,0 +1,305 @@
+<!doctype html>
+<html lang="ko"><head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>잡아바 프로토타입 — 일자리 찾기 · 기업채용(로그인 전)</title>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css">
+<link rel="stylesheet" href="css/proto.css?v=1264">
+<link rel="stylesheet" href="css/theme-neutral.css?v=6">
+<link rel="stylesheet" href="css/page-list.css?v=12">
+<link rel="stylesheet" href="css/proto-linkmark.css?v=5">
+<script src="https://unpkg.com/lucide@latest"></script>
+<script src="js/proto.js?v=1270"></script>
+<script src="js/jobcode.js?v=1" defer></script>
+<script src="js/list.js?v=13" defer></script>
+</head>
+<body data-user="guest" data-jobsource="corp">
+<div id="site-header"></div>
+
+<!-- ================================================================
+     일자리 찾기 — 기업채용 (로그인 전)
+
+     As-Is : 「공공일자리 채용정보」·「기업채용정보」가 별도 화면이고
+             필터 UI(4탭 매트릭스 / 대>중>소 3단)도 서로 다름.
+     To-Be : ①공공채용·기업채용은 GNB 2뎁스에서 각각 진입하는 별도 화면.
+                두 소스를 한 화면에서 동시에 조회하지 않아 DB 부하가 늘지 않는다.
+             ②1~3차 분류 코드는 공공·기업 공통(개인화 축이 75중분류이므로).
+                3차 노출 라벨만 공공=NCS 세분류 / 기업=모집분야 소분류로 다르다.
+             ③키워드 검색은 세부검색 박스 상단(현행 위치 유지).
+             ④필터는 좌측 컬럼 유지(현행 사용 습관 유지).
+             ⑤결과 카드는 채용 API에 실제 존재하는 컬럼만 노출한다.
+                COM_NAME / GI_SUBJECT / GI_END_DATE / AREA_INFO / PART_NO_INFO /
+                JOB_TYPE_INFO(고용형태) / CAREER_INFO(경력) /
+                EDU_CUTLINE_INFO(학력) / PAY_INFO(급여)
+                — 기업규모는 원천에 없으므로 표시하지 않는다.
+                정렬 탭 「인기」는 RD_CNT(조회수) 기준.
+     ================================================================ -->
+<main>
+  <!-- ① 페이지 타이틀 — 검색 입력은 두지 않는다(아래 검색박스로 일원화) -->
+  <div class="pagehead">
+    <div class="container">
+      <h1>기업채용</h1>
+      <p>경기도 기업의 채용정보를 직무 중심으로 찾아보세요</p>
+    </div>
+  </div>
+
+  <div class="container">
+    <!-- 1차 : 직무 대분류 12 — 공공·기업 공통 축이므로 탭 위에 둔다 -->
+    <section class="jobcat jobcat--top" aria-label="직무 대분류 선택">
+      <div class="jobcat__head">
+        <h2>직무로 찾기</h2>
+      </div>
+      <ul class="jobcat__grid" data-jobcat>
+        <li><button type="button" class="jobcat__item" data-cat="NB1" aria-pressed="false"><i data-lucide="briefcase"></i><span class="jobcat__name">경영·사무·금융</span></button></li>
+        <li><button type="button" class="jobcat__item" data-cat="NB2" aria-pressed="true"><i data-lucide="code-2"></i><span class="jobcat__name">IT·연구개발</span></button></li>
+        <li><button type="button" class="jobcat__item" data-cat="NB3" aria-pressed="false"><i data-lucide="graduation-cap"></i><span class="jobcat__name">교육·상담·복지</span></button></li>
+        <li><button type="button" class="jobcat__item" data-cat="NB4" aria-pressed="false"><i data-lucide="stethoscope"></i><span class="jobcat__name">의료·보건</span></button></li>
+        <li><button type="button" class="jobcat__item" data-cat="NB5" aria-pressed="false"><i data-lucide="palette"></i><span class="jobcat__name">디자인·콘텐츠·방송</span></button></li>
+        <li><button type="button" class="jobcat__item" data-cat="NB6" aria-pressed="false"><i data-lucide="utensils-crossed"></i><span class="jobcat__name">외식·음료</span></button></li>
+        <li><button type="button" class="jobcat__item" data-cat="NB7" aria-pressed="false"><i data-lucide="bed-double"></i><span class="jobcat__name">숙박·여행·이용·미용</span></button></li>
+        <li><button type="button" class="jobcat__item" data-cat="NB8" aria-pressed="false"><i data-lucide="headset"></i><span class="jobcat__name">영업·고객상담·판매</span></button></li>
+        <li><button type="button" class="jobcat__item" data-cat="NB9" aria-pressed="false"><i data-lucide="truck"></i><span class="jobcat__name">운전·배송·물류</span></button></li>
+        <li><button type="button" class="jobcat__item" data-cat="NB10" aria-pressed="false"><i data-lucide="hard-hat"></i><span class="jobcat__name">건설·생산·기술직</span></button></li>
+        <li><button type="button" class="jobcat__item" data-cat="NB11" aria-pressed="false"><i data-lucide="shield-check"></i><span class="jobcat__name">경비·청소·시설관리</span></button></li>
+        <li><button type="button" class="jobcat__item" data-cat="NB12" aria-pressed="false"><i data-lucide="sprout"></i><span class="jobcat__name">농림어업</span></button></li>
+      </ul>
+    </section>
+
+
+    <!-- ② 상세 검색 — 기본 닫힘. 버튼으로 열고 닫는다 -->
+    <div class="searchbar">
+      <button type="button" class="searchbar__toggle" data-search-toggle aria-expanded="false" aria-controls="detail-search">
+        <i data-lucide="sliders-horizontal" aria-hidden="true"></i>상세 검색
+        <i data-lucide="chevron-down" class="searchbar__caret" aria-hidden="true"></i>
+      </button>
+    </div>
+
+    <section class="searchbox" id="detail-search" aria-label="기업채용 검색" hidden>
+      <!-- 키워드 검색 : 세부검색 위 (현행 위치 유지) -->
+      <label class="searchbox__keyword">
+        <input type="search" placeholder="기업명 또는 채용공고명을 입력하세요" aria-label="기업채용 키워드 검색">
+        <i data-lucide="search" aria-hidden="true"></i>
+      </label>
+
+      <!-- 2·3단계 : 현행 기업채용처럼 좌우 2열 · 높이 고정 · 내부 스크롤 -->
+      <div class="jobcols">
+        <div class="jobcol">
+          <div class="jobcol__head" data-jobcat-sub-label>모집분야 중분류</div>
+          <div class="jobcol__body chips" data-jobcat-sub-chips></div>
+        </div>
+        <div class="jobcol" data-jobdetail>
+          <div class="jobcol__head" data-jobdetail-label>모집분야 소분류</div>
+          <div class="jobcol__body chips" data-jobdetail-chips></div>
+        </div>
+      </div>
+      <p class="jobcat__note" data-jobdetail-src></p>
+
+      <!-- 선택 조건 · 검색 실행 — 상세 검색 섹션 내부 하단.
+           상세 조건(중분류·소분류·키워드)은 이 안에서 [선택한 조건으로 검색]으로만 반영된다.
+           선택 조건에는 항상 "가장 하위 단계"만 남긴다(하위를 고르면 상위 대분류는 조건에서 제외). -->
+      <div class="searchbox__foot">
+        <div class="searchbox__applied">
+          <span class="searchbox__applied-label">선택 조건</span>
+          <div class="chips" data-applied-chips></div>
+        </div>
+        <div class="searchbox__actions">
+          <button type="button" class="iconbtn" data-reset title="선택 초기화" aria-label="선택 초기화"><i data-lucide="rotate-ccw" aria-hidden="true"></i></button>
+          <button type="button" class="btn btn--primary" data-search-run>선택한 조건으로 검색</button>
+        </div>
+      </div>
+    </section>
+
+    <!-- ③ 좌측 필터 + 결과 -->
+    <div class="list-layout section">
+      <aside class="filter-panel" aria-label="상세 조건">
+        <div class="filter-panel__title">상세 조건</div>
+        <!-- 현행 기업채용 화면의 필터 축(근무지·학력·연봉·고용형태·채용구분)을 그대로 쓴다. -->
+        <div class="filter-group">
+          <div class="filter-group__title">근무지</div>
+          <select class="select" style="width:100%"><option>경기전체</option><option>수원시</option><option>성남시</option><option>고양시</option><option>용인시</option><option>화성시</option><option>서울특별시</option></select>
+        </div>
+        <div class="filter-group">
+          <div class="filter-group__title">학력</div>
+          <label class="filter-opt"><input type="checkbox"> 학력무관</label>
+          <label class="filter-opt"><input type="checkbox"> 고졸</label>
+          <label class="filter-opt"><input type="checkbox"> 대졸(2~3년)</label>
+          <label class="filter-opt"><input type="checkbox"> 대졸(4년)</label>
+        </div>
+        <div class="filter-group">
+          <div class="filter-group__title">연봉</div>
+          <label class="filter-opt"><input type="checkbox"> 면접 후 협의</label>
+          <label class="filter-opt"><input type="checkbox"> 2500만원 이하</label>
+          <label class="filter-opt"><input type="checkbox"> 2500~3000만원</label>
+          <label class="filter-opt"><input type="checkbox"> 3000~4000만원</label>
+          <label class="filter-opt"><input type="checkbox"> 4000~5000만원</label>
+        </div>
+        <div class="filter-group">
+          <div class="filter-group__title">고용형태</div>
+          <label class="filter-opt"><input type="checkbox"> 정규직</label>
+          <label class="filter-opt"><input type="checkbox"> 계약직</label>
+          <label class="filter-opt"><input type="checkbox"> 인턴직</label>
+          <label class="filter-opt"><input type="checkbox"> 프리랜서/도급/아르바이트</label>
+        </div>
+        <div class="filter-group">
+          <div class="filter-group__title">채용구분</div>
+          <label class="filter-opt"><input type="checkbox" checked> 신입</label>
+          <label class="filter-opt"><input type="checkbox"> 경력</label>
+          <label class="filter-opt"><input type="checkbox"> 신입/경력</label>
+        </div>
+
+        <!-- 현행에 없는 신규 조건은 접어둔다 -->
+        <button type="button" class="filter-panel__more" data-filter-more aria-expanded="false" aria-controls="filter-extra">추가 조건 펼치기</button>
+        <div class="filter-extra" id="filter-extra" hidden>
+          <div class="filter-group">
+            <div class="filter-group__title">대상 <span class="badge">신규</span></div>
+            <label class="filter-opt"><input type="checkbox"> 청년(19~39세)</label>
+            <label class="filter-opt"><input type="checkbox"> 중장년</label>
+            <label class="filter-opt"><input type="checkbox"> 장애인</label>
+          </div>
+          <div class="filter-group">
+            <div class="filter-group__title">마감 <span class="badge">신규</span></div>
+            <label class="filter-opt"><input type="checkbox"> 오늘 마감</label>
+            <label class="filter-opt"><input type="checkbox"> 3일 이내</label>
+            <label class="filter-opt"><input type="checkbox"> 7일 이내</label>
+          </div>
+        </div>
+
+        <button class="btn btn--primary btn--block" style="margin-top:var(--sp-4)">필터 적용</button>
+      </aside>
+
+      <section>
+        <div class="result-head">
+          <div><strong data-result-count>84</strong>건 · <span class="muted small" data-result-cond></span></div>
+        </div>
+        <!-- 결과 정렬 탭 — 현행 「신규 NEW / 인기 HOT / 마감임박」 축을 그대로 쓴다 -->
+        <div class="sorttabs" role="tablist" aria-label="목록 정렬">
+          <button type="button" role="tab" class="sorttabs__item" aria-selected="true"><b class="sorttabs__mark">NEW</b>신규</button>
+          <button type="button" role="tab" class="sorttabs__item" aria-selected="false" tabindex="-1"><i data-lucide="flame" aria-hidden="true"></i>인기</button>
+          <button type="button" role="tab" class="sorttabs__item" aria-selected="false" tabindex="-1"><i data-lucide="alarm-clock" aria-hidden="true"></i>마감임박</button>
+        </div>
+        <div class="joblist">
+          <a class="jobcard" href="detail-corp-guest.html">
+            <div class="jobcard__head">
+              <span class="jobcard__loc"><i data-lucide="map-pin" aria-hidden="true"></i>경기 성남시 분당구</span>
+              <span class="jobcard__flag jobcard__flag--new">NEW</span>
+            </div>
+            <span class="jobcard__org">판교 IT기업</span>
+            <strong class="jobcard__title">프론트엔드 개발 청년인턴 (직무캠프 연계)</strong>
+            <div class="jobcard__meta"><span class="jobcard__tag">계약직</span><span class="jobcard__tag">신입</span><span class="jobcard__tag">대졸(2~3년)</span><span class="jobcard__tag">회사 내규에 따름</span></div>
+            <div class="jobcard__foot">
+              <span class="jobcard__dday">D-10</span>
+              <time class="jobcard__close">~2026-08-02</time>
+              <span class="jobcard__field">소프트웨어 개발자</span>
+            </div>
+          </a>
+          <a class="jobcard" href="detail-corp-guest.html">
+            <div class="jobcard__head">
+              <span class="jobcard__loc"><i data-lucide="map-pin" aria-hidden="true"></i>경기 수원시</span>
+              <span class="jobcard__flag jobcard__flag--hot">HOT</span>
+            </div>
+            <span class="jobcard__org">수원 SW기업</span>
+            <strong class="jobcard__title">SW 품질 테스터(QA) 신입 채용</strong>
+            <div class="jobcard__meta"><span class="jobcard__tag">정규직</span><span class="jobcard__tag">신입</span><span class="jobcard__tag">대졸(4년)</span><span class="jobcard__tag">연봉 3,000만원</span></div>
+            <div class="jobcard__foot">
+              <span class="jobcard__dday">D-20</span>
+              <time class="jobcard__close">~2026-08-12</time>
+              <span class="jobcard__field">소프트웨어 개발자</span>
+            </div>
+          </a>
+          <a class="jobcard" href="detail-corp-guest.html">
+            <div class="jobcard__head">
+              <span class="jobcard__loc"><i data-lucide="map-pin" aria-hidden="true"></i>경기 화성시</span>
+              <span class="jobcard__flag jobcard__flag--end">마감임박</span>
+            </div>
+            <span class="jobcard__org">화성 제조기업</span>
+            <strong class="jobcard__title">스마트팩토리 데이터 분석 담당자</strong>
+            <div class="jobcard__meta"><span class="jobcard__tag">정규직</span><span class="jobcard__tag">관계없음</span><span class="jobcard__tag">학력무관</span><span class="jobcard__tag">회사 내규에 따름</span></div>
+            <div class="jobcard__foot">
+              <span class="jobcard__dday">D-3</span>
+              <time class="jobcard__close">~2026-07-26</time>
+              <span class="jobcard__field">데이터ㆍ네트워크 및 시스템 운영 전문가</span>
+            </div>
+          </a>
+          <a class="jobcard" href="detail-corp-guest.html">
+            <div class="jobcard__head">
+              <span class="jobcard__loc"><i data-lucide="map-pin" aria-hidden="true"></i>경기 용인시</span>
+              
+            </div>
+            <span class="jobcard__org">용인 IT서비스</span>
+            <strong class="jobcard__title">백엔드 개발자 (Java/Spring)</strong>
+            <div class="jobcard__meta"><span class="jobcard__tag">정규직</span><span class="jobcard__tag">경력</span><span class="jobcard__tag">대졸(4년)</span><span class="jobcard__tag">연봉 4,500만원</span></div>
+            <div class="jobcard__foot">
+              <span class="jobcard__dday">D-18</span>
+              <time class="jobcard__close">~2026-08-10</time>
+              <span class="jobcard__field">소프트웨어 개발자</span>
+            </div>
+          </a>
+          <a class="jobcard" href="detail-corp-guest.html">
+            <div class="jobcard__head">
+              <span class="jobcard__loc"><i data-lucide="map-pin" aria-hidden="true"></i>경기 성남시 수정구</span>
+              
+            </div>
+            <span class="jobcard__org">성남 스타트업</span>
+            <strong class="jobcard__title">웹 퍼블리셔 (신입·경력)</strong>
+            <div class="jobcard__meta"><span class="jobcard__tag">정규직</span><span class="jobcard__tag">신입/경력</span><span class="jobcard__tag">학력무관</span><span class="jobcard__tag">월급 250만원</span></div>
+            <div class="jobcard__foot">
+              <span class="jobcard__dday">D-25</span>
+              <time class="jobcard__close">~2026-08-17</time>
+              <span class="jobcard__field">소프트웨어 개발자</span>
+            </div>
+          </a>
+          <a class="jobcard" href="detail-corp-guest.html">
+            <div class="jobcard__head">
+              <span class="jobcard__loc"><i data-lucide="map-pin" aria-hidden="true"></i>경기 안양시</span>
+              
+            </div>
+            <span class="jobcard__org">안양 SI기업</span>
+            <strong class="jobcard__title">정보보안 담당자 채용</strong>
+            <div class="jobcard__meta"><span class="jobcard__tag">정규직</span><span class="jobcard__tag">경력</span><span class="jobcard__tag">대졸(2~3년)</span><span class="jobcard__tag">회사 내규에 따름</span></div>
+            <div class="jobcard__foot">
+              <span class="jobcard__dday">D-14</span>
+              <time class="jobcard__close">~2026-08-06</time>
+              <span class="jobcard__field">정보보안 전문가</span>
+            </div>
+          </a>
+        </div>
+        <p class="small muted" style="text-align:center;margin-top:var(--sp-6)">1 2 3 4 · 다음 →</p>
+      </section>
+    </div>
+
+    <!-- 관련 정책 배너 — 채용검색 → 정책 교차순환 (배치안 A-4 · C-2 §5) -->
+    <!-- [개발 연동] 검색조건으로 조회한 지원정책 상위 3건
+       · 매핑 기준: (1순위) jlnkm.TB_SPRTPLCY_TRGTER_CHIC 대상자 특성 + (2순위) TB_SPRTPLCY.JOB_SPRT 일자리지원 분야 + TAG 키워드
+         ※ 직무(직종)×정책 매핑 컬럼·테이블은 현행 DB에 없음 — 개발확인요청 문서 참조
+       · 정렬: 마감임박순 (RQT_END_DE ASC, 마감일 NULL/상시는 후순위)
+       · 0건 폴백: 인기 정책(RD_CNT DESC) 3건으로 대체하고 제목을 "지금 인기 있는 청년정책"으로 교체 -->
+    <aside class="xlink" aria-labelledby="xlink-title">
+      <div class="xlink__head">
+        <div>
+          <h2 id="xlink-title">이 직무 관련 청년정책</h2>
+          <p class="small muted">소프트웨어개발 · 청년 조건으로 신청할 수 있는 지원정책입니다.</p>
+        </div>
+        <a class="small" href="list-policy-guest.html">정책 전체보기 →</a>
+      </div>
+      <div class="grid grid--3">
+        <a class="card" href="detail-policy-guest.html">
+          <div class="card__badges"><span class="badge badge--solid">현금성</span><span class="badge badge--strong">~D-3</span></div>
+          <div class="card__title">청년 노동자 통장</div>
+          <div class="card__meta"><span>만기 580만원</span><span>재직 청년</span></div>
+        </a>
+        <a class="card" href="detail-policy-guest.html">
+          <div class="card__badges"><span class="badge badge--solid">현금성</span></div>
+          <div class="card__title">경기청년 면접수당</div>
+          <div class="card__meta"><span>면접 1회 5만원</span><span>상시</span></div>
+        </a>
+        <a class="card" href="detail-policy-guest.html">
+          <div class="card__badges"><span class="badge">일경험</span></div>
+          <div class="card__title">미래내일 일경험 (IT 직무)</div>
+          <div class="card__meta"><span>참여수당 지급</span><span>~D-14</span></div>
+        </a>
+      </div>
+    </aside>
+  </div>
+</main>
+
+<div id="site-footer"></div>
+</body></html>

@@ -1,0 +1,179 @@
+<!doctype html>
+<html lang="ko"><head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>잡아바 프로토타입 — 기업서비스 (기업회원)</title>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css">
+<link rel="stylesheet" href="css/proto.css?v=1264">
+<link rel="stylesheet" href="css/theme-neutral.css?v=6">
+<link rel="stylesheet" href="css/page-sub.css?v=15">
+<link rel="stylesheet" href="css/proto-linkmark.css?v=5">
+<script src="https://unpkg.com/lucide@latest"></script>
+<script src="js/proto.js?v=1271"></script>
+</head>
+<body data-user="biz-member">
+<div id="site-header"></div>
+
+<main class="container section">
+  <p class="small muted"><a href="main-member-a.html">홈</a> › 기업서비스</p>
+
+  <section class="biz-hero">
+    <div class="biz-hero__main">
+      <strong>우리 기업의 채용과<br>지원사업을 한 곳에서</strong>
+      <p>채용공고 관리부터 인재추천, 기업 맞춤 지원사업 일정까지 편리하게 이용하세요.</p>
+      <div class="biz-hero__cta">
+        <a class="btn btn--primary btn--lg" href="#biz-recruit-manage"><i data-lucide="file-plus-2"></i>채용공고 등록</a>
+        <a class="btn btn--lg" href="#biz-talent"><i data-lucide="user-search"></i>인재 찾기</a>
+      </div>
+    </div>
+    <div class="biz-hero__side">
+      <div class="biz-stat">
+        <b>3건</b>
+        <span>진행 중인 채용공고</span>
+      </div>
+      <div class="biz-stat">
+        <b>12명</b>
+        <span>새로 접수된 지원자</span>
+      </div>
+    </div>
+  </section>
+
+  <section class="biz-section" aria-labelledby="biz-dashboard-title">
+    <div class="sub-head">
+      <div>
+        <h2 id="biz-dashboard-title">기업 활동 현황</h2>
+        <p>잡아바기업의 채용과 지원사업 현황입니다.</p>
+      </div>
+    </div>
+    <div class="biz-dashboard">
+      <a class="biz-dash" href="#biz-recruit-manage">
+        <span><i data-lucide="briefcase-business"></i>진행 중 공고</span>
+        <strong>3</strong><small>마감 임박 1건</small>
+      </a>
+      <a class="biz-dash" href="#biz-recruit-manage">
+        <span><i data-lucide="users"></i>신규 지원자</span>
+        <strong>12</strong><small>미열람 5명</small>
+      </a>
+      <a class="biz-dash" href="#biz-talent">
+        <span><i data-lucide="sparkles"></i>추천 인재</span>
+        <strong>18</strong><small>새 추천 6명</small>
+      </a>
+      <a class="biz-dash" href="#biz-member-calendar">
+        <span><i data-lucide="calendar-check-2"></i>관심 지원사업</span>
+        <strong>4</strong><small>7일 이내 마감 2건</small>
+      </a>
+    </div>
+  </section>
+
+  <section class="biz-section">
+    <div class="sub-head"><h2>기업 주요 서비스</h2></div>
+    <div class="biz-grid">
+      <a class="biz-card" href="#biz-recruit-manage">
+        <span class="biz-card__ico"><i data-lucide="file-pen-line"></i></span>
+        <strong>채용공고 관리</strong>
+        <p>공고 등록·수정·마감과 지원자 현황을 관리합니다.</p>
+        <span class="biz-card__link">채용관리 →</span>
+      </a>
+      <a class="biz-card" href="#biz-talent">
+        <span class="biz-card__ico"><i data-lucide="search-check"></i></span>
+        <strong>인재검색·스카우트</strong>
+        <p>직무와 경력 조건에 맞는 인재를 찾고 채용을 제안합니다.</p>
+        <span class="biz-card__link">인재 찾기 →</span>
+      </a>
+      <a class="biz-card" href="#biz-talent">
+        <span class="biz-card__ico"><i data-lucide="sparkles"></i></span>
+        <strong>AI 맞춤 인재추천</strong>
+        <p>우리 기업과 채용조건에 적합한 인재를 추천받습니다.</p>
+        <span class="biz-card__link">추천 인재 보기 →</span>
+      </a>
+      <a class="biz-card" href="#biz-member-calendar">
+        <span class="biz-card__ico"><i data-lucide="landmark"></i></span>
+        <strong>맞춤 기업지원정보</strong>
+        <p>기업정보에 맞는 지원사업과 접수 일정을 확인합니다.</p>
+        <span class="biz-card__link">지원사업 보기 →</span>
+      </a>
+    </div>
+  </section>
+
+  <section id="biz-recruit-manage" class="biz-section">
+    <div class="sub-head">
+      <div><h2>채용공고·지원자 관리</h2><p>진행 중인 공고와 지원자 처리 현황을 확인하세요.</p></div>
+      <a class="btn btn--primary btn--sm"><i data-lucide="plus"></i>채용공고 등록</a>
+    </div>
+    <div class="biz-member-panels">
+      <div class="biz-panel">
+        <div class="biz-panel__head"><strong>진행 중인 채용공고</strong><a>전체보기 →</a></div>
+        <ul class="biz-list">
+          <li><div><span class="badge">D-5</span><strong>반도체 공정기술 엔지니어 채용</strong><small>지원자 8명 · 미열람 3명</small></div><button class="btn btn--sm" type="button">지원자 관리</button></li>
+          <li><div><span class="badge">D-12</span><strong>기업지원사업 운영 담당자 채용</strong><small>지원자 4명 · 미열람 2명</small></div><button class="btn btn--sm" type="button">지원자 관리</button></li>
+          <li><div><span class="badge">상시</span><strong>경력직 소프트웨어 개발자 채용</strong><small>지원자 11명 · 검토 중 6명</small></div><button class="btn btn--sm" type="button">지원자 관리</button></li>
+        </ul>
+      </div>
+      <div class="biz-panel">
+        <div class="biz-panel__head"><strong>지원자 단계</strong><a>전체보기 →</a></div>
+        <div class="biz-stage">
+          <div><span>서류 검토</span><strong>9명</strong></div>
+          <div><span>면접 예정</span><strong>4명</strong></div>
+          <div><span>최종 협의</span><strong>2명</strong></div>
+        </div>
+        <p class="biz-panel__note"><i data-lucide="bell"></i>오늘 예정된 면접이 2건 있습니다.</p>
+      </div>
+    </div>
+  </section>
+
+  <section id="biz-talent" class="biz-section">
+    <div class="sub-head">
+      <div><h2>우리 기업에 추천하는 인재</h2><p>채용조건과 기업정보를 바탕으로 추천한 인재입니다.</p></div>
+      <a class="small">추천 인재 전체보기 →</a>
+    </div>
+    <div class="grid grid--3">
+      <div class="card">
+        <div class="card__badges"><span class="badge">적합도 높음</span><span class="badge">경력 4년</span></div>
+        <div class="card__title" style="font-size:16px">반도체 공정·품질관리</div>
+        <p class="small muted">공정개선 프로젝트 3회 · 수원시</p>
+        <div class="card__meta"><span>희망직무 일치</span><span>제안하기 →</span></div>
+      </div>
+      <div class="card">
+        <div class="card__badges"><span class="badge">신규 추천</span><span class="badge">경력 2년</span></div>
+        <div class="card__title" style="font-size:16px">기업지원사업 운영·행정</div>
+        <p class="small muted">정부지원사업 운영 경험 · 성남시</p>
+        <div class="card__meta"><span>업종 경험 보유</span><span>제안하기 →</span></div>
+      </div>
+      <div class="card">
+        <div class="card__badges"><span class="badge">적합도 높음</span><span class="badge">경력 5년</span></div>
+        <div class="card__title" style="font-size:16px">웹서비스 백엔드 개발</div>
+        <p class="small muted">Java·Spring 기반 서비스 개발 · 용인시</p>
+        <div class="card__meta"><span>기술요건 일치</span><span>제안하기 →</span></div>
+      </div>
+    </div>
+  </section>
+
+  <section id="biz-member-calendar" class="biz-section">
+    <div class="sub-head">
+      <div><h2>맞춤 지원사업 일정</h2><p>기업정보와 관심 분야에 맞는 지원사업 일정을 모았습니다.</p></div>
+      <span class="biz-source">관심 분야 · 기술개발, 인력채용</span>
+    </div>
+    <div class="biz-calendar">
+      <div class="biz-calendar__month" aria-label="기준 월">
+        <span>2026</span><strong>8월</strong><small>맞춤 접수 일정</small>
+      </div>
+      <ol class="biz-calendar__list">
+        <li><time datetime="2026-08-05">08.05</time><div><span class="badge">접수 시작</span><strong>중소기업 근로환경 개선 지원</strong><small>기업조건 일치</small></div></li>
+        <li><time datetime="2026-08-12">08.12</time><div><span class="badge">접수 마감</span><strong>청년채용 인건비 지원사업</strong><small>채용계획 일치</small></div></li>
+        <li><time datetime="2026-08-21">08.21</time><div><span class="badge">접수 마감</span><strong>기술개발 사업화 자금 지원</strong><small>관심 분야</small></div></li>
+        <li><time datetime="2026-08-28">08.28</time><div><span class="badge">접수 마감</span><strong>재직자 직무역량 향상 지원</strong><small>업종 일치</small></div></li>
+      </ol>
+    </div>
+    <p class="biz-calendar__notice"><i data-lucide="info"></i>실제 신청 전 제공기관의 최신 공고와 접수 일정을 반드시 확인해 주세요.</p>
+  </section>
+
+  <section class="std-foot biz-contact" aria-label="기업 지원 안내">
+    <div class="std-foot__grid">
+      <div class="std-foot__col"><h3>채용설명회 지원</h3><ul><li>기업 맞춤형 채용설명회 운영 안내</li><li>참여 절차와 지원 범위 상담</li></ul></div>
+      <div class="std-foot__col"><h3>기업정보 관리</h3><ul><li><a>기업 기본정보 수정</a></li><li><a>관심 분야 설정</a></li></ul></div>
+      <div class="std-foot__col"><h3>기업서비스 문의</h3><ul><li>기업 채용 문의 : 031-270-9988</li><li>재단 사업문의 : 031-270-9600</li></ul></div>
+    </div>
+  </section>
+</main>
+
+<div id="site-footer"></div>
+</body></html>

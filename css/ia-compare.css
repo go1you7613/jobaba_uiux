@@ -1,0 +1,92 @@
+/* ================================================================
+   정보구조 AS-IS vs TO-BE 비교 페이지 전용 스타일 (ia-compare.css)
+   - 상단 GNB/헤더 없음. 문서형 비교 페이지.
+   - theme-neutral.css · index.css 뒤에 로드 (idx- 클래스 재사용)
+   ================================================================ */
+
+/* ---- 2열 비교 그리드 ---- */
+.iac-cols{display:grid;grid-template-columns:1fr 1fr;gap:16px;}
+.iac-col{
+  border:1px solid var(--neutral-border);border-radius:var(--a-radius);background:#fff;
+  overflow:hidden;
+}
+.iac-col__head{
+  padding:14px 18px;border-bottom:1px solid var(--neutral-border);
+  background:var(--neutral-surface);
+}
+.iac-col__head h3{
+  margin:0;font-family:var(--font-display);font-size:17px;font-weight:700;letter-spacing:-.5px;
+}
+.iac-col__head span{display:block;margin-top:3px;font-size:12px;color:var(--neutral-muted);}
+.iac-col--tobe .iac-col__head{background:var(--neutral-text);}
+/* 어두운 배경 위 텍스트는 모두 흰색 강제 */
+.iac-col--tobe .iac-col__head,
+.iac-col--tobe .iac-col__head *{color:#fff!important;}
+
+/* ---- 메뉴 유닛 ---- */
+.iac-menu{margin:0;padding:0;list-style:none;}
+.iac-menu > li{padding:13px 18px;border-top:1px solid var(--neutral-border);}
+.iac-menu > li:first-child{border-top:0;}
+.iac-menu__top{
+  display:flex;align-items:center;gap:8px;flex-wrap:wrap;
+  font-size:14px;font-weight:800;color:var(--neutral-text);
+}
+.iac-menu__num{
+  display:inline-flex;align-items:center;justify-content:center;
+  min-width:20px;height:20px;padding:0 5px;border-radius:999px;
+  background:var(--neutral-surface);border:1px solid var(--neutral-border);
+  font-size:11px;font-weight:700;
+}
+.iac-col--tobe .iac-menu__num{background:#fff;}
+.iac-menu__subs{margin:8px 0 0;padding:0;list-style:none;display:flex;flex-wrap:wrap;gap:6px;}
+.iac-menu__subs li{
+  padding:4px 10px;border:1px solid var(--neutral-border);border-radius:999px;
+  background:#fff;font-size:12px;color:var(--neutral-muted);
+}
+.iac-menu__note{margin:8px 0 0;font-size:12px;color:var(--neutral-muted);line-height:1.5;}
+
+/* ---- 변경 태그 ---- */
+.iac-tag{
+  display:inline-block;padding:2px 8px;border-radius:999px;
+  font-size:10.5px;font-weight:700;letter-spacing:.2px;white-space:nowrap;
+  border:1px solid var(--neutral-text);
+}
+.iac-tag--new{background:var(--neutral-text);color:#fff!important;}
+.iac-tag--move{background:#fff;color:var(--neutral-text);}
+.iac-tag--del{background:#fff;color:var(--neutral-muted);border-color:var(--neutral-border);text-decoration:line-through;}
+.iac-sub--del{color:var(--neutral-muted)!important;border-style:dashed!important;text-decoration:line-through;}
+
+/* ---- 표 ---- */
+.iac-table{width:100%;border-collapse:collapse;font-size:13px;background:#fff;}
+.iac-table caption{
+  caption-side:top;text-align:left;margin-bottom:10px;
+  font-size:14px;font-weight:800;color:var(--neutral-text);
+}
+.iac-table th,.iac-table td{
+  border:1px solid var(--neutral-border);padding:10px 12px;text-align:left;vertical-align:top;
+  line-height:1.55;
+}
+.iac-table--gap{margin-top:24px;}
+.iac-table thead th{background:var(--neutral-surface);font-weight:800;}
+.iac-table td b{font-weight:800;}
+.iac-table .muted{color:var(--neutral-muted);}
+
+/* ---- 확정 이력 콜아웃 ---- */
+.iac-callout{
+  border:1px solid var(--neutral-text);border-radius:var(--a-radius);
+  padding:18px 20px;background:var(--neutral-surface);
+}
+.iac-callout h3{margin:0 0 10px;font-size:15px;font-weight:800;}
+.iac-callout ul{margin:0;padding-left:18px;}
+.iac-callout li{font-size:13px;line-height:1.7;color:var(--neutral-text);}
+.iac-callout li b{font-weight:800;}
+
+/* ---- index.html 진입 카드(비교 페이지 링크) ---- */
+.idx-card--ia{border-color:var(--neutral-text);}
+.idx-card--ia .idx-tag{background:var(--neutral-text);color:#fff;}
+
+/* ---- 반응형 ---- */
+@media (max-width:768px){
+  .iac-cols{grid-template-columns:1fr;}
+  .iac-table{display:block;overflow-x:auto;white-space:nowrap;}
+}

@@ -1,0 +1,294 @@
+<!doctype html>
+<html lang="ko"><head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>잡아바 프로토타입 — 메인(로그인 전) · 타입A 포털형</title>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css">
+<link rel="stylesheet" href="css/proto.css?v=1264">
+<link rel="stylesheet" href="css/theme-neutral.css?v=6">
+  <link rel="stylesheet" href="css/theme-a.css?v=24">
+<link rel="stylesheet" href="css/proto-linkmark.css?v=5">
+<script src="https://unpkg.com/lucide@latest"></script>
+<script src="js/proto.js?v=1270"></script>
+  <script src="js/main-guest-a.js?v=1250" defer></script>
+</head>
+<body data-user="guest">
+<div id="site-header"></div>
+
+<main>
+  <section class="portal-hero container" data-slider-sequence data-rotation-interval="3000" data-rotation-stagger="300">
+    <div class="portal-banner portal-slider" data-slider data-slider-order="1" role="region" aria-roledescription="carousel" aria-label="잡아바 주요 소식">
+      <div class="slider-viewport">
+        <a class="portal-banner__slide slider-slide is-active" data-slider-slide aria-hidden="false">
+          <span class="portal-banner__eyebrow">2026 JOB FAIR · GYEONGGI</span>
+          <strong>경기도 청년<br><em>일자리 박람회</em></strong>
+          <p>좋은 일자리와 준비된 인재가 만나는 가장 가까운 기회</p>
+          <span class="portal-banner__date">2026. 08. 21 FRI · 수원컨벤션센터</span>
+        </a>
+        <a class="portal-banner__slide slider-slide" data-slider-slide aria-hidden="true" hidden>
+          <span class="portal-banner__eyebrow">청년의 내일을 응원합니다</span>
+          <strong>경기청년<br><em>면접수당 지원</em></strong>
+          <p>면접 활동비 부담을 덜고 취업 준비에 집중할 수 있도록 지원합니다.</p>
+          <span class="portal-banner__date">2026. 08. 01 ~ 예산 소진 시</span>
+        </a>
+        <a class="portal-banner__slide portal-banner__slide--muted slider-slide" data-slider-slide aria-hidden="true" hidden>
+          <span class="portal-banner__eyebrow">직무 경험부터 취업까지</span>
+          <strong>청년 일경험<br><em>커리어 브릿지</em></strong>
+          <p>현직자 멘토링과 기업 프로젝트로 실무 역량을 완성하세요.</p>
+          <span class="portal-banner__date">참여자 상시 모집</span>
+        </a>
+      </div>
+      <div class="slider-controls">
+        <button type="button" data-slider-prev aria-label="이전 주요 소식">이전</button>
+        <span data-slider-status aria-live="polite">1 / 3</span>
+        <button type="button" data-slider-toggle aria-label="주요 소식 자동 전환 정지">정지</button>
+        <button type="button" data-slider-next aria-label="다음 주요 소식">다음</button>
+      </div>
+    </div>
+    <div class="portal-promos">
+      <div class="promo-slider promo-slider--application" data-slider data-slider-order="2" role="region" aria-roledescription="carousel" aria-label="최신 통합접수 사업">
+        <div class="slider-viewport">
+          <a class="promo-card promo-card--violet slider-slide is-active" data-slider-slide aria-hidden="false">
+            <span>통합접수 · 참여수당 지원</span><strong>청년도전 지원사업<br>참여자 모집</strong>
+          </a>
+          <a class="promo-card promo-card--violet slider-slide" data-slider-slide aria-hidden="true" hidden>
+            <span>통합접수 · 자산형성 지원</span><strong>청년 노동자 통장<br>신규 모집</strong>
+          </a>
+          <a class="promo-card promo-card--violet slider-slide" data-slider-slide aria-hidden="true" hidden>
+            <span>통합접수 · 기업 일경험</span><strong>미래내일 일경험<br>참여 신청</strong>
+          </a>
+        </div>
+        <div class="slider-controls slider-controls--compact">
+          <button type="button" data-slider-prev aria-label="이전 통합접수 사업">이전</button>
+          <span data-slider-status aria-live="polite">1 / 3</span>
+          <button type="button" data-slider-toggle aria-label="통합접수 사업 자동 전환 정지">정지</button>
+          <button type="button" data-slider-next aria-label="다음 통합접수 사업">다음</button>
+        </div>
+      </div>
+      <div class="promo-slider promo-slider--learning" data-slider data-slider-order="3" role="region" aria-roledescription="carousel" aria-label="러닝센터 추천 강좌">
+        <div class="slider-viewport">
+          <a class="promo-card promo-card--green promo-card--dark slider-slide is-active" data-slider-slide aria-hidden="false">
+            <span>러닝센터 · 신규 과정</span><strong>무료 직무교육<br>새 강좌 OPEN</strong>
+          </a>
+          <a class="promo-card promo-card--green slider-slide" data-slider-slide aria-hidden="true" hidden>
+            <span>러닝센터 · 맛보기 강좌</span><strong>3분 직무 미리보기<br>오늘의 클래스</strong>
+          </a>
+          <a class="promo-card promo-card--green slider-slide" data-slider-slide aria-hidden="true" hidden>
+            <span>러닝센터 · 취업 실전</span><strong>자기소개서 작성<br>핵심 특강</strong>
+          </a>
+        </div>
+        <div class="slider-controls slider-controls--compact">
+          <button type="button" data-slider-prev aria-label="이전 러닝센터 강좌">이전</button>
+          <span data-slider-status aria-live="polite">1 / 3</span>
+          <button type="button" data-slider-toggle aria-label="러닝센터 강좌 자동 전환 정지">정지</button>
+          <button type="button" data-slider-next aria-label="다음 러닝센터 강좌">다음</button>
+        </div>
+      </div>
+    </div>
+    <aside class="portal-side">
+      <div class="portal-search">
+        <h2>통합검색</h2>
+        <label>
+          <input aria-label="채용, 정책, 지원사업 통합검색" placeholder="채용, 정책, 지원사업을 검색하세요">
+          <i data-lucide="search" aria-hidden="true"></i>
+        </label>
+      </div>
+      <div class="portal-login">
+        <h2>로그인하고<br>잡아바에서 제공하는<br>맞춤정보를 만나보세요.</h2>
+        <a class="portal-login__btn" href="main-member-a.html">로그인</a>
+        <div><a>회원가입</a><a>아이디/비밀번호 찾기</a></div>
+      </div>
+    </aside>
+  </section>
+
+  <nav class="quick-menu container" aria-label="빠른 서비스">
+    <a><span><i data-lucide="notebook-tabs"></i></span>정책 찾기</a>
+    <a href="list-guest.html"><span><i data-lucide="briefcase"></i></span>채용정보</a>
+    <a><span><i data-lucide="send"></i></span>사업 신청</a>
+    <a><span><i data-lucide="scan-face"></i></span>AI 면접</a>
+    <a><span><i data-lucide="file-pen-line"></i></span>자소서 첨삭</a>
+    <a><span><i data-lucide="messages-square"></i></span>취업 상담</a>
+  </nav>
+
+  <section class="journey-section">
+    <div class="container">
+      <div class="section-title-row"><div><span>CAREER JOURNEY</span><h2>무엇을 준비하고 계신가요?</h2></div></div>
+      <div class="journey-panel" data-journey-tabs>
+        <div class="journey-tabs" role="tablist" aria-label="대상별 서비스">
+          <button id="journey-tab-jobseeker" class="is-active" type="button" role="tab" aria-selected="true" aria-controls="journey-panel-jobseeker" data-journey-tab>취업준비생</button>
+          <button id="journey-tab-worker" type="button" role="tab" aria-selected="false" aria-controls="journey-panel-worker" tabindex="-1" data-journey-tab>재직자</button>
+          <button id="journey-tab-senior" type="button" role="tab" aria-selected="false" aria-controls="journey-panel-senior" tabindex="-1" data-journey-tab>중장년</button>
+          <button id="journey-tab-company" type="button" role="tab" aria-selected="false" aria-controls="journey-panel-company" tabindex="-1" data-journey-tab>기업회원</button>
+        </div>
+        <!-- [개발 연동] 여정 카드 목적지
+             · 프로토타입 화면이 있는 카드 : href로 실제 이동 (proto-linkmark.css가 파란색 표시)
+             · 화면이 없는 카드 : button + .journey-info 패널로 "실서비스 이동 대상"만 안내 -->
+        <div id="journey-panel-jobseeker" class="journey-grid journey-tabpanel is-active" role="tabpanel" aria-labelledby="journey-tab-jobseeker" data-journey-panel>
+          <a href="prep-hub-guest.html"><i data-lucide="compass"></i><div><strong>NCS 직업역량 진단과 직무정보</strong><p>NCS 진단 결과를 바탕으로 강점과 희망 직무를 확인하세요.</p><span>역량 진단 →</span></div></a>
+          <a href="list-edu.html"><i data-lucide="book-open-check"></i><div><strong>실무 역량을 채우는 무료 교육</strong><p>온라인 직무·취업 교육을 무료로 학습하세요.</p><span>교육 찾기 →</span></div></a>
+          <a href="prep-hub-guest.html"><i data-lucide="sparkles"></i><div><strong>자소서 컨설팅과 AI 면접 준비</strong><p>자기소개서 컨설팅과 AI 모의면접으로 취업 준비도를 높이세요.</p><span>취업 준비 →</span></div></a>
+          <a href="list-guest.html"><i data-lucide="building-2"></i><div><strong>최신 채용정보</strong><p>우수기업과 공공기관의 최신 채용공고를 확인하세요.</p><span>채용공고 보기 →</span></div></a>
+        </div>
+        <div id="journey-panel-worker" class="journey-grid journey-tabpanel" role="tabpanel" aria-labelledby="journey-tab-worker" data-journey-panel hidden>
+          <a href="prep-hub-guest.html"><i data-lucide="route"></i><div><strong>이직·직무역량 진단</strong><p>NCS 진단으로 현재 역량과 이직 준비 방향을 점검하세요.</p><span>역량 진단 →</span></div></a>
+          <a href="list-edu.html"><i data-lucide="refresh-cw"></i><div><strong>재직자 직무역량 교육</strong><p>OA·직무기초·자격증 등 업무 역량 교육을 학습하세요.</p><span>교육 찾기 →</span></div></a>
+          <a href="list-policy-guest.html"><i data-lucide="badge-dollar-sign"></i><div><strong>재직자 지원정책</strong><p>교육비와 근로환경 등 근로자 대상 지원정책을 찾아보세요.</p><span>정책 찾기 →</span></div></a>
+          <a href="list-guest.html"><i data-lucide="briefcase-business"></i><div><strong>경력직 채용정보</strong><p>보유 경력과 직무 경험을 우대하는 채용공고를 확인하세요.</p><span>채용 보기 →</span></div></a>
+        </div>
+        <div id="journey-panel-senior" class="journey-grid journey-tabpanel" role="tabpanel" aria-labelledby="journey-tab-senior" data-journey-panel hidden>
+          <a href="prep-hub-guest.html"><i data-lucide="milestone"></i><div><strong>중장년 생애경력설계</strong><p>신중년 구직자를 위한 생애경력설계 과정을 학습하세요.</p><span>과정 보기 →</span></div></a>
+          <a href="list-edu.html"><i data-lucide="monitor-up"></i><div><strong>디지털·OA 기초교육</strong><p>업무에 필요한 OA와 디지털 도구 활용 과정을 찾아보세요.</p><span>교육 찾기 →</span></div></a>
+          <a href="target-hub-guest.html"><i data-lucide="hand-heart"></i><div><strong>중장년 일자리 지원사업</strong><p>베이비부머를 위한 일자리와 지원사업을 확인하세요.</p><span>지원사업 →</span></div></a>
+          <a href="list-guest.html"><i data-lucide="users"></i><div><strong>중장년 채용정보</strong><p>경험과 전문성을 활용할 수 있는 채용정보를 확인하세요.</p><span>채용 보기 →</span></div></a>
+        </div>
+        <div id="journey-panel-company" class="journey-grid journey-tabpanel" role="tabpanel" aria-labelledby="journey-tab-company" data-journey-panel hidden>
+          <a href="biz-home.html"><i data-lucide="file-plus-2"></i><div><strong>인재 채용공고 등록</strong><p>기업회원으로 채용공고를 등록하고 지원자를 만나보세요.</p><span>공고 등록 →</span></div></a>
+          <a href="list-biz-policy.html"><i data-lucide="landmark"></i><div><strong>기업지원정책 찾기</strong><p>채용과 기업 운영에 활용할 수 있는 지원정책을 찾아보세요.</p><span>정책 찾기 →</span></div></a>
+          <a href="list-edu.html"><i data-lucide="graduation-cap"></i><div><strong>재직자 직무교육 안내</strong><p>구성원이 개별 신청할 수 있는 온라인 직무교육을 확인하세요.</p><span>교육 안내 →</span></div></a>
+          <a href="biz-home.html"><i data-lucide="user-search"></i><div><strong>인재추천 요청·채용 지원</strong><p>채용공고 등록 후 상담사의 인재추천과 채용 지원을 요청하세요.</p><span>채용 지원 →</span></div></a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="resource-section container">
+    <div class="section-title-row">
+      <div><span>CAREER SUPPORT</span><h2>취업 준비 콘텐츠</h2></div>
+      <a>콘텐츠 전체보기 <i data-lucide="arrow-up-right"></i></a>
+    </div>
+    <div class="resource-grid">
+      <a class="resource-banner">
+        <span class="resource-banner__visual"><i data-lucide="lightbulb"></i><b>POLICY TIP</b></span>
+        <small>정책활용꿀팁 · 최근 콘텐츠</small>
+        <strong>잡아바 정책꿀팁:<br>지금 다시 일하러 갑니다!</strong>
+        <p>대상별 일자리 정책과 지원사업을 쉽게 확인하세요.</p>
+        <span class="resource-banner__link">정책 꿀팁 보기 →</span>
+      </a>
+      <a class="resource-banner">
+        <span class="resource-banner__visual"><i data-lucide="book-open"></i><b>JOB DICTIONARY</b></span>
+        <small>잡학사전 · 2026.02.03</small>
+        <strong>경력단절 없는 일자리<br>0.5&amp;0.75 잡이란?</strong>
+        <p>주 30시간 일자리와 생활균형 정책을 알아보세요.</p>
+        <span class="resource-banner__link">잡학사전 보기 →</span>
+      </a>
+      <article class="resource-education" data-slider data-autoplay-interval="4000" role="region" aria-roledescription="carousel" aria-label="추천 취업교육">
+        <div class="resource-education__head"><span>취업교육</span><a>전체보기 <i data-lucide="arrow-up-right"></i></a></div>
+        <div class="slider-viewport">
+          <a class="education-slide slider-slide is-active" data-slider-slide aria-hidden="false">
+            <span><i data-lucide="scan-face"></i><b>면접·자기소개서</b></span>
+            <strong>AI 면접의 이해와<br>퍼펙트 대비</strong>
+            <p>AI 면접의 진행 과정과 질문 대응 방법을 학습합니다.</p>
+          </a>
+          <a class="education-slide slider-slide" data-slider-slide aria-hidden="true" hidden>
+            <span><i data-lucide="cpu"></i><b>직무·취업전략</b></span>
+            <strong>반도체 분야 기업<br>실전 취업 전략</strong>
+            <p>반도체 직무 이해부터 채용 준비까지 단계별로 학습합니다.</p>
+          </a>
+          <a class="education-slide slider-slide" data-slider-slide aria-hidden="true" hidden>
+            <span><i data-lucide="milestone"></i><b>중장년 취업</b></span>
+            <strong>신중년 구직자<br>생애경력설계</strong>
+            <p>경력과 강점을 바탕으로 새로운 일의 방향을 설계합니다.</p>
+          </a>
+        </div>
+        <div class="slider-controls resource-controls">
+          <button type="button" data-slider-prev aria-label="이전 취업교육">이전</button>
+          <span data-slider-status aria-live="polite">1 / 3</span>
+          <button type="button" data-slider-toggle aria-label="추천 취업교육 자동 전환 정지">정지</button>
+          <button type="button" data-slider-next aria-label="다음 취업교육">다음</button>
+        </div>
+      </article>
+    </div>
+  </section>
+
+  <section class="content-section exhibition-section">
+    <div class="container">
+      <div class="section-title-row">
+        <div><span>ONLINE EXHIBITION</span><h2>온라인 채용관</h2></div>
+        <a>채용관 전체보기 <i data-lucide="arrow-up-right"></i></a>
+      </div>
+      <div class="exhibition-layout">
+        <a class="exhibition-feature">
+          <span class="exhibition-feature__visual"><i data-lucide="cpu"></i><b>NEW EXHIBITION</b></span>
+          <small>2026.06.01 ~ 2027.12.31</small>
+          <strong>반도체 우수기업<br>온라인 채용관</strong>
+          <p>반도체 제조·소재·부품·장비·설계 분야의 경기도 강소기업 채용정보를 만나보세요.</p>
+          <span class="exhibition-link">최신 채용관 보기 →</span>
+        </a>
+        <div class="exhibition-carousel" data-slider data-autoplay-interval="4000" role="region" aria-roledescription="carousel" aria-label="온라인 채용관 목록">
+          <div class="slider-viewport">
+            <div class="exhibition-page slider-slide is-active" data-slider-slide aria-hidden="false">
+              <a class="exhibition-card">
+                <span><i data-lucide="users-round"></i></span>
+                <div><small>2026.04.15 ~ 2026.08.31</small><strong>일자리 매치업 플러스</strong><p>경기청년과 참여기업을 연결하는 일자리 매칭 채용관</p></div>
+              </a>
+              <a class="exhibition-card">
+                <span><i data-lucide="car-front"></i></span>
+                <div><small>2026.03.27 ~ 2026.12.31</small><strong>경기 자동차산업 특화 채용관</strong><p>자동차산업 기업의 맞춤형 채용정보</p></div>
+              </a>
+              <a class="exhibition-card">
+                <span><i data-lucide="accessibility"></i></span>
+                <div><small>2025.08.26 ~ 2026.12.31</small><strong>잡아바 장애인채용관</strong><p>경기도 내 장애인 채용 희망기업을 한 곳에</p></div>
+              </a>
+            </div>
+            <div class="exhibition-page slider-slide" data-slider-slide aria-hidden="true" hidden>
+              <a class="exhibition-card">
+                <span><i data-lucide="globe-2"></i></span>
+                <div><small>2025.01.31 ~ 2026.12.31</small><strong>잡아바 외국인채용관</strong><p>Jobs for Foreigners, 다국어 채용정보 제공</p></div>
+              </a>
+              <a class="exhibition-card">
+                <span><i data-lucide="shield-check"></i></span>
+                <div><small>2024.12.02 ~ 2026.12.31</small><strong>노동안전보건 우수기업 채용관</strong><p>안전한 일터를 만드는 우수기업 채용정보</p></div>
+              </a>
+              <a class="exhibition-card">
+                <span><i data-lucide="award"></i></span>
+                <div><small>2023.11.10 ~ 2026.12.31</small><strong>경기도 일자리 우수기업 채용관</strong><p>고용과 근로환경이 우수한 도내 기업 채용정보</p></div>
+              </a>
+            </div>
+          </div>
+          <div class="slider-controls exhibition-controls">
+            <button type="button" data-slider-prev aria-label="이전 온라인 채용관">이전</button>
+            <span data-slider-status aria-live="polite">1 / 2</span>
+            <button type="button" data-slider-toggle aria-label="온라인 채용관 목록 자동 전환 정지">정지</button>
+            <button type="button" data-slider-next aria-label="다음 온라인 채용관">다음</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="coach-section container">
+    <div class="coach-shell">
+      <div class="coach-title"><span>PARTNER SERVICES</span><h2>유관서비스</h2><p>유관기관에서 제공하는 일자리·교육·지원 서비스를 한 곳에서 확인하세요.</p></div>
+      <div class="coach-grid">
+        <!-- [개발 연동] 카드 타이틀 아래 제공 사이트명 노출 -->
+        <a>
+          <span class="coach-avatar"><i data-lucide="briefcase-business"></i></span>
+          <strong>베이비부머 일자리</strong>
+          <small class="coach-site">경기도일자리재단</small>
+        </a>
+        <a>
+          <span class="coach-avatar"><i data-lucide="settings-2"></i></span>
+          <strong>산업기술훈련 <i class="coach-external" data-lucide="arrow-up-right" aria-hidden="true"></i></strong>
+          <small class="coach-site">경기도기술학교</small>
+        </a>
+        <a>
+          <span class="coach-avatar"><i data-lucide="user-round"></i></span>
+          <strong>여성 취업·창업 <i class="coach-external" data-lucide="arrow-up-right" aria-hidden="true"></i></strong>
+          <small class="coach-site">꿈날개</small>
+        </a>
+        <a>
+          <span class="coach-avatar"><i data-lucide="heart-handshake"></i></span>
+          <strong>청년노동자 지원 <i class="coach-external" data-lucide="arrow-up-right" aria-hidden="true"></i></strong>
+          <small class="coach-site">청년노동자 지원사업</small>
+        </a>
+        <a>
+          <span class="coach-avatar"><i data-lucide="sprout"></i></span>
+          <strong>청년 창업 <i class="coach-external" data-lucide="arrow-up-right" aria-hidden="true"></i></strong>
+          <small class="coach-site">경기청년포털</small>
+        </a>
+      </div>
+    </div>
+  </section>
+</main>
+
+<div id="site-footer"></div>
+</body></html>

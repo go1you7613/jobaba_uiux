@@ -1,0 +1,36 @@
+/* ================================================================
+   프로토타입 내부 링크 식별 표시 (시연·검토 전용)
+   - 내부 html 화면으로 이동하는 a 요소를 파란색 텍스트로 표시한다.
+   - theme-neutral.css가 `body *{color:...!important}`로 전체 색을 강제하므로
+     반드시 모든 테마 CSS 뒤에 로드하고 !important를 사용한다.
+   - 실제 서비스 퍼블리싱 시 이 파일과 <link>를 함께 제거한다.
+   - 제외 대상: 안내페이지(.idx-body), 전 화면 공통 네비게이션(.gnb)
+   ================================================================ */
+:root{--proto-link:#1E6FE0;}
+
+/* 텍스트 링크·버튼: 앵커 자체의 글자색 */
+body:not(.idx-body) a:is([href$=".html"],[href*=".html#"],[href*=".html?"]):not(.gnb__item){
+  color:var(--proto-link)!important;
+}
+
+/* 박스형 링크(카드·통계·리스트 아이템)는 자식 요소에 색이 따로 지정돼 있어
+   상속되지 않는다. 타이틀 성격의 요소만 골라 파란색을 적용한다. */
+body:not(.idx-body) a:is([href$=".html"],[href*=".html#"],[href*=".html?"]) :is(
+  .card__title,.jobcard__title,.mc-title,.fd-title,.ni-title,.nl-title,.st-title,.vp-title,
+  .stat__num,.stat__label,.vt-link,
+  strong,b,h3,h4){
+  color:var(--proto-link)!important;
+}
+
+/* 어두운 배경 버튼은 파란 글씨가 읽히지 않으므로 배경을 파란색으로 바꾼다. */
+body:not(.idx-body) a.btn--primary:is([href$=".html"],[href*=".html#"],[href*=".html?"]){
+  background:var(--proto-link)!important;
+  border-color:var(--proto-link)!important;
+  color:#fff!important;
+}
+
+/* GNB 2뎁스 하위메뉴도 전 화면 공통 네비게이션이므로 파란색 표시에서 제외한다.
+   (상위 .gnb__item은 위 선택자에서 이미 제외) */
+body:not(.idx-body) nav.gnb a.gnb__sub-item:is([href$=".html"],[href*=".html#"],[href*=".html?"]){
+  color:var(--neutral-text)!important;
+}

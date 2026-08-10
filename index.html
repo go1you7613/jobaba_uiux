@@ -1,0 +1,192 @@
+<!doctype html>
+<html lang="ko"><head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>잡아바 프로토타입 — 화면 인덱스</title>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css">
+<link rel="stylesheet" href="css/proto.css?v=1264">
+<link rel="stylesheet" href="css/theme-neutral.css?v=6">
+<link rel="stylesheet" href="css/index.css?v=4">
+<link rel="stylesheet" href="css/proto-linkmark.css?v=5">
+<script src="https://unpkg.com/lucide@latest"></script>
+</head>
+<body data-user="guest" class="idx-body">
+
+<!-- 프로토타입 안내 바 : 타 화면은 js/proto.js가 주입, 인덱스는 정적 마크업 -->
+<div class="proto-bar">
+  <div class="proto-bar__left">
+    <span class="proto-bar__title">프로토타입</span>
+    <a class="proto-bar__btn" href="index.html" aria-current="page">안내페이지 가기</a>
+  </div>
+  <div class="proto-bar__right">
+    <span class="proto-bar__page">화면 인덱스</span>
+    <span class="proto-bar__state">공통</span>
+    <span class="proto-bar__note">전체 화면 목록을 안내하는 페이지입니다.</span>
+  </div>
+</div>
+
+<main class="container idx">
+  <header class="idx-head">
+    <p class="idx-eyebrow">JOBABA UI/UX PROTOTYPE</p>
+    <h1>잡아바 UI/UX 개편 프로토타입</h1>
+    <p class="idx-lead">
+      경기도일자리포털 개편 설계 산출물 · 무채색(그레이스케일) 프로토타입 · 데스크톱 우선 반응형<br>
+      색을 배제해 <strong>구조와 콘텐츠 구성</strong>으로만 검토합니다.
+    </p>
+    <div class="idx-meta">
+      <span><b>화면</b> 35</span>
+      <span><b>기준일</b> 2026-08-09</span>
+      <span><b>대상</b> 청년(대학생·졸업생) 중심 + 중장년·기업</span>
+    </div>
+  </header>
+
+  <!-- 0. 정보구조 개편안 (AS-IS vs TO-BE) -->
+  <section class="idx-sec">
+    <div class="idx-sec__head">
+      <h2>정보구조 개편안</h2>
+      <p>화면에 앞서 <strong>메뉴 체계(IA)</strong>부터 확인합니다. 현행 5메뉴와 개편 7메뉴를 대조합니다.</p>
+    </div>
+    <div class="idx-grid">
+      <a class="idx-card idx-card--lead" href="ia-compare.html">
+        <span class="idx-tag">IA · AS-IS vs TO-BE</span>
+        <strong>정보구조 AS-IS vs TO-BE 대조</strong>
+        <p>현행 GNB 5메뉴 → 사용자 목적 중심 7메뉴 개편안. 상위·2Depth 대조, 이관 매핑, 노출 규칙, 확정 변경 이력(동영상강의 편입·대상별 정책 삭제)을 정리했습니다.</p>
+        <span class="idx-go">정보구조 비교 보기 <i data-lucide="arrow-up-right"></i></span>
+      </a>
+    </div>
+  </section>
+
+  <!-- 1. 메인 디자인 타입 -->
+  <section class="idx-sec">
+    <div class="idx-sec__head">
+      <h2>메인 디자인 타입</h2>
+      <p>두 가지 방향으로 병행 제작. 상단·푸터는 동일하고 <strong>본문 구조·콘텐츠 구성</strong>이 다릅니다.</p>
+    </div>
+    <div class="idx-grid idx-grid--2">
+      <a class="idx-card idx-card--lead" href="main-guest-a.html">
+        <span class="idx-tag">타입 A</span>
+        <strong>포털·정보밀도형</strong>
+        <p>3분할 히어로(메인배너·통합접수·러닝센터 슬라이더 + 검색·로그인), 퀵메뉴 6, 여정 탭 4×4, 취업 콘텐츠, 온라인 채용관, 상시채용관·유관서비스.</p>
+        <span class="idx-go">타입 A 메인 보기 <i data-lucide="arrow-up-right"></i></span>
+      </a>
+      <a class="idx-card idx-card--lead" href="main-guest-b.html">
+        <span class="idx-tag">타입 B</span>
+        <strong>임팩트·심플형</strong>
+        <p>풀폭 배너 캐러셀 + 프로모 타일 4, 추천 일자리(featured+미니), 취업 준비 3단계, 소식(비대칭), 제휴 배너, 제휴·특화 채용관 밴드.</p>
+        <span class="idx-go">타입 B 메인 보기 <i data-lucide="arrow-up-right"></i></span>
+      </a>
+    </div>
+  </section>
+
+  <!-- 1-2. 로그인 후 메인 (검토중) -->
+  <section class="idx-sec">
+    <div class="idx-sec__head">
+      <h2>로그인 후 메인 <span class="idx-flag">검토중</span></h2>
+      <p>
+        로그인 전 골격을 <strong>그대로 두고 슬롯만 교체</strong>하는 방식입니다. 섹션 개수·순서를 유지해 상태 전환 시 학습 비용을 없앴습니다.<br>
+        개인 지표(활동 카운터·신청현황 파이프라인)는 메인에 두지 않고 <strong>마이페이지 관할</strong>로 분리했습니다.
+      </p>
+    </div>
+    <div class="idx-grid idx-grid--2">
+      <a class="idx-card idx-card--lead" href="main-member-a.html">
+        <span class="idx-tag">타입 A · 로그인 후</span>
+        <strong>포털·정보밀도형 + 개인화</strong>
+        <p>교체 슬롯 2개 — ①로그인 유도 박스 → 개인화 스트립(지표 3 + 마이페이지 딥링크) ②취업 준비 콘텐츠 → 내 맞춤 추천(채용·정책·교육 탭). 통합검색에 저장검색 칩 추가, 여정 탭은 내 대상유형 기본 선택.</p>
+        <span class="idx-go">타입 A 로그인 후 보기 <i data-lucide="arrow-up-right"></i></span>
+      </a>
+      <a class="idx-card idx-card--lead" href="main-member-b.html">
+        <span class="idx-tag">타입 B · 로그인 후</span>
+        <strong>임팩트·심플형 + 개인화</strong>
+        <p>신설은 최상단 개인화 스트립 1개. 추천 캐러셀은 매칭율 기준으로 교체하고 항목마다 추천 사유를 표기, 취업준비 3단계에 내 현재 단계 표시, 대상별 서비스에 내 대상유형 강조.</p>
+        <span class="idx-go">타입 B 로그인 후 보기 <i data-lucide="arrow-up-right"></i></span>
+      </a>
+    </div>
+  </section>
+
+  <!-- 2. 여정별 화면 -->
+  <section class="idx-sec">
+    <div class="idx-sec__head">
+      <h2>여정별 화면</h2>
+      <p>핵심여정맵 4종(①일자리 지원정책 ②공공채용 ③취업역량 ④기업)에 대상별 서비스·로그인 후 개인화를 더한 6종으로 구성했습니다.</p>
+    </div>
+
+    <div class="idx-journey">
+      <article class="idx-jcard">
+        <div class="idx-jhead"><span class="idx-num">여정 ②</span><h3>일자리 찾기</h3></div>
+        <p class="idx-jdesc">공공채용·기업채용은 <strong>화면(HTML)을 분리</strong>해 각각 조회합니다. 1·2차 분류(12대분류/75중분류)는 공통, 3차 세부분류만 각 소스의 원천 코드를 따릅니다. 로그인 후는 같은 구조에 개인화 블록만 추가됩니다.</p>
+        <ol class="idx-list">
+          <li><a href="list-guest.html">공공채용 목록 <em>로그인 전</em></a></li>
+          <li><a href="list-corp-guest.html">기업채용 목록 <em>로그인 전</em></a></li>
+          <li><a href="detail-guest.html">공공채용 상세 <em>로그인 전</em></a></li>
+          <li><a href="detail-corp-guest.html">기업채용 상세 <em>로그인 전</em></a></li>
+          <li><a href="list-member.html">공공채용 목록 <em>로그인 후</em></a></li>
+          <li><a href="list-corp-member.html">기업채용 목록 <em>로그인 후</em></a></li>
+          <li><a href="detail-member.html">공공채용 상세 <em>로그인 후</em></a></li>
+          <li><a href="detail-corp-member.html">기업채용 상세 <em>로그인 후</em></a></li>
+        </ol>
+      </article>
+
+      <article class="idx-jcard">
+        <div class="idx-jhead"><span class="idx-num">여정 ①</span><h3>일자리 지원정책 찾기 → 신청</h3></div>
+        <p class="idx-jdesc">정책을 비교하고 자격을 확인한 뒤 신청·접수로 연결됩니다. 공모·대외활동(extrActv)은 필드·JSP가 다른 <strong>별도 페이지로 유지</strong>하고, 일자리 지원정책 목록 좌측 배너로 진입합니다.</p>
+        <ol class="idx-list">
+          <li><a href="list-policy-guest.html">일자리 지원정책 목록 <em>로그인 전</em></a></li>
+          <li><a href="detail-policy-guest.html">일자리 지원정책 상세 <em>로그인 전</em></a></li>
+          <li><a href="list-extra-guest.html">공모·대외활동 목록 <em>로그인 전</em></a></li>
+          <li><a href="list-policy-member.html">일자리 지원정책 목록 <em>로그인 후</em></a></li>
+          <li><a href="detail-policy-member.html">일자리 지원정책 상세 <em>로그인 후</em></a></li>
+          <li><a href="list-extra-member.html">공모·대외활동 목록 <em>로그인 후</em></a></li>
+          <li><a href="list-biz-policy.html">기업지원정책 목록 <em>로그인 상태 공통</em></a></li>
+          <li><a href="detail-biz-policy.html">기업지원정책 상세 <em>로그인 상태 공통</em></a></li>
+          <li><a href="apply-guest.html">신청·접수 목록 <em>로그인 전</em></a></li>
+          <li><a href="apply-member.html">신청·접수 목록 <em>로그인 후</em></a></li>
+          <li><a href="apply-complete-member.html">신청 완료 <em>로그인 후</em></a></li>
+        </ol>
+      </article>
+
+      <article class="idx-jcard">
+        <div class="idx-jhead"><span class="idx-num">여정 ③</span><h3>취업 준비·역량강화</h3></div>
+        <p class="idx-jdesc">진단 → 교육 → 첨삭·AI검사 → 상담을 단계형으로 연결합니다.</p>
+        <ol class="idx-list">
+          <li><a href="prep-hub-guest.html">취업 준비·역량강화 <em>로그인 전</em></a></li>
+          <li><a href="prep-hub-member.html">취업 준비·역량강화 <em>로그인 후</em></a></li>
+          <li><a href="list-edu.html">취업교육 목록 <em>로그인 상태 공통</em></a></li>
+          <li><a href="detail-edu.html">취업교육 상세 <em>로그인 상태 공통</em></a></li>
+        </ol>
+      </article>
+
+      <article class="idx-jcard">
+        <div class="idx-jhead"><span class="idx-num">여정 ④</span><h3>기업서비스</h3></div>
+        <p class="idx-jdesc">기업서비스 로그인 전·후 화면을 분리했습니다. 로그인 전 화면은 기업회원 기능 적용 전에도 동일하게 사용합니다.</p>
+        <ol class="idx-list">
+          <li><a href="biz-home.html">기업서비스 로그인 전 <em>기업회원 적용 전과 동일</em></a></li>
+          <li><a href="biz-home-member.html">기업서비스 로그인 후 <em>기업회원</em></a></li>
+        </ol>
+      </article>
+
+      <article class="idx-jcard">
+        <div class="idx-jhead"><span class="idx-num">대상별</span><h3>대상별 서비스</h3></div>
+        <p class="idx-jdesc">청년·중장년·여성·장애인 4탭 링크 큐레이션 허브입니다.</p>
+        <ol class="idx-list">
+          <li><a href="target-hub-guest.html">대상별 서비스 <em>로그인 전</em></a></li>
+          <li><a href="target-hub-member.html">대상별 서비스 <em>로그인 후</em></a></li>
+        </ol>
+      </article>
+
+      <article class="idx-jcard">
+        <div class="idx-jhead"><span class="idx-num">개인화</span><h3>로그인 후 개인화</h3></div>
+        <p class="idx-jdesc">활동 요약·맞춤 추천·이어하기와 마이페이지 관리 허브입니다.</p>
+        <ol class="idx-list">
+          <li><a href="main-member-a.html">로그인 후 메인 <em>타입 A</em></a></li>
+          <li><a href="main-member-b.html">로그인 후 메인 <em>타입 B</em></a></li>
+          <li><a href="mypage-member.html">마이페이지 <em>실서비스 메뉴 정합화</em></a></li>
+        </ol>
+      </article>
+    </div>
+  </section>
+
+</main>
+
+<script>
+  if(window.lucide) lucide.createIcons();
+</script>
+</body></html>

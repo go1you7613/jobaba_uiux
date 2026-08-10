@@ -1,0 +1,288 @@
+/* ================================================================
+   공고 상세 — 공공/기업 분리 스타일
+
+   방향(사용자 확정):
+    · 공고 상세는 "구조 유지 + 배치·디자인만 변경"(전면 개편 지양 → 개발 공수 최소화)
+    · 공공일자리 = 문서형 2단(좌 본문 + 우 요약 사이드바), 지원은 고용24 등 "외부 이동"
+    · 기업채용   = 현행 요약 카드형(상단 요약 + CTA + 상세내용 + 동일기업/유사공고), 지원은 잡아바 "내부 지원"
+    · AI 매칭   = 스코어/유사추천을 걷어내고 "매칭 공고" 인지 라벨(배지+한줄 근거)만
+    · 하단 4종 카드(std-foot)는 유지
+
+   공용 레이아웃 토큰(detail-cols/apply-box/info-table/std-foot 등)은
+   proto.css·theme-neutral.css에 이미 있으므로 여기서는 추가분만 정의한다.
+   ※ 정의된 폰트 토큰(12/14/16/18/20/24/28)만 사용한다.
+   ================================================================ */
+
+/* ---- AI 매칭 인지 라벨 (로그인 후 공통) ----
+   [개발 연동] 매칭 여부/근거 문구는 추천엔진 결과를 라벨로만 노출한다(스코어 비노출). */
+.matchlabel{display:inline-flex;align-items:center;gap:8px;flex-wrap:wrap;margin:0 0 var(--sp-3);}
+.matchlabel__badge{
+  display:inline-flex;align-items:center;gap:6px;padding:5px 11px;
+  border:1px solid var(--c-border-strong);border-radius:var(--r-full);
+  background:var(--c-bg-subtle);font-size:var(--fs-14);font-weight:var(--fw-bold);
+}
+.matchlabel__badge svg{width:15px;height:15px;}
+.matchlabel__reason{font-size:var(--fs-14);color:var(--c-muted);}
+
+/* ================================================================
+   공공 상세 : 문서형
+   ================================================================ */
+/* 본문 문서 섹션 — 현행 공공 상세처럼 원문을 편집한 제목+본문 블록 */
+.docsec{margin-top:var(--sp-6);}
+.docsec__tit{
+  display:flex;align-items:center;gap:8px;
+  font-size:var(--fs-16);font-weight:var(--fw-bold);color:var(--c-heading);
+  margin-bottom:var(--sp-3);padding-bottom:var(--sp-2);border-bottom:1px solid var(--c-border);
+}
+.docsec__tit svg{width:18px;height:18px;color:var(--c-muted);}
+.docsec p,.docsec li{font-size:var(--fs-14);line-height:1.65;color:var(--c-text);}
+.docsec ul{list-style:none;padding-left:0;margin:0;}
+.docsec ul li{position:relative;padding-left:14px;}
+.docsec ul li::before{content:"·";position:absolute;left:3px;color:var(--c-muted);}
+.docsec .sub{margin-top:var(--sp-3);font-weight:var(--fw-bold);font-size:var(--fs-14);}
+
+/* 우측 요약 사이드 — 지원 CTA + 핵심 필드(접수기간/채용인원/고용형태/근무지) */
+.side-status{
+  display:flex;align-items:center;justify-content:space-between;
+  font-size:var(--fs-14);margin-bottom:var(--sp-3);
+}
+.side-status__val{display:inline-flex;align-items:center;gap:8px;}
+.side-status b{font-size:var(--fs-20);}
+/* 제목 위에 있던 배지(채용중/청년/~D-x)를 우측 카드로 이동 */
+.side-badges{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:var(--sp-3);}
+.sidesum{margin-top:var(--sp-4);border-top:1px solid var(--c-border);padding-top:var(--sp-2);}
+.sidesum div{display:flex;justify-content:space-between;gap:var(--sp-3);padding:7px 0;font-size:var(--fs-14);border-bottom:1px solid var(--c-border);}
+.sidesum div:last-child{border-bottom:0;}
+.sidesum dt{color:var(--c-muted);}
+.sidesum dd{font-weight:var(--fw-medium);text-align:right;}
+/* 회원 프로필 매칭 — 요약 정보와 분리되는 강조 카드 */
+.profile-match{
+  margin-top:var(--sp-4);overflow:hidden;
+  border:1px solid var(--c-border-strong);border-radius:var(--r-md);
+  background:var(--c-bg-subtle);
+}
+.profile-match__title{
+  display:flex;align-items:center;justify-content:space-between;gap:var(--sp-2);
+  padding:10px 12px;border-bottom:1px solid var(--c-border-strong);
+  background:var(--c-heading);color:var(--c-bg);
+  font-size:var(--fs-14);font-weight:var(--fw-bold);
+}
+.profile-match__title > span:first-child{display:inline-flex;align-items:center;gap:7px;color:#fff!important;}
+.profile-match__title svg{width:16px;height:16px;color:#fff!important;}
+.profile-match__count{
+  flex:none;padding:3px 7px;border:1px solid rgba(255,255,255,.45);border-radius:var(--r-full);
+  font-size:var(--fs-12);font-weight:var(--fw-medium);color:#ededed!important;
+}
+.profile-match .checklist{margin:0;padding:10px 12px 6px;}
+.profile-match .checklist li{padding:5px 0;font-weight:var(--fw-medium);}
+.profile-match .checklist svg{width:16px;height:16px;flex:none;}
+.profile-match__caption{
+  margin:0;padding:8px 12px 10px;border-top:1px solid var(--c-border);
+  font-size:var(--fs-12);line-height:1.5;color:var(--c-muted);text-align:center;
+}
+/* 외부 지원 안내(고용24 등으로 이동) */
+.apply-note{font-size:var(--fs-14);color:var(--c-muted);margin-top:var(--sp-3);text-align:center;line-height:1.5;}
+.apply-note .ext{display:inline-flex;align-items:center;gap:4px;font-weight:var(--fw-bold);color:var(--c-text);}
+.apply-note .ext svg{width:14px;height:14px;}
+
+/* 첨부자료 */
+.attach{margin-top:var(--sp-6);border:1px solid var(--c-border);border-radius:var(--r-md);padding:var(--sp-4);}
+.attach__tit{font-weight:var(--fw-bold);font-size:var(--fs-14);margin-bottom:var(--sp-2);}
+.attach a{display:inline-flex;align-items:center;gap:6px;font-size:var(--fs-14);}
+.attach a svg{width:16px;height:16px;color:var(--c-muted);}
+
+/* 재단 면책 안내(현행 유지) */
+.detail-disclaimer{
+  margin-top:var(--sp-6);padding:var(--sp-4);border-radius:var(--r-md);
+  background:var(--c-bg-subtle);font-size:var(--fs-12);color:var(--c-muted);line-height:1.6;
+}
+.detail-disclaimer p+p{margin-top:var(--sp-2);}
+
+/* 로그인 전 공공채용 상세: 현행 화면의 구성·배치 유지 */
+.public-detail__document{overflow:hidden;border:1px solid var(--c-border);border-radius:var(--r-lg);background:var(--c-bg);}
+.public-detail__document .detail-head{margin:0;padding:var(--sp-5);}
+.public-detail__meta{display:flex;gap:var(--sp-3);align-items:center;font-size:var(--fs-14);color:var(--c-muted);}
+.public-detail__meta strong{color:var(--c-text);}
+.public-detail__meta span::before{content:"·";margin-right:var(--sp-3);}
+.public-detail__body{padding:0 var(--sp-5) var(--sp-6);}
+.public-detail__notice{display:flex;align-items:center;gap:8px;margin-top:var(--sp-6);font-size:var(--fs-14);}
+.public-detail__notice svg{width:18px;height:18px;color:var(--c-muted);flex:none;}
+.public-detail .attach{margin-top:var(--sp-4);padding:var(--sp-5);background:var(--c-bg);}
+.public-detail .detail-disclaimer{margin-top:var(--sp-4);border:1px solid var(--c-border);}
+.public-detail__actions{display:flex;justify-content:center;gap:var(--sp-2);margin-top:var(--sp-5);}
+.public-detail__side{align-self:stretch;min-width:0;}
+.public-detail__side-sticky{position:sticky;top:var(--sp-4);display:grid;gap:var(--sp-4);}
+body[data-user="member"] .public-detail__side::after{content:"";display:block;height:32vh;}
+.public-detail__side .apply-box{position:static;}
+.public-detail__side .std-foot--side{margin:0;padding:0;border:0;}
+.public-detail__status .side-status{margin-bottom:var(--sp-4);}
+.public-detail__summary .sidesum{margin:0;padding:0;border:0;}
+.public-detail__summary .sidesum div{display:block;padding:0 0 var(--sp-4);border:0;}
+.public-detail__summary .sidesum div:last-child{padding-bottom:0;}
+.public-detail__summary .sidesum dt{margin-bottom:6px;}
+.public-detail__summary .sidesum dd{margin:0;text-align:left;font-weight:var(--fw-medium);}
+
+@media(max-width:1024px){
+  .public-detail__side{align-self:auto;}
+  body[data-user="member"] .public-detail__side::after{display:none;}
+  .public-detail__side-sticky{position:static;grid-template-columns:1fr 1fr;}
+}
+
+@media(max-width:640px){
+  .public-detail__side-sticky{grid-template-columns:1fr;}
+  .public-detail__actions{flex-direction:column;}
+  .public-detail__actions .btn{width:100%;}
+}
+
+/* ================================================================
+   기업 상세 : 요약 카드형
+   ================================================================ */
+.detail-toolbar{display:flex;align-items:center;justify-content:space-between;gap:var(--sp-4);}
+.detail-share{display:flex;align-items:center;gap:6px;font-size:var(--fs-12);color:var(--c-muted);}
+.detail-share__btn{
+  display:inline-flex;align-items:center;justify-content:center;width:32px;height:32px;
+  border:1px solid var(--c-border);border-radius:var(--r-full);background:var(--c-bg);cursor:pointer;
+}
+.detail-share__btn svg{width:15px;height:15px;}
+.detail-anchor-nav{
+  position:sticky;top:0;z-index:40;display:grid;grid-template-columns:repeat(3,minmax(max-content,1fr));
+  margin:var(--sp-6) 0;border:1px solid var(--c-border);border-radius:var(--r-md);background:var(--c-bg);
+}
+.detail-anchor-nav a{
+  display:flex;align-items:center;justify-content:center;min-height:52px;padding:0 var(--sp-3);
+  border-right:1px solid var(--c-border);font-size:var(--fs-14);font-weight:var(--fw-bold);color:var(--c-muted);
+}
+.detail-anchor-nav a:last-child{border-right:0;}
+.detail-anchor-nav a[aria-current="true"]{background:var(--c-bg-subtle);color:var(--c-heading);box-shadow:inset 0 -3px 0 var(--c-heading);}
+.corp-detail-layout{display:grid;grid-template-columns:minmax(0,1fr) 300px;gap:var(--sp-6);align-items:start;}
+.corp-detail-main{min-width:0;}
+.corp-detail-layout .detail-body{min-width:0;margin-top:0;}
+[data-detail-anchor-section]{scroll-margin-top:72px;}
+.jobsum{border:1px solid var(--c-border);border-radius:var(--r-lg);padding:var(--sp-6);}
+.jobsum__head{
+  display:flex;justify-content:space-between;align-items:flex-start;gap:var(--sp-4);
+  padding-bottom:var(--sp-4);border-bottom:1px solid var(--c-border);
+}
+.jobsum__org{font-size:var(--fs-14);color:var(--c-muted);}
+.jobsum__title{font-size:var(--fs-24);font-weight:var(--fw-bold);margin:var(--sp-1) 0 var(--sp-2);line-height:1.35;}
+.jobsum__date{font-size:var(--fs-14);color:var(--c-muted);}
+.jobsum__date b{color:var(--c-text);}
+.jobsum__like{
+  flex:none;display:inline-flex;align-items:center;justify-content:center;
+  width:44px;height:44px;border:1px solid var(--c-border);border-radius:var(--r-full);
+  background:var(--c-bg);cursor:pointer;
+}
+.jobsum__like svg{width:20px;height:20px;}
+.jobsum__cols{display:grid;grid-template-columns:1fr 1fr 1fr;gap:var(--sp-6);margin-top:var(--sp-4);}
+.jobsum__col h3{
+  font-size:var(--fs-14);font-weight:var(--fw-bold);color:var(--c-muted);
+  margin-bottom:var(--sp-3);padding-bottom:6px;border-bottom:1px solid var(--c-border);
+}
+.jobsum__col dl{display:grid;grid-template-columns:auto 1fr;gap:8px var(--sp-4);font-size:var(--fs-14);margin:0;}
+.jobsum__col dt{color:var(--c-muted);white-space:nowrap;}
+.jobsum__col dd{font-weight:var(--fw-medium);margin:0;}
+.jobsum__cta{display:flex;gap:var(--sp-2);margin-top:var(--sp-5);padding-top:var(--sp-5);border-top:1px solid var(--c-border);}
+.jobsum__cta .btn--primary{flex:1 1 auto;}
+
+/* 상세내용 — 라벨이 붙은 정형 섹션(현행 기업 상세 구조 유지) */
+.detail-body{margin-top:var(--sp-8);}
+.detail-body__tit{font-size:var(--fs-20);font-weight:var(--fw-bold);margin-bottom:var(--sp-4);padding-bottom:var(--sp-3);border-bottom:2px solid var(--c-ink);}
+.dbsec{margin-top:var(--sp-6);}
+.dbsec__tit{display:flex;align-items:center;gap:8px;font-size:var(--fs-16);font-weight:var(--fw-bold);color:var(--c-heading);margin-bottom:var(--sp-3);}
+.dbsec__tit::before{content:"";width:9px;height:9px;border-radius:var(--r-full);border:2px solid var(--c-ink);flex:none;}
+.dbsec p,.dbsec li{font-size:var(--fs-14);line-height:1.65;color:var(--c-text);}
+.dbsec ul{list-style:none;padding-left:0;margin:0;}
+.dbsec ul li{position:relative;padding-left:14px;}
+.dbsec ul li::before{content:"·";position:absolute;left:3px;color:var(--c-muted);}
+.detail-source-note{
+  margin-top:var(--sp-6);padding:var(--sp-4);border-radius:var(--r-md);
+  background:var(--c-bg-subtle);font-size:var(--fs-12);line-height:1.6;color:var(--c-muted);text-align:center;
+}
+.detail-body__actions{display:flex;justify-content:center;gap:var(--sp-2);margin-top:var(--sp-5);}
+
+/* 모집분야 및 자격요건 표 */
+.reqtable{width:100%;border-top:2px solid var(--c-ink);border-collapse:collapse;margin-top:var(--sp-2);}
+.reqtable th,.reqtable td{text-align:left;vertical-align:top;padding:12px;border-bottom:1px solid var(--c-border);font-size:var(--fs-14);}
+.reqtable th{width:150px;color:var(--c-muted);font-weight:var(--fw-medium);background:var(--c-bg-subtle);}
+.reqtable .sub{font-weight:var(--fw-bold);margin-top:var(--sp-2);}
+.reqtable .sub:first-child{margin-top:0;}
+
+/* 복리후생 태그 */
+.taglist{display:flex;flex-wrap:wrap;gap:8px;}
+.taglist span{padding:5px 11px;border:1px solid var(--c-border);border-radius:var(--r-full);font-size:var(--fs-14);background:var(--c-bg-subtle);}
+
+/* 현행 상세 하단의 동일기업 공고·유사공고 구성 */
+.related-jobs{margin-top:var(--sp-8);}
+.related-jobs__title{
+  margin:0 0 var(--sp-4);padding-bottom:var(--sp-3);border-bottom:2px solid var(--c-ink);
+  font-size:var(--fs-20);font-weight:var(--fw-bold);
+}
+.related-job-list{display:grid;gap:var(--sp-3);}
+.related-job{
+  position:relative;padding:var(--sp-4) 150px var(--sp-4) var(--sp-4);
+  border:1px solid var(--c-border);border-radius:var(--r-lg);background:var(--c-bg);
+}
+.related-job__head{display:flex;align-items:flex-start;justify-content:space-between;gap:var(--sp-3);}
+.related-job h3{margin:0 0 6px;font-size:var(--fs-16);line-height:1.45;}
+.related-job p{margin:3px 0;font-size:var(--fs-14);line-height:1.5;}
+.related-job > .btn{position:absolute;right:var(--sp-4);bottom:var(--sp-4);min-width:108px;}
+.related-job--similar{
+  display:grid;grid-template-columns:180px minmax(0,1fr) 130px;align-items:center;gap:var(--sp-4);
+  padding:var(--sp-4);
+}
+.related-job__company{font-size:var(--fs-14);font-weight:var(--fw-bold);text-align:center;}
+.related-job__body{min-width:0;}
+.related-job__actions{display:grid;grid-template-columns:1fr auto;align-items:center;gap:8px;justify-items:end;}
+.related-job__actions .jobsum__like{width:34px;height:34px;}
+.related-job__actions .btn{grid-column:1/-1;width:100%;}
+
+/* 기업채용 상세 우측 고정 정보영역 */
+.corp-detail-side{min-width:0;margin-top:var(--sp-4);align-self:stretch;}
+.corp-detail-side__sticky{
+  position:sticky;top:72px;display:grid;gap:var(--sp-4);
+}
+.std-foot__grid--side{grid-template-columns:1fr;gap:var(--sp-4);}
+.std-foot__grid--side .std-foot__col{min-width:0;}
+.corp-side-card{padding:var(--sp-4);border:1px solid var(--c-border);border-radius:var(--r-lg);background:var(--c-bg);}
+.corp-side-card h2{margin:0;font-size:var(--fs-16);font-weight:var(--fw-bold);}
+.corp-side-card h2 span{font-size:var(--fs-12);font-weight:var(--fw-medium);color:var(--c-muted);}
+.corp-review__score{display:flex;align-items:center;gap:10px;margin:8px 0 var(--sp-3);}
+.corp-review__score strong{font-size:var(--fs-24);}
+.corp-review__score span{font-size:var(--fs-18);letter-spacing:1px;color:var(--c-heading);}
+.corp-review__score span i{font-style:normal;color:var(--c-border-strong);}
+.corp-review__items{display:grid;grid-template-columns:1fr 1fr;gap:10px 12px;}
+.corp-review__items > div{display:grid;grid-template-columns:1fr auto;gap:5px 8px;font-size:var(--fs-12);}
+.corp-review__bar{align-self:center;height:6px;border-radius:var(--r-full);background:var(--c-border);overflow:hidden;}
+.corp-review__bar i{display:block;width:var(--score);height:100%;border-radius:inherit;background:var(--c-heading);}
+.corp-review__items b{font-weight:var(--fw-medium);}
+.corp-review > p{display:flex;align-items:flex-start;gap:6px;margin:var(--sp-4) 0 0;font-size:var(--fs-12);line-height:1.5;color:var(--c-muted);}
+.corp-review > p svg{width:15px;height:15px;flex:none;margin-top:1px;}
+.corp-ai-banner{display:block;overflow:hidden;border:1px solid var(--c-border);border-radius:var(--r-lg);background:var(--c-bg-subtle);}
+.corp-ai-banner img{display:block;width:100%;height:auto;}
+
+@media(max-width:1024px){
+  .corp-detail-layout{grid-template-columns:1fr;}
+  .corp-detail-side{margin-top:0;}
+  .corp-detail-side__sticky{position:static;grid-template-columns:1fr 1fr;}
+  .std-foot__grid--side{grid-column:1/-1;grid-template-columns:1fr 1fr;}
+  .corp-ai-banner{grid-column:1/-1;max-width:432px;}
+}
+
+@media(max-width:768px){
+  .detail-toolbar{align-items:flex-start;}
+  .detail-share > span{display:none;}
+  .detail-anchor-nav{grid-template-columns:repeat(3,max-content);overflow-x:auto;overscroll-behavior-inline:contain;}
+  .detail-anchor-nav a{min-height:46px;min-width:110px;}
+  .jobsum{padding:var(--sp-5);}
+  .jobsum__cols{grid-template-columns:1fr;gap:var(--sp-4);}
+  .jobsum__cta{flex-wrap:wrap;}
+  .related-job{padding:var(--sp-4);}
+  .related-job > .btn{position:static;margin-top:var(--sp-3);}
+  .related-job--similar{grid-template-columns:1fr;}
+  .related-job__company{text-align:left;}
+  .related-job__actions{grid-template-columns:auto auto;justify-content:start;justify-items:start;}
+  .related-job__actions .btn{grid-column:auto;width:auto;}
+  .corp-detail-side__sticky{grid-template-columns:1fr;}
+  .std-foot__grid--side{grid-column:auto;grid-template-columns:1fr;}
+  .corp-ai-banner{grid-column:auto;max-width:none;}
+}

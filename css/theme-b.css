@@ -1,0 +1,473 @@
+/* main-guest-b · Visang reference inspired carousel-portal layout
+ * 스타일 체계는 theme-a.css의 Neutral UI rules와 동일(무채색).
+ * 차별점은 색이 아니라 "구조·콘텐츠 구성"에 있다.
+ *   - text #363636 / surface #fff·#f2f2f2 / border 1px #ddd / radius 10px
+ *   - font: Pretendard(base) + Paperlogy(display)
+ *   - 상단 영역(유틸바·로고·GNB·검색)과 푸터는 theme-a와 동일 규칙
+ */
+@font-face{
+  font-family:"Paperlogy";
+  src:url("https://cdn.jsdelivr.net/gh/projectnoonnu/2408-3@1.0/Paperlogy-7Bold.woff2") format("woff2");
+  font-weight:700;font-style:normal;font-display:swap;
+}
+@font-face{
+  font-family:"Paperlogy";
+  src:url("https://cdn.jsdelivr.net/gh/projectnoonnu/2408-3@1.0/Paperlogy-5Medium.woff2") format("woff2");
+  font-weight:500;font-style:normal;font-display:swap;
+}
+
+/* ================================================================
+   Neutral UI rules (theme-a와 동일)
+   ================================================================ */
+:root{
+  --neutral-text:#363636;
+  --neutral-border:#ddd;
+  --neutral-surface:#f2f2f2;
+  --font-base:"Pretendard",system-ui,sans-serif;
+  --font-display:"Paperlogy","Pretendard",system-ui,sans-serif;
+  --a-radius:10px;
+}
+
+body{font-family:var(--font-base);color:var(--neutral-text);background:#fff;}
+body *,
+body *::before,
+body *::after{
+  color:var(--neutral-text)!important;
+  border-color:var(--neutral-border);
+}
+h1,h2,h3,h4,strong,b,a,p,span,small,time{color:inherit;}
+a:hover{color:var(--neutral-text);}
+
+/* ================================================================
+   상단 영역 — theme-a와 동일 (유틸바 / 로고 / GNB / 검색)
+   ================================================================ */
+.utilbar{background:#fff;border-bottom:1px solid #edf0f3;}
+.utilbar__inner{height:36px;font-size:12px;}
+.utilbar__left{display:flex;align-items:center;gap:8px;}
+.utilbar__action{
+  display:inline-flex;
+  min-height:28px;
+  align-items:center;
+  padding:5px 10px;
+  border:1px solid var(--neutral-border);
+  border-radius:10px;
+  background:#fff;
+  font-weight:600;
+  line-height:1;
+}
+.utilbar__action:hover{background:var(--neutral-surface);}
+.header{border-bottom:1px solid #e8ebef;box-shadow:none;}
+.header__inner{height:82px;gap:34px;}
+.logo{font-size:26px;letter-spacing:-1.5px;}
+.logo small{font-size:10px;letter-spacing:-.2px;}
+.logo--image{display:flex;width:150px;height:42px;align-items:center;flex:none;letter-spacing:0;}
+.logo--image img{display:block;width:150px;height:42px;object-fit:contain;object-position:left center;}
+.gnb{height:100%;align-items:center;justify-content:center;gap:27px;}
+.gnb__item{font-size:15px;font-weight:700;letter-spacing:-.5px;}
+.header__search-icon{
+  display:grid;width:42px;height:42px;place-items:center;flex:none;padding:0;
+  border:1px solid var(--neutral-border);
+  border-radius:10px;
+  background:#fff;
+  color:var(--neutral-text);
+  cursor:pointer;
+}
+.header__search-icon:hover{background:var(--neutral-surface);color:var(--neutral-text);}
+.header__search-icon svg{width:21px;height:21px;stroke-width:2;}
+
+.header,
+.utilbar,
+.footer{border-color:var(--neutral-border);background:#fff;box-shadow:none;}
+.logo--image,
+.logo--image img{border-radius:0;}
+.logo--image img{filter:grayscale(1);}
+.gnb__item,
+.gnb__item[aria-current="page"]{color:var(--neutral-text);border-color:var(--neutral-text);}
+
+/* 공통 섹션 타이틀(디스플레이 폰트) */
+.vs-center-head h2{
+  font-family:var(--font-display);
+  font-size:36px;
+  font-weight:700;
+  line-height:1.25;
+  letter-spacing:-1px;
+  color:var(--neutral-text);
+}
+.vs-center-head h2 .pick{position:relative;display:inline-block;vertical-align:middle;}
+.vs-center-head h2 .pick__btn{
+  display:inline-flex;align-items:center;gap:6px;
+  font:inherit;color:inherit;background:transparent;
+  border:0;border-bottom:3px solid var(--neutral-text);
+  padding:0 2px 2px;cursor:pointer;
+}
+.vs-center-head h2 .pick__btn:hover{color:var(--neutral-muted);}
+.vs-center-head h2 .pick__chevron{width:24px;height:24px;stroke-width:2.5;flex:none;transition:transform .15s;}
+.vs-center-head h2 .pick__btn[aria-expanded="true"] .pick__chevron{transform:rotate(180deg);}
+.vs-center-head h2 .pick__list{
+  position:absolute;top:100%;left:0;z-index:20;margin-top:8px;min-width:180px;
+  display:flex;flex-direction:column;gap:2px;
+  background:#fff;border:1px solid var(--neutral-border);border-radius:12px;
+  box-shadow:0 12px 28px rgba(0,0,0,.14);
+  padding:6px;
+}
+.vs-center-head h2 .pick__list[hidden]{display:none;}
+.vs-center-head h2 .pick__opt{
+  font-family:var(--font-base);font-size:var(--fs-14);font-weight:600;
+  line-height:1.8;color:var(--neutral-text);
+  padding:10px 14px;border-radius:8px;cursor:pointer;
+}
+.vs-center-head h2 .pick__opt:hover,
+.vs-center-head h2 .pick__opt:focus{background:var(--neutral-surface);outline:none;}
+.vs-center-head h2 .pick__opt.is-selected{background:var(--neutral-text);color:#fff!important;}
+.vs-center-head h2 .pick__opt.is-selected:hover,
+.vs-center-head h2 .pick__opt.is-selected:focus{background:var(--neutral-text);}
+
+/* ================================================================
+   1. 히어로 — 풀폭 캐러셀 (B 고유 구조)
+   ================================================================ */
+.vs-hero{position:relative;margin-top:26px;border:1px solid var(--neutral-border);border-radius:10px;
+  overflow:hidden;min-height:380px;padding:52px;display:flex;flex-direction:column;justify-content:center;
+  background:var(--neutral-surface);}
+.vs-hero__content,.vs-feat-cover,.vs-feat-detail{transition:opacity .16s ease,transform .16s ease;}
+.vs-hero.is-changing .vs-hero__content,
+.vs-featured.is-changing .vs-feat-cover,
+.vs-featured.is-changing .vs-feat-detail{opacity:0;transform:translateY(4px);}
+.vs-hero__badge{display:inline-flex;align-self:flex-start;padding:7px 13px;border:1px solid var(--neutral-border);
+  border-radius:10px;background:#fff;font-weight:800;font-size:13px;}
+.vs-hero__title{font-family:var(--font-display);font-size:44px;font-weight:700;line-height:1.12;
+  letter-spacing:-1px;margin-top:18px;}
+.vs-hero__sub{margin-top:14px;font-size:16px;}
+.vs-hero__cta{margin-top:24px;}
+.vs-hero .btn--primary{border:1px solid var(--neutral-border);border-radius:10px;background:#fff;font-weight:800;}
+.vs-hero .btn--primary:hover{background:var(--neutral-surface);}
+.vs-hero__art{position:absolute;right:6%;top:50%;transform:translateY(-50%);
+  width:240px;height:240px;border:1px solid var(--neutral-border);border-radius:10px;
+  background:#fff;display:grid;place-items:center;}
+.vs-hero__art [data-lucide]{width:96px;height:96px;stroke-width:1.3;}
+.vs-hero__arrow{position:absolute;top:50%;transform:translateY(-50%);width:42px;height:42px;
+  border:1px solid var(--neutral-border);border-radius:10px;background:#fff;
+  display:grid;place-items:center;cursor:pointer;}
+.vs-hero__arrow.prev{left:18px;} .vs-hero__arrow.next{right:18px;}
+.vs-carousel-controls{position:absolute;bottom:16px;left:50%;transform:translateX(-50%);
+  display:flex;align-items:center;gap:10px;z-index:2;}
+.vs-hero__dots,.fc-dots{display:flex;align-items:center;gap:7px;}
+.vs-hero__dots button,.fc-dots button{width:8px;height:8px;padding:0;border:1px solid var(--neutral-border);
+  border-radius:50%;background:#fff;cursor:pointer;}
+.vs-hero__dots button.is-on,.fc-dots button.is-on{background:var(--neutral-text);border-color:var(--neutral-text);}
+.vs-carousel-toggle{width:26px;height:26px;padding:0;border:1px solid var(--neutral-border);border-radius:50%;
+  background:#fff;display:grid;place-items:center;cursor:pointer;}
+.vs-carousel-toggle [data-lucide]{width:13px;height:13px;stroke-width:2;}
+
+/* ================================================================
+   2. 프로모 타일 4 — 러닝센터·통합접수·AI 역량진단·상담톡
+   ================================================================ */
+.vs-promos{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;margin-top:16px;}
+.vs-promo{display:flex;align-items:center;gap:16px;padding:22px;
+  border:1px solid var(--neutral-border);border-radius:10px;background:#fff;}
+.vs-promo:hover{background:var(--neutral-surface);}
+.vs-promo [data-lucide]{width:32px;height:32px;flex:none;stroke-width:1.5;}
+.vs-promo .vp-label{font-size:12px;}
+.vs-promo .vp-title{font-family:var(--font-display);font-size:18px;font-weight:700;}
+
+/* 중앙정렬 섹션 헤딩 (B 시그니처 구조) */
+.vs-center-head{text-align:center;margin-bottom:32px;}
+.vs-center-head p{margin-top:8px;font-size:14px;}
+.vs-tabs{display:inline-flex;gap:4px;margin-top:16px;padding:5px;
+  border:1px solid var(--neutral-border);border-radius:10px;background:#fff;}
+.vs-tabs button{border:0;background:none;font-family:inherit;padding:7px 18px;border-radius:10px;
+  font-size:14px;cursor:pointer;}
+.vs-tabs button[aria-selected="true"]{background:var(--neutral-surface);font-weight:800;}
+
+/* ================================================================
+   3. 추천 일자리 — featured + 미니 캐러셀
+   ================================================================ */
+.vs-featured{position:relative;display:grid;grid-template-columns:1fr 1.1fr;gap:32px;align-items:center;
+  padding-bottom:40px;}
+.vs-feat-cover{position:relative;border:1px solid var(--neutral-border);border-radius:10px;
+  min-height:340px;padding:32px;background:var(--neutral-surface);
+  display:flex;flex-direction:column;justify-content:space-between;}
+.vs-feat-cover .fc-badges{display:flex;gap:6px;}
+.vs-feat-cover .fc-title{font-family:var(--font-display);font-size:28px;font-weight:700;line-height:1.2;}
+.vs-featured__controls{bottom:2px;}
+.vs-feat-detail .fd-tag{font-weight:700;font-size:14px;}
+.vs-feat-detail .fd-title{font-family:var(--font-display);font-size:26px;font-weight:700;margin-top:8px;}
+.vs-feat-detail ul{margin-top:16px;display:flex;flex-direction:column;gap:8px;}
+.vs-feat-detail li{display:flex;gap:8px;font-size:15px;}
+.vs-feat-detail li::before{content:"#";font-weight:800;}
+.vs-feat-detail .btn{margin-top:20px;border:1px solid var(--neutral-border);border-radius:10px;
+  background:#fff;font-weight:800;}
+.vs-feat-detail .btn:hover{background:var(--neutral-surface);}
+.vs-mini{margin-top:20px;}
+.vs-mini-head{display:flex;justify-content:space-between;align-items:center;margin-bottom:12px;}
+.vs-mini-head .mh-nav{display:flex;gap:8px;}
+.vs-mini-head .mh-nav span{width:30px;height:30px;border:1px solid var(--neutral-border);border-radius:10px;
+  background:#fff;display:grid;place-items:center;}
+.vs-mini-row{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;}
+.vs-mini-card{border:1px solid var(--neutral-border);border-radius:10px;padding:16px;background:#fff;}
+.vs-mini-card:hover{background:var(--neutral-surface);}
+.vs-mini-card .mc-thumb{height:90px;border:1px solid var(--neutral-border);border-radius:10px;
+  background:var(--neutral-surface);display:grid;place-items:center;margin-bottom:12px;}
+.vs-mini-card .mc-title{font-weight:700;font-size:14px;}
+.vs-mini-card .mc-meta{font-size:12px;margin-top:2px;}
+
+/* ================================================================
+   4. 취업 준비 3단계 — 여정③ 단계형(4.4.3). 후기 대체(데이터 미확보)
+   ================================================================ */
+.vs-steps{background:var(--neutral-surface);}
+.vs-step-row{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;margin:0;padding:0;list-style:none;
+  counter-reset:step;}
+.vs-step{position:relative;display:flex;flex-direction:column;align-items:flex-start;
+  padding:32px 28px;border:1px solid var(--neutral-border);border-radius:10px;background:#fff;}
+/* 단계 연결선(진행 방향 표시) */
+.vs-step:not(:last-child)::after{
+  content:"";position:absolute;top:50%;right:-13px;width:10px;height:10px;
+  border-top:1px solid var(--neutral-border);border-right:1px solid var(--neutral-border);
+  transform:translateY(-50%) rotate(45deg);
+}
+.vs-step .st-num{font-size:11px;font-weight:700;letter-spacing:1.6px;}
+.vs-step .st-ico{display:grid;width:56px;height:56px;place-items:center;margin-top:14px;
+  border:1px solid var(--neutral-border);border-radius:10px;background:var(--neutral-surface);}
+.vs-step .st-ico svg{width:26px;height:26px;stroke-width:1.5;}
+.vs-step .st-title{font-family:var(--font-display);font-size:20px;font-weight:700;margin-top:16px;}
+.vs-step .st-desc{font-size:13px;line-height:1.6;margin:8px 0 16px;}
+.vs-step .st-link{margin-top:auto;font-size:13px;font-weight:800;}
+.vs-step:hover{background:var(--neutral-surface);}
+
+/* ================================================================
+   5. 소식 — 마감 임박·중요 정보 큐레이션
+   ================================================================ */
+.vs-news-split{display:grid;grid-template-columns:1.4fr 1fr;gap:20px;align-items:stretch;}
+.vs-news-lead{position:relative;border:1px solid var(--neutral-border);border-radius:10px;
+  padding:32px;min-height:230px;background:var(--neutral-surface);
+  display:flex;flex-direction:column;justify-content:flex-end;}
+.vs-news-lead .nl-tag{display:inline-flex;align-self:flex-start;align-items:center;gap:6px;
+  padding:5px 12px;border:1px solid var(--neutral-border);border-radius:10px;background:#fff;
+  font-weight:800;font-size:12px;}
+.vs-news-lead .nl-title{font-family:var(--font-display);font-size:24px;font-weight:700;line-height:1.25;margin-top:16px;}
+.vs-news-lead .nl-desc{font-size:14px;margin-top:8px;}
+.vs-news-lead time{font-size:12px;font-weight:700;margin-top:16px;}
+.vs-news-list{display:flex;flex-direction:column;gap:12px;}
+.vs-news-item{flex:1;border:1px solid var(--neutral-border);border-radius:10px;padding:20px;background:#fff;
+  display:flex;flex-direction:column;justify-content:center;}
+.vs-news-item:hover{background:var(--neutral-surface);}
+.vs-news-item .ni-tag{font-weight:800;font-size:12px;}
+.vs-news-item .ni-title{font-weight:700;font-size:15px;margin-top:4px;line-height:1.4;}
+.vs-news-item time{font-size:12px;font-weight:700;margin-top:8px;}
+
+/* ================================================================
+   6. 대상별 서비스
+   ================================================================ */
+.vs-target-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;}
+.vs-target-card{min-height:210px;padding:24px;border:1px solid var(--neutral-border);border-radius:10px;
+  background:#fff;display:flex;flex-direction:column;align-items:flex-start;}
+.vs-target-card:hover{background:var(--neutral-surface);transform:translateY(-2px);}
+.vs-target-card .vt-icon{width:52px;height:52px;display:grid;place-items:center;
+  border:1px solid var(--neutral-border);border-radius:10px;background:var(--neutral-surface);}
+.vs-target-card .vt-icon [data-lucide]{width:25px;height:25px;stroke-width:1.5;}
+.vs-target-card strong{font-family:var(--font-display);font-size:21px;margin-top:18px;}
+.vs-target-card p{font-size:13px;margin-top:6px;}
+.vs-target-card .vt-link{font-size:13px;font-weight:800;margin-top:auto;padding-top:20px;}
+
+/* ================================================================
+   7. 제휴·특화 바로가기 밴드 (B-7) — 관계기관 노출 의무 · IA와 구분
+   ================================================================ */
+.vs-affil{background:var(--neutral-surface);}
+.vs-affil__eyebrow{display:inline-flex;padding:5px 13px;border:1px solid var(--neutral-border);
+  border-radius:10px;background:#fff;font-weight:800;font-size:12px;}
+.vs-affil .vs-center-head h2{margin-top:12px;}
+.vs-affil__wrap{position:relative;}
+.vs-affil__track{display:flex;gap:16px;overflow-x:auto;padding:8px 4px 12px;
+  scroll-behavior:smooth;scrollbar-width:none;}
+.vs-affil__track::-webkit-scrollbar{display:none;}
+.vs-affil-item{flex:0 0 150px;display:flex;flex-direction:column;align-items:center;gap:12px;
+  padding:24px 12px;border:1px solid var(--neutral-border);border-radius:10px;background:#fff;text-align:center;}
+.vs-affil-item:hover{background:var(--neutral-surface);}
+.vs-affil-ico{display:grid;width:60px;height:60px;place-items:center;
+  border:1px solid var(--neutral-border);border-radius:10px;background:var(--neutral-surface);}
+.vs-affil-ico svg{width:27px;height:27px;stroke-width:1.5;}
+.vs-affil-item b{font-size:14px;font-weight:700;line-height:1.35;}
+.vs-affil-ext{width:13px;height:13px;vertical-align:-1px;}
+.vs-affil__arrow{position:absolute;top:calc(50% + 6px);transform:translateY(-50%);z-index:2;
+  width:42px;height:42px;border:1px solid var(--neutral-border);border-radius:10px;background:#fff;
+  display:grid;place-items:center;cursor:pointer;}
+.vs-affil__arrow.prev{left:-10px;} .vs-affil__arrow.next{right:-10px;}
+.vs-affil__arrow:hover{background:var(--neutral-surface);}
+.vs-affil__arrow svg{width:20px;height:20px;}
+
+/* 공통 버튼/배지 무채색화 */
+.btn--primary,
+.btn--accent,
+.btn--outline,
+.badge,
+.badge--solid,
+.badge--accent,
+.badge--danger{
+  border:1px solid var(--neutral-border);
+  border-radius:10px;
+  background:var(--neutral-surface);
+  color:var(--neutral-text);
+}
+
+/* ================================================================
+   푸터 (theme-a와 동일 · portal footer)
+   ================================================================ */
+.footer.footer--portal{
+  margin-top:0;padding:0;border-top:1px solid var(--neutral-border);
+  background:#fff;color:var(--neutral-text);font-size:14px;
+}
+.footer--portal .container{padding-top:0;padding-bottom:0;}
+.footer__top{border-bottom:1px solid var(--neutral-border);background:var(--neutral-surface);}
+.footer__top-inner{display:flex;min-height:88px;align-items:center;justify-content:space-between;gap:32px;}
+.footer--portal .footer__links{display:flex;align-items:center;gap:0;margin:0;}
+.footer--portal .footer__links a{
+  padding:0 18px;border-left:1px solid var(--neutral-border);color:var(--neutral-text);
+  font-size:15px;font-weight:500;line-height:22px;white-space:nowrap;
+}
+.footer--portal .footer__links a:first-child{padding-left:0;border-left:0;}
+.footer--portal .footer__links .footer__privacy{font-weight:800;}
+.footer__social{display:flex;align-items:center;gap:12px;flex:none;}
+.footer__social a{
+  display:grid;width:42px;height:42px;place-items:center;
+  border:1px solid var(--neutral-border);border-radius:50%;background:#fff;
+  color:var(--neutral-text);font-size:22px;font-weight:700;line-height:1;
+}
+.footer__social a:hover{background:var(--neutral-surface);}
+.footer__social svg{width:20px;height:20px;stroke-width:1.8;}
+.footer__social-instagram{font-size:25px;font-weight:500;}
+.footer__social-youtube{font-size:16px;}
+.footer__body{
+  display:flex;min-height:220px;align-items:flex-start;justify-content:space-between;gap:48px;
+  padding-top:36px!important;padding-bottom:36px!important;
+}
+.footer__info{color:#6b6b6b;font-size:14px;line-height:1.7;}
+.footer__info p{margin:0 0 5px;}
+.footer__info strong{color:var(--neutral-text);font-weight:800;}
+.footer__info a{color:inherit;}
+.footer__info address{margin-top:23px;color:#6b6b6b;font-style:normal;}
+.footer__copyright{margin-top:1px!important;}
+.footer__brand{
+  display:flex;align-self:flex-end;align-items:flex-end;gap:10px;padding-bottom:2px;
+  color:var(--neutral-text);flex:none;
+}
+.footer__brand-mark{
+  display:grid;width:54px;height:54px;place-items:center;
+  border:1px solid var(--neutral-border);border-radius:10px;background:var(--neutral-surface);
+  font-family:var(--font-display);font-size:20px;font-weight:700;
+}
+.footer__brand small,
+.footer__brand strong{display:block;}
+.footer__brand small{margin-bottom:2px;font-size:9px;font-weight:500;}
+.footer__brand strong{font-family:var(--font-display);font-size:17px;font-weight:700;letter-spacing:-.5px;}
+
+/* ================================================================
+   반응형
+   ================================================================ */
+@media(max-width:1100px){
+  .gnb{gap:16px;overflow-x:auto;}
+  .vs-promos{grid-template-columns:1fr 1fr;}
+  .vs-step-row{grid-template-columns:1fr;}
+  .vs-step:not(:last-child)::after{display:none;}
+  .vs-featured{grid-template-columns:1fr;}
+  .vs-news-split{grid-template-columns:1fr;}
+  .vs-target-grid{grid-template-columns:repeat(2,1fr);}
+  .vs-hero__art{display:none;}
+}
+@media(max-width:768px){
+  .utilbar{display:none;}
+  .header__inner{height:auto;min-height:68px;flex-wrap:wrap;padding:12px 0;}
+  .gnb{order:3;width:100%;justify-content:flex-start;padding-bottom:3px;}
+  .vs-promos,.vs-mini-row,.vs-target-grid{grid-template-columns:1fr;}
+  .vs-hero{min-height:300px;padding:28px;}
+  .vs-hero__title{font-size:32px;}
+  .vs-hero__arrow,.vs-affil__arrow{display:none;}
+  .vs-center-head h2{font-size:28px;}
+  .footer__top-inner{
+    min-height:auto;flex-direction:column;align-items:flex-start;gap:20px;
+    padding-top:24px!important;padding-bottom:24px!important;
+  }
+  .footer--portal .footer__links{width:100%;flex-wrap:wrap;row-gap:12px;}
+  .footer--portal .footer__links a{padding:0 12px;}
+  .footer--portal .footer__links a:first-child{padding-left:0;}
+  .footer__social{gap:8px;}
+  .footer__social a{width:38px;height:38px;}
+  .footer__body{
+    min-height:auto;flex-direction:column;gap:28px;
+    padding-top:28px!important;padding-bottom:32px!important;
+  }
+  .footer__brand{align-self:flex-start;}
+}
+@media(max-width:480px){
+  .footer--portal .footer__links{display:grid;grid-template-columns:1fr 1fr;}
+  .footer--portal .footer__links a,
+  .footer--portal .footer__links a:first-child{padding:0;border-left:0;}
+  .footer__info address span{display:block;}
+}
+
+/* ================================================================
+   로그인 후 메인(타입B) 전용 — 개인화 슬롯
+   main-guest-b와 섹션 순서는 동일하고, 최상단 .vs-me 만 신설된다.
+     · .vs-me      : 개인화 스트립 (지표 3개 + 마이페이지 딥링크)
+     · .fd-why/.mc-why : 추천 사유 표기 (개인화 규칙 §4 설명가능성)
+     · .vs-step.is-* : 취업준비 3단계의 내 현재 단계 표시
+     · .vt-mine    : 대상별 서비스에서 내 대상유형 표시
+   ================================================================ */
+.vs-me{
+  display:flex;align-items:center;gap:28px;flex-wrap:wrap;
+  margin-top:22px;padding:24px 28px;
+  border:1px solid var(--neutral-border);border-radius:16px;background:var(--neutral-surface);
+}
+.vs-me__hello{flex:1 1 260px;min-width:0;}
+.vs-me__eyebrow{display:block;font-size:11px;font-weight:800;letter-spacing:1.6px;}
+.vs-me__hello strong{display:block;margin-top:6px;font-family:var(--font-display);font-size:23px;letter-spacing:-1.1px;}
+.vs-me__hello strong em{font-style:normal;text-decoration:underline;text-underline-offset:4px;}
+.vs-me__hello p{margin:7px 0 0;font-size:13px;}
+.vs-me__facts{display:flex;gap:10px;margin:0;padding:0;list-style:none;}
+.vs-me__facts li{
+  min-width:92px;padding:12px 14px;border:1px solid var(--neutral-border);
+  border-radius:12px;background:#fff;text-align:center;
+}
+.vs-me__facts b{display:block;font-size:23px;font-weight:800;letter-spacing:-1px;}
+.vs-me__facts span{display:block;margin-top:3px;font-size:11px;}
+.vs-me__act{display:flex;flex-direction:column;gap:9px;}
+.vs-me__btn{
+  display:grid;min-width:150px;height:46px;place-items:center;
+  border:1px solid var(--neutral-text);border-radius:10px;background:#fff;
+  font-size:14px;font-weight:800;
+}
+.vs-me__btn:hover{background:var(--neutral-surface);}
+.vs-me__link{font-size:12px;text-align:center;text-decoration:underline;text-underline-offset:3px;}
+
+/* 추천 사유 */
+.fd-why{
+  margin:14px 0 0;padding:9px 12px;border-radius:8px;
+  background:var(--neutral-surface);font-size:12px;font-weight:700;
+}
+.mc-why{margin-top:8px;font-size:11px;font-weight:700;}
+
+/* 취업준비 3단계 — 내 현재 단계 */
+.vs-step{position:relative;}
+.vs-step .st-state{
+  position:absolute;top:18px;right:18px;
+  padding:3px 9px;border:1px solid var(--neutral-border);border-radius:999px;
+  background:#fff;font-size:11px;font-weight:700;
+}
+.vs-step.is-current{border-color:var(--neutral-text);box-shadow:0 0 0 1px var(--neutral-text) inset;}
+.vs-step.is-current .st-state{border-color:var(--neutral-text);font-weight:800;}
+.vs-step.is-done .st-ico{opacity:.55;}
+
+/* 대상별 서비스 — 내 대상유형 */
+.vs-target-card{position:relative;}
+.vt-mine{
+  position:absolute;top:14px;right:14px;
+  padding:3px 9px;border:1px solid var(--neutral-text);border-radius:999px;
+  background:#fff;font-size:11px;font-weight:800;
+}
+.vs-target-card.is-mine{border-color:var(--neutral-text);box-shadow:0 0 0 1px var(--neutral-text) inset;}
+
+@media(max-width:900px){
+  .vs-me{gap:18px;padding:20px;}
+  .vs-me__facts{width:100%;}
+  .vs-me__facts li{flex:1 1 0;min-width:0;}
+  .vs-me__act{width:100%;}
+  .vs-me__btn{width:100%;}
+}

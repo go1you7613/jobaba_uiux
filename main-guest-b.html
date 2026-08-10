@@ -1,0 +1,219 @@
+<!doctype html>
+<html lang="ko"><head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>잡아바 프로토타입 — 메인(로그인 전) · 타입B 임팩트형</title>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css">
+<link rel="stylesheet" href="css/proto.css?v=1264">
+<link rel="stylesheet" href="css/theme-neutral.css?v=6">
+<link rel="stylesheet" href="css/theme-b.css?v=16">
+<link rel="stylesheet" href="css/proto-linkmark.css?v=5">
+<script src="https://unpkg.com/lucide@latest"></script>
+<script src="js/proto.js?v=1270"></script>
+</head>
+<body data-user="guest">
+<div id="site-header"></div>
+
+<!-- 1. 히어로: 풀폭 라운드 캐러셀 -->
+<section class="container">
+  <div class="vs-hero" data-carousel="hero" aria-roledescription="carousel" aria-label="주요 서비스">
+    <div class="vs-hero__content" aria-live="polite">
+      <span class="vs-hero__badge">2026 청년 일자리 박람회</span>
+      <h1 class="vs-hero__title">여름방학, <b>취업 준비</b>의<br>가장 빠른 출발</h1>
+      <p class="vs-hero__sub">공공·기업 채용부터 청년 지원정책까지 한 번에 만나보세요</p>
+      <div class="vs-hero__cta"><a class="btn btn--primary btn--lg">박람회 참가 신청 →</a></div>
+      <span class="vs-hero__art" aria-hidden="true"><i data-lucide="briefcase-business"></i></span>
+    </div>
+    <button type="button" class="vs-hero__arrow prev" aria-label="이전 슬라이드"><i data-lucide="chevron-left"></i></button>
+    <button type="button" class="vs-hero__arrow next" aria-label="다음 슬라이드"><i data-lucide="chevron-right"></i></button>
+    <div class="vs-carousel-controls">
+      <div class="vs-hero__dots" aria-label="슬라이드 선택"></div>
+      <button type="button" class="vs-carousel-toggle" aria-label="자동 롤링 일시정지" aria-pressed="false"><i data-lucide="pause"></i></button>
+    </div>
+  </div>
+
+  <!-- 2. 프로모 타일 4 (러닝센터·통합접수·AI 역량진단·상담톡) -->
+  <div class="vs-promos">
+    <a class="vs-promo vs-promo--sky"><i data-lucide="graduation-cap"></i>
+      <div><div class="vp-label">러닝센터</div><div class="vp-title">온라인 취업교육</div></div></a>
+    <a class="vs-promo vs-promo--mint"><i data-lucide="send"></i>
+      <div><div class="vp-label">통합접수</div><div class="vp-title">어플라이 신청</div></div></a>
+    <a class="vs-promo vs-promo--coral"><i data-lucide="brain-circuit"></i>
+      <div><div class="vp-label">취업역량 분석</div><div class="vp-title">AI 역량진단</div></div></a>
+    <a class="vs-promo vs-promo--lav"><i data-lucide="messages-square"></i>
+      <div><div class="vp-label">1:1 상담톡</div><div class="vp-title">취업 상담</div></div></a>
+  </div>
+</section>
+
+<!-- 3. 추천 일자리: featured + 미니 캐러셀 -->
+<section class="container section">
+  <div class="vs-center-head">
+    <h2>잡아바가 추천하는 <span class="pick" data-picker><button type="button" class="pick__btn" aria-haspopup="listbox" aria-expanded="false" aria-controls="reco-target-list"><span data-picker-value>청년</span><i data-lucide="chevron-down" class="pick__chevron" aria-hidden="true"></i></button><span class="pick__list" id="reco-target-list" role="listbox" aria-label="추천 대상 선택" hidden><span role="option" class="pick__opt is-selected" aria-selected="true" data-value="youth" tabindex="0">청년</span><span role="option" class="pick__opt" aria-selected="false" data-value="senior" tabindex="-1">중장년</span></span></span> 일자리</h2>
+    <p>내 조건에 맞는 채용·정책을 골라 담았어요</p>
+  </div>
+  <div class="vs-featured" data-carousel="featured" aria-roledescription="carousel" aria-label="추천 일자리">
+    <div class="vs-feat-cover">
+      <div class="fc-badges"><span class="badge badge--solid">NEW</span><span class="badge badge--danger">마감임박</span></div>
+      <div class="fc-title">공공데이터 활용<br>웹서비스 개발(신입)</div>
+    </div>
+    <div class="vs-feat-detail">
+      <span class="fd-tag">경기도청 산하기관 · 경기 수원</span>
+      <div class="fd-title">공공데이터 활용 웹서비스 개발자</div>
+      <ul>
+        <li>청년(만 19~34세) · 학력무관 · 신입</li>
+        <li>정규직 (수습 3개월) · 접수 ~D-7</li>
+        <li>공공데이터 활용 경험 우대</li>
+      </ul>
+      <a class="btn btn--lg" href="detail-guest.html"><i data-lucide="arrow-right"></i>공고 자세히 보기</a>
+    </div>
+    <div class="vs-carousel-controls vs-featured__controls">
+      <div class="fc-dots" aria-label="추천 일자리 슬라이드 선택"></div>
+      <button type="button" class="vs-carousel-toggle" aria-label="자동 롤링 일시정지" aria-pressed="false"><i data-lucide="pause"></i></button>
+    </div>
+  </div>
+  <div class="vs-mini">
+    <div class="vs-mini-head">
+      <strong>비슷한 청년 채용·정책</strong>
+      <div class="mh-nav"><span><i data-lucide="chevron-left"></i></span><span><i data-lucide="chevron-right"></i></span></div>
+    </div>
+    <div class="vs-mini-row">
+      <a class="vs-mini-card" href="detail-guest.html"><div class="mc-thumb"><i data-lucide="code-2"></i></div>
+        <div class="mc-title">프론트엔드 개발 청년인턴</div><div class="mc-meta">경기 판교 · 인턴 · ~D-10</div></a>
+      <a class="vs-mini-card"><div class="mc-thumb"><i data-lucide="wallet"></i></div>
+        <div class="mc-title">청년 노동자 통장 (경기)</div><div class="mc-meta">현금성 · 월 10만원 매칭 · ~D-3</div></a>
+      <a class="vs-mini-card" href="detail-guest.html"><div class="mc-thumb"><i data-lucide="clipboard-check"></i></div>
+        <div class="mc-title">SW 품질 테스터 직무캠프</div><div class="mc-meta">경기 수원 · 정규직 · ~D-14</div></a>
+    </div>
+  </div>
+</section>
+
+<!-- 4. 취업 준비 3단계 (여정③ 단계형 · 4.4.3 교차순환) -->
+<section class="section vs-steps">
+  <div class="container">
+    <div class="vs-center-head">
+      <h2>취업 준비, 3단계로</h2>
+      <p>진단부터 상담까지 순서대로 준비하세요</p>
+    </div>
+    <ol class="vs-step-row">
+      <li class="vs-step">
+        <span class="st-num">STEP 1</span>
+        <span class="st-ico"><i data-lucide="clipboard-list"></i></span>
+        <strong class="st-title">내 역량 진단하기</strong>
+        <p class="st-desc">취업진단·NCS 직업역량 진단으로 강점과 희망 직무를 확인합니다.</p>
+        <a class="st-link">진단 시작 →</a>
+      </li>
+      <li class="vs-step">
+        <span class="st-num">STEP 2</span>
+        <span class="st-ico"><i data-lucide="file-pen-line"></i></span>
+        <strong class="st-title">서류·면접 준비하기</strong>
+        <p class="st-desc">자기소개서 첨삭과 AI 역량검사로 지원 서류와 면접을 다듬습니다.</p>
+        <a class="st-link">첨삭·AI검사 →</a>
+      </li>
+      <li class="vs-step">
+        <span class="st-num">STEP 3</span>
+        <span class="st-ico"><i data-lucide="messages-square"></i></span>
+        <strong class="st-title">상담받고 지원하기</strong>
+        <p class="st-desc">1:1 상담으로 방향을 정하고 내 조건에 맞는 공고에 지원합니다.</p>
+        <a class="st-link">상담·채용 보기 →</a>
+      </li>
+    </ol>
+  </div>
+</section>
+
+<!-- 5. 잡아바 소식: 마감 임박·중요 정보 큐레이션 -->
+<section class="container section">
+  <div class="vs-center-head">
+    <h2>놓치면 안 될 잡아바 소식</h2>
+    <p>마감이 임박한 통합접수사업·취업교육·정책지원을 확인하세요</p>
+  </div>
+  <div class="vs-news-split">
+    <a class="vs-news-lead">
+      <span class="nl-tag"><i data-lucide="clock-3"></i>통합접수 · D-2</span>
+      <div class="nl-title">경기도 청년<br>면접수당 2차 모집</div>
+      <p class="nl-desc">면접 1회당 5만원, 최대 10회까지 지역화폐로 지원합니다.</p>
+      <time datetime="2026-07-21">7월 21일 접수 마감</time>
+    </a>
+    <div class="vs-news-list">
+      <a class="vs-news-item">
+        <span class="ni-tag">취업교육 · D-5</span>
+        <div class="ni-title">데이터 분석 실무 취업캠프 수강생 모집</div>
+        <time datetime="2026-07-24">7월 24일 신청 마감</time>
+      </a>
+      <a class="vs-news-item" href="detail-policy-guest.html">
+        <span class="ni-tag">정책지원 · D-7</span>
+        <div class="ni-title">경기청년 역량강화 기회 지원사업 접수</div>
+        <time datetime="2026-07-26">7월 26일 접수 마감</time>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- 6. 대상별 서비스: 사용자 유형별 탐색 -->
+<section class="container section">
+  <div class="vs-center-head">
+    <h2>대상별 서비스</h2>
+    <p>나에게 맞는 일자리·교육·정책지원을 한 번에 찾아보세요</p>
+  </div>
+  <div class="vs-target-grid">
+    <a class="vs-target-card" href="target-hub-guest.html#tg-youth">
+      <span class="vt-icon"><i data-lucide="sparkles"></i></span>
+      <strong>청년</strong>
+      <p>취업·인턴·청년지원금</p>
+      <span class="vt-link">서비스 보기 →</span>
+    </a>
+    <a class="vs-target-card" href="target-hub-guest.html#tg-senior">
+      <span class="vt-icon"><i data-lucide="briefcase-business"></i></span>
+      <strong>중장년</strong>
+      <p>재취업·전직·직업훈련</p>
+      <span class="vt-link">서비스 보기 →</span>
+    </a>
+    <a class="vs-target-card" aria-label="여성 대상 꿈날개 서비스">
+      <span class="vt-icon"><i data-lucide="user-round"></i></span>
+      <strong>여성 · 꿈날개</strong>
+      <p>취업상담·창업지원·직업교육</p>
+      <span class="vt-link">꿈날개 바로가기 ↗</span>
+    </a>
+    <a class="vs-target-card" href="target-hub-guest.html#tg-disabled">
+      <span class="vt-icon"><i data-lucide="accessibility"></i></span>
+      <strong>장애인</strong>
+      <p>맞춤채용·직업훈련·취업지원</p>
+      <span class="vt-link">서비스 보기 →</span>
+    </a>
+  </div>
+</section>
+
+<!-- 7. 제휴·특화 바로가기 밴드 (관계기관 노출 의무 · IA와 구분) -->
+<section class="section vs-affil" aria-label="관계기관·제휴 서비스">
+  <div class="container">
+    <div class="vs-center-head">
+      <span class="vs-affil__eyebrow">관계기관 · 제휴</span>
+      <h2>제휴·특화 채용관</h2>
+      <p>관계기관 요청으로 제공되는 외부 서비스·특화 채용관입니다.</p>
+    </div>
+    <div class="vs-affil__wrap">
+      <button type="button" class="vs-affil__arrow prev" aria-label="이전"><i data-lucide="chevron-left"></i></button>
+      <div class="vs-affil__track" id="affilTrack" role="list">
+        <a class="vs-affil-item" role="listitem"><span class="vs-affil-ico"><i data-lucide="briefcase-business"></i></span><b>베이비부머 일자리</b></a>
+        <a class="vs-affil-item" role="listitem"><span class="vs-affil-ico"><i data-lucide="settings-2"></i></span><b>산업기술훈련 <i data-lucide="arrow-up-right" class="vs-affil-ext"></i></b></a>
+        <a class="vs-affil-item" role="listitem"><span class="vs-affil-ico"><i data-lucide="user-round"></i></span><b>여성 취업·창업 <i data-lucide="arrow-up-right" class="vs-affil-ext"></i></b></a>
+        <a class="vs-affil-item" role="listitem"><span class="vs-affil-ico"><i data-lucide="heart-handshake"></i></span><b>청년노동자 지원 <i data-lucide="arrow-up-right" class="vs-affil-ext"></i></b></a>
+        <a class="vs-affil-item" role="listitem"><span class="vs-affil-ico"><i data-lucide="accessibility"></i></span><b>장애인 채용관</b></a>
+        <a class="vs-affil-item" role="listitem"><span class="vs-affil-ico"><i data-lucide="globe"></i></span><b>Jobs for Foreigners</b></a>
+        <a class="vs-affil-item" role="listitem"><span class="vs-affil-ico"><i data-lucide="sprout"></i></span><b>청년 창업 <i data-lucide="arrow-up-right" class="vs-affil-ext"></i></b></a>
+        <a class="vs-affil-item" role="listitem"><span class="vs-affil-ico"><i data-lucide="palette"></i></span><b>문화예술인 채용관</b></a>
+      </div>
+      <button type="button" class="vs-affil__arrow next" aria-label="다음"><i data-lucide="chevron-right"></i></button>
+    </div>
+  </div>
+</section>
+<script>
+  (function(){
+    var t=document.getElementById('affilTrack');if(!t)return;
+    var wrap=t.parentElement;
+    wrap.querySelector('.vs-affil__arrow.prev').addEventListener('click',function(){t.scrollBy({left:-330,behavior:'smooth'});});
+    wrap.querySelector('.vs-affil__arrow.next').addEventListener('click',function(){t.scrollBy({left:330,behavior:'smooth'});});
+  })();
+</script>
+<script src="js/main-guest-b.js?v=1249"></script>
+
+<div id="site-footer"></div>
+</body></html>

@@ -1,0 +1,195 @@
+<!doctype html>
+<html lang="ko"><head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>잡아바 프로토타입 — 공공채용 상세(로그인 전)</title>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css">
+<link rel="stylesheet" href="css/proto.css?v=1264">
+<link rel="stylesheet" href="css/theme-neutral.css?v=6">
+<link rel="stylesheet" href="css/page-detail.css?v=5">
+<link rel="stylesheet" href="css/proto-linkmark.css?v=5">
+<script src="https://unpkg.com/lucide@latest"></script>
+<script src="js/proto.js?v=1270"></script>
+</head>
+<body data-user="guest">
+<div id="site-header"></div>
+
+<!-- ================================================================
+     공공채용 상세 (로그인 전)
+
+     방향 : 현행 "문서형 2단" 구조 유지 + 배치·디자인만 정리.
+       · 좌 : 원문 편집 문서 섹션(채용분야/담당업무/자격요건/근무조건/우대사항/전형일정/기관정보)
+       · 우 : 요약 사이드바(진행상태 + 지원 CTA + 핵심필드)
+     지원 : 공공은 고용24 등 "외부 페이지로 이동"하여 지원(잡아바 내부 지원 아님).
+     로그인 전이므로 매칭 라벨은 노출하지 않는다(로그인 후 detail-member).
+     ================================================================ -->
+<main class="container section public-detail">
+  <p class="small muted"><a href="list-guest.html">일자리 찾기</a> › 공공채용</p>
+
+  <div class="detail-cols" style="margin-top:var(--sp-4)">
+    <!-- 좌 : 기존 공공채용 상세 구성(본문 → 첨부자료 → 안내문 → 하단 버튼) -->
+    <div class="public-detail__main">
+      <section class="public-detail__document">
+      <div class="detail-head">
+        <p class="public-detail__meta"><strong>의왕시청</strong><span>경영ㆍ회계ㆍ사무</span></p>
+        <h1 class="detail-title">[의왕시] 의왕청년발전소 기간제 근로자 채용 공고</h1>
+      </div>
+
+        <div class="public-detail__body">
+          <div class="docsec">
+            <div class="docsec__tit"><i data-lucide="clipboard-list" aria-hidden="true"></i>채용분야</div>
+            <p>의왕청년발전소 운영 관리 보조 3명(평일 2명, 주말 1명)</p>
+          </div>
+          <div class="docsec">
+            <div class="docsec__tit"><i data-lucide="briefcase" aria-hidden="true"></i>담당업무</div>
+            <ul>
+              <li>청년발전소 시설 및 환경관리</li>
+              <li>프로그램 운영 보조 및 공간 운영에 필요한 사항 등</li>
+            </ul>
+          </div>
+          <div class="docsec">
+            <div class="docsec__tit"><i data-lucide="user-check" aria-hidden="true"></i>자격요건</div>
+            <ul>
+              <li>공고일(2026. 7. 22.) 현재 의왕시에 주민등록이 된 19세 이상 거주자</li>
+              <li>채용의 제한 사항은 공고문 참고</li>
+            </ul>
+          </div>
+          <div class="docsec">
+            <div class="docsec__tit"><i data-lucide="clock" aria-hidden="true"></i>근무조건</div>
+            <p class="sub">근무기간</p>
+            <ul>
+              <li>평일 오후 : 2026. 09. 01. ~ 2026. 12. 31.</li>
+              <li>평일 오전 및 주말 : 2026. 10. 01. ~ 2026. 12. 31.</li>
+            </ul>
+            <p class="sub">근무시간</p>
+            <ul>
+              <li>평일 근무자(2명) : 09:00~15:00 / 15:00~21:00 (주 5일, 각 5시간)</li>
+              <li>주말 근무자(1명) : 토·일 09:00~18:00 (주 2일, 8시간)</li>
+            </ul>
+            <p class="sub">근무지 · 보수</p>
+            <ul>
+              <li>의왕청년발전소(경기도 의왕시 안양판교로 82, 포일어울림센터 4층)</li>
+              <li>의왕시 생활임금 적용(2026년 시급 11,710원), 주휴수당 지급 및 4대 보험 가입</li>
+            </ul>
+          </div>
+          <div class="docsec">
+            <div class="docsec__tit"><i data-lucide="star" aria-hidden="true"></i>우대사항</div>
+            <ul>
+              <li>유사 업무 유경험자 및 컴퓨터 관련 자격증 소지자</li>
+              <li>취업지원대상자</li>
+            </ul>
+          </div>
+          <div class="docsec">
+            <div class="docsec__tit"><i data-lucide="list-checks" aria-hidden="true"></i>전형일정</div>
+            <ul>
+              <li>접수방법 : 방문 접수(마감일 18:00까지 접수분에 한함)</li>
+              <li>채용절차 : 서류전형 &gt; 면접전형 &gt; 최종합격</li>
+            </ul>
+          </div>
+          <div class="docsec">
+            <div class="docsec__tit"><i data-lucide="building-2" aria-hidden="true"></i>기관정보</div>
+            <ul>
+              <li>기관명 : 의왕시청</li>
+              <li>문의처 : 기업일자리과 일자리청년팀(☎031-345-2712)</li>
+            </ul>
+          </div>
+          <p class="public-detail__notice"><i data-lucide="lightbulb" aria-hidden="true"></i>기타 자세한 모집요강 및 세부 내용은 첨부된 공고문을 참고하시기 바랍니다.</p>
+        </div>
+      </section>
+
+      <!-- 첨부자료(현행 유지) -->
+      <div class="attach">
+        <div class="attach__tit">첨부자료</div>
+        <a><i data-lucide="paperclip" aria-hidden="true"></i>공고문 및 응시원서(청년발전소).hwpx</a>
+      </div>
+
+      <!-- 재단 면책 안내(현행 전문) -->
+      <div class="detail-disclaimer">
+        <p>본 정보는 경기도일자리재단이 각 기관 및 홈페이지에서 제공하거나 수집한 내용을 토대로 편집, 그 표현방법을 수정하여 완성한 것으로 재단의 동의없이 무단전재 및 재배포, 재가공할 수 없습니다. 재단은 자료에 대한 오류와 사용자가 이를 신뢰하여 취한 조치에 대해 책임을 지지 않습니다.</p>
+        <p>해당 정보는 서비스 제공기관의 사정, 기간변경 등 다양한 원인으로 언제든지 변경될 수 있으며, 현행화의 시간차이 등으로 100% 정확하지 않을 수 있으니, 반드시 해당기관의 홈페이지 또는 전화문의를 통하여 확인하시기 바랍니다.</p>
+        <p>정보통신망법 제50조에 따라 본 게시물 상의 연락처는 내용상의 서비스 제공에 대한 문의 외에 사전동의 없이 전자메일 등으로 광고성 정보를 전송 및 연락하는 행위를 하면 안됩니다.</p>
+      </div>
+
+      <div class="public-detail__actions">
+        <a class="btn btn--outline" href="list-guest.html">목록으로</a>
+        <!-- [개발 연동] 상단 버튼과 동일한 공공채용 원문 상세 URL 사용 -->
+        <a class="btn btn--primary" href="#" target="_blank" rel="noopener"><i data-lucide="external-link" aria-hidden="true"></i>원문 바로가기</a>
+      </div>
+    </div>
+
+    <!-- 우 : 진행 상태/이동 버튼과 접수 정보를 기존처럼 별도 카드로 분리 -->
+    <aside class="public-detail__side">
+      <div class="public-detail__side-sticky">
+      <div class="apply-box public-detail__status">
+        <div class="side-status"><span>진행 상태</span><span class="side-status__val"><b>D-10</b><span class="badge badge--solid">채용중</span></span></div>
+        <!-- [개발 연동] 공공일자리 원문 공고 상세로 외부 이동 -->
+        <a class="btn btn--primary btn--block btn--lg" href="#" target="_blank" rel="noopener"><i data-lucide="external-link" aria-hidden="true"></i>원문 바로보기</a>
+      </div>
+
+      <div class="apply-box public-detail__summary">
+        <dl class="sidesum">
+          <div><dt>접수기간</dt><dd>~2026-08-04</dd></div>
+          <div><dt>채용인원</dt><dd>3명</dd></div>
+          <div><dt>고용형태</dt><dd>계약직</dd></div>
+          <div><dt>근무지</dt><dd><span class="badge">경기 의왕시</span></dd></div>
+        </dl>
+      </div>
+
+      <section class="std-foot std-foot--side" aria-label="관련 정보 및 서비스">
+        <div class="std-foot__grid std-foot__grid--side">
+          <!-- [개발 연동] 통합접수 신청사업: 대상유형 일치 + 등록일 최신순, 최대 4건 -->
+          <div class="std-foot__col" data-source="integrated-apply" data-limit="4">
+            <h3>이런 사업도 있어요</h3>
+            <ul>
+              <li><a href="apply-guest.html">청년 노동자 통장 (현금성)</a></li>
+              <li><a href="apply-guest.html">청년도전 지원사업 (참여수당)</a></li>
+              <li><a href="apply-guest.html">경기청년 면접수당</a></li>
+              <li><a href="apply-guest.html">미래내일 일경험</a></li>
+            </ul>
+          </div>
+          <div class="std-foot__col" data-link-type="static">
+            <h3>취업 준비가 고민이라면</h3>
+            <ul>
+              <li><a href="prep-hub-guest.html">취업진단으로 내 강점 찾기</a></li>
+              <li><a href="prep-hub-guest.html">자소서 첨삭 · AI 역량검사</a></li>
+            </ul>
+            <a class="btn btn--sm" href="prep-hub-guest.html"><i data-lucide="clipboard-list"></i>취업진단 시작</a>
+          </div>
+          <!-- [개발 연동] 잡학사전: 등록일 최신순, 최대 3건 -->
+          <div class="std-foot__col" data-source="job-dictionary" data-limit="3">
+            <h3>알아두면 좋은 정보</h3>
+            <ul>
+              <li><a>정책용어 풀이 ‘기준중위소득’</a></li>
+              <li><a>교통비 환급받는 방법</a></li>
+              <li><a>0.5 &amp; 0.75 잡이란?</a></li>
+            </ul>
+          </div>
+          <div class="std-foot__col std-foot__col--member" data-link-type="static">
+            <h3>회원이면 더 편해요</h3>
+            <ul>
+              <li><a href="main-member-a.html">관심조건 맞춤 공고 추천</a></li>
+              <li><a href="main-member-a.html">찜·최근 본 공고 이어보기</a></li>
+              <li><a href="main-member-a.html">마감 D-day 알림</a></li>
+            </ul>
+            <a class="btn btn--primary btn--sm" href="main-member-a.html"><i data-lucide="user-plus"></i>간편가입 · 로그인</a>
+          </div>
+        </div>
+      </section>
+      </div>
+    </aside>
+  </div>
+</main>
+
+<!-- 로그인 유도 모달(찜하기 등) -->
+<div class="modal" id="login-modal">
+  <div class="modal__box">
+    <h3>로그인이 필요해요</h3>
+    <p>로그인하면 관심공고를 찜하고, 내 조건에 맞는 공공채용을 추천받을 수 있어요.</p>
+    <div class="modal__actions">
+      <button class="btn btn--outline btn--block" data-modal-close>닫기</button>
+      <a class="btn btn--primary btn--block" href="detail-member.html">로그인</a>
+    </div>
+  </div>
+</div>
+
+<div id="site-footer"></div>
+</body></html>

@@ -1,0 +1,464 @@
+/* ================================================================
+   서브 페이지 공용 스타일 (page-sub.css)
+   - 어플라이 / 역량강화 허브 / 기업서비스 / 대상별 서비스 공유
+   - theme-neutral.css 뒤에 로드
+   ================================================================ */
+
+/* 섹션 헤더 */
+.sub-head{display:flex;align-items:flex-end;justify-content:space-between;gap:16px;margin-bottom:16px;}
+.sub-head h2{margin:0;font-family:var(--font-display);font-size:24px;font-weight:700;letter-spacing:-.8px;}
+.sub-head p{margin:6px 0 0;font-size:13px;color:var(--neutral-muted)!important;}
+.sub-title__sup{font-size:16px;font-weight:500;color:var(--neutral-muted)!important;}
+
+/* ================================================================
+   어플라이 — 상단 캐러셀
+   ================================================================ */
+.ap-carousel{
+  position:relative;border:1px solid var(--neutral-border);border-radius:10px;
+  background:var(--neutral-surface);padding:44px 48px 56px;
+}
+.apply-pagehead{display:flex;align-items:flex-end;justify-content:space-between;gap:20px;margin-top:8px;}
+.ap-carousel{margin-top:24px;overflow:hidden;}
+.ap-carousel__slide{display:grid;grid-template-columns:minmax(0,1.2fr) minmax(260px,.8fr);gap:32px;align-items:center;}
+.ap-carousel__slide[hidden]{display:none;}
+.ap-carousel__visual{
+  position:relative;display:flex;min-height:230px;flex-direction:column;justify-content:center;
+  padding:30px;border:1px solid var(--neutral-border);border-radius:10px;background:#fff;overflow:hidden;
+}
+.ap-carousel__visual::after{content:"";position:absolute;width:180px;height:180px;right:-45px;bottom:-65px;border:28px solid rgba(54,54,54,.08);border-radius:50%;}
+.ap-carousel__visual b{position:relative;z-index:1;font-family:var(--font-display);font-size:30px;line-height:1.08;letter-spacing:-1px;}
+.ap-carousel__visual span{position:relative;z-index:1;margin-top:16px;font-size:11px;font-weight:800;letter-spacing:2px;}
+.ap-carousel__visual--photo{background:#eeeeff;}
+.ap-carousel__visual--time{background:#e6f6f3;}
+.ap-carousel__visual--home{background:#fff0f2;}
+
+.ap-my-status{margin-top:36px;}
+body:not([data-user="member"]) .ap-my-status{display:none;}
+.ap-programs{margin-top:44px;}
+.ap-filter-actions{display:flex;gap:10px;flex-wrap:wrap;}
+.ap-search-row{display:flex;gap:10px;margin:18px 0 12px;}
+.ap-keyword{position:relative;display:block;flex:1;}
+.ap-keyword .input{width:100%;height:48px;padding-right:46px;}
+.ap-keyword svg{position:absolute;right:16px;top:50%;width:18px;height:18px;transform:translateY(-50%);color:var(--neutral-muted);}
+.ap-filter-select{
+  display:inline-flex;min-width:190px;align-items:center;justify-content:space-between;gap:10px;
+  padding:12px 14px;border:1px solid var(--neutral-border);border-radius:10px;background:#fff;
+  font:inherit;font-size:14px;cursor:pointer;
+}
+.ap-filter-select[aria-expanded="true"]{border-color:var(--neutral-text);box-shadow:0 0 0 1px var(--neutral-text);}
+.ap-filter-select svg{width:17px;height:17px;}
+.ap-original-filter{display:flex;flex-direction:column;border:1px solid var(--neutral-border);border-radius:10px;background:#fff;}
+.ap-region-filter{padding:24px;}
+.ap-filter-group__head{display:flex;align-items:center;justify-content:space-between;gap:16px;margin-bottom:16px;}
+.ap-filter-group__head h3{margin:0;font-family:var(--font-display);font-size:17px;font-weight:700;}
+.ap-filter-group__all{display:inline-flex;align-items:center;gap:7px;font-size:13px;font-weight:700;cursor:pointer;}
+.ap-region-grid{display:grid;grid-template-columns:repeat(7,1fr);gap:10px;}
+.ap-region-grid label{
+  display:flex;align-items:center;gap:8px;justify-content:center;min-height:44px;padding:8px;
+  border:1px solid var(--neutral-border);border-radius:8px;font-size:13px;cursor:pointer;
+}
+.ap-region-grid label:hover,.ap-region-grid label:has(input:checked){background:var(--neutral-surface);border-color:var(--neutral-text);}
+.ap-region-grid input,.ap-type-filter input{width:16px;height:16px;accent-color:var(--neutral-text);}
+.ap-type-filter{padding:24px;border-top:1px solid var(--neutral-border);}
+.ap-type-filter[hidden]{display:none;}
+.ap-type-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;}
+.ap-type-grid label{display:flex;align-items:center;justify-content:center;gap:9px;min-height:44px;padding:8px;border:1px solid var(--neutral-border);border-radius:8px;font-size:13px;font-weight:700;cursor:pointer;}
+.ap-type-grid label:hover,.ap-type-grid label:has(input:checked){background:var(--neutral-surface);border-color:var(--neutral-text);}
+.ap-selected{display:flex;min-height:46px;align-items:center;gap:8px;flex-wrap:wrap;margin-top:12px;padding:10px 14px;border:1px solid var(--neutral-border);border-radius:10px;background:var(--neutral-surface);}
+.ap-selected__label{margin-right:4px;font-size:12px;font-weight:800;}
+.ap-selected .chip{font-size:12px;}
+.ap-selected__reset{margin-left:auto;border:0;background:transparent;font:inherit;font-size:12px;font-weight:700;text-decoration:underline;cursor:pointer;}
+.ap-result-head{display:flex;align-items:center;justify-content:space-between;gap:16px;margin:32px 0 14px;}
+.ap-result-head p{margin:0;font-size:17px;font-weight:700;}
+.ap-result-head strong{font-size:24px;}
+.ap-card-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:18px;}
+.ap-program-card[hidden]{display:none;}
+.ap-program-card{display:flex;min-width:0;flex-direction:column;border:1px solid var(--neutral-border);border-radius:10px;background:#fff;overflow:hidden;}
+.ap-program-card:hover{transform:translateY(-2px);box-shadow:var(--sh-sm);}
+.ap-program-card__poster{display:flex;aspect-ratio:1.22;flex-direction:column;align-items:center;justify-content:center;padding:22px;text-align:center;}
+.ap-program-card__poster small{font-size:11px;font-weight:800;}
+.ap-program-card__poster b{margin-top:12px;font-family:var(--font-display);font-size:27px;line-height:1.1;letter-spacing:-1px;}
+.ap-program-card__poster span{margin-top:14px;font-size:10px;font-weight:700;}
+.ap-program-card__poster--photo{background:#35358f;color:#fff!important;}
+.ap-program-card__poster--photo *{color:#fff!important;}
+.ap-program-card__poster--time{background:#dff4ef;}
+.ap-program-card__poster--home{background:#fff0f2;}
+.ap-program-card__poster--biz{background:#eef3fb;}
+.ap-program-card__body{display:flex;flex:1;flex-direction:column;padding:18px;}
+.ap-dday{align-self:flex-start;padding:4px 9px;border:1px solid var(--neutral-text);border-radius:999px;font-size:11px;font-weight:800;}
+.ap-program-card__body>strong{display:block;margin-top:13px;font-size:16px;line-height:1.45;}
+.ap-program-card__body p{margin:16px 0 0;font-size:11px;color:var(--neutral-muted)!important;}
+.ap-program-card__body p b{margin-right:7px;}
+.ap-more{
+  display:flex;align-items:center;justify-content:center;gap:6px;
+  min-width:250px;margin:24px auto 0;padding:13px 22px;
+  border:1px solid var(--neutral-border);border-radius:10px;background:#fff;
+  font:inherit;font-size:13px;font-weight:700;cursor:pointer;
+}
+.ap-more:hover{border-color:var(--neutral-text);background:var(--neutral-surface);}
+.ap-empty{padding:36px;border:1px dashed var(--neutral-border);border-radius:10px;text-align:center;}
+.ap-empty p{margin:0 0 14px;}
+.ap-carousel__eyebrow{
+  display:inline-flex;padding:6px 13px;border:1px solid var(--neutral-border);border-radius:999px;
+  background:#fff;font-size:12px;font-weight:800;
+}
+.ap-carousel__slide strong{
+  display:block;margin-top:16px;font-family:var(--font-display);font-size:32px;font-weight:700;
+  line-height:1.25;letter-spacing:-1px;
+}
+.ap-carousel__slide p{margin:12px 0 0;font-size:14px;color:var(--neutral-muted)!important;}
+.ap-carousel__slide .btn{margin-top:20px;}
+.ap-carousel__nav{
+  position:absolute;right:20px;bottom:16px;display:flex;align-items:center;gap:7px;
+}
+.ap-carousel__nav button,
+.ap-carousel__status{
+  min-height:30px;padding:6px 10px;border:1px solid var(--neutral-border);border-radius:10px;
+  background:#fff;font-family:var(--font-base);font-size:11px;line-height:1;
+}
+.ap-carousel__nav button{cursor:pointer;display:inline-flex;align-items:center;}
+.ap-carousel__nav button:hover{background:var(--neutral-surface);}
+.ap-carousel__nav svg{width:14px;height:14px;}
+
+/* 어플라이 — 필터바 */
+.ap-filter{
+  display:flex;flex-wrap:wrap;align-items:center;gap:12px;
+  padding:18px;border:1px solid var(--neutral-border);border-radius:10px;background:#fff;margin-bottom:16px;
+}
+.ap-filter .searchbar{flex:1 1 280px;}
+
+/* 어플라이 — 사업 목록 */
+.ap-list{display:flex;flex-direction:column;gap:10px;}
+.ap-item{
+  display:grid;grid-template-columns:92px minmax(0,1fr) auto;align-items:center;gap:20px;
+  padding:20px 22px;border:1px solid var(--neutral-border);border-radius:10px;background:#fff;
+}
+.ap-item:hover{background:var(--neutral-surface);}
+.ap-item__state{
+  display:grid;place-items:center;min-height:32px;padding:6px 8px;
+  border:1px solid var(--neutral-text);border-radius:10px;background:#fff;
+  font-size:12px;font-weight:800;text-align:center;
+}
+.ap-item__state.is-done{border-color:var(--neutral-border);background:var(--neutral-surface);}
+.ap-item__body{min-width:0;}
+.ap-item__body strong{display:block;margin-top:6px;font-size:17px;font-weight:800;letter-spacing:-.4px;}
+.ap-item__body p{margin:6px 0 0;}
+.ap-item__meta{display:flex;flex-direction:column;align-items:flex-end;gap:9px;flex:none;font-size:12px;}
+
+/* 어플라이 — 신청 안내 */
+.ap-guide{margin-top:48px;padding:32px;border:1px solid var(--neutral-border);border-radius:10px;background:var(--neutral-surface);}
+.ap-guide h2{margin:0 0 20px;font-family:var(--font-display);font-size:20px;font-weight:700;}
+.ap-guide ol{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;margin:0;padding:0;list-style:none;counter-reset:g;}
+.ap-guide li{counter-increment:g;padding:20px;border:1px solid var(--neutral-border);border-radius:10px;background:#fff;}
+.ap-guide li::before{
+  content:counter(g);display:grid;width:26px;height:26px;place-items:center;margin-bottom:10px;
+  border:1px solid var(--neutral-border);border-radius:50%;font-size:12px;font-weight:700;
+}
+.ap-guide strong{font-size:15px;font-weight:800;}
+.ap-guide p{margin:6px 0 0;font-size:12px;line-height:1.55;color:var(--neutral-muted)!important;}
+
+/* 어플라이 — 전용 상세·신청 완료 */
+.apply-detail-head{display:grid;grid-template-columns:220px minmax(0,1fr);gap:28px;align-items:center;padding:28px;border:1px solid var(--neutral-border);border-radius:10px;background:#fff;}
+.apply-detail-head__poster{display:grid;min-height:210px;place-items:center;border:1px solid var(--neutral-border);border-radius:10px;background:var(--neutral-surface);text-align:center;}
+.apply-detail-head__poster strong{font-family:var(--font-display);font-size:26px;line-height:1.15;}
+.apply-detail-head__body h1{margin:12px 0 8px;font-family:var(--font-display);font-size:30px;line-height:1.35;}
+.apply-detail-head__body p{margin:4px 0;}
+.apply-detail-nav{display:grid;grid-template-columns:repeat(3,1fr);margin-top:24px;border:1px solid var(--neutral-border);border-radius:10px;overflow:hidden;}
+.apply-detail-nav a{display:flex;min-height:52px;align-items:center;justify-content:center;border-right:1px solid var(--neutral-border);font-size:14px;font-weight:800;}
+.apply-detail-nav a:last-child{border-right:0;}
+.apply-detail-section{margin-top:28px;padding:28px;border:1px solid var(--neutral-border);border-radius:10px;background:#fff;}
+.apply-detail-section h2{margin:0 0 18px;font-family:var(--font-display);font-size:21px;}
+.apply-detail-section dl{display:grid;grid-template-columns:140px minmax(0,1fr);margin:0;border-top:2px solid var(--neutral-text);}
+.apply-detail-section dt,.apply-detail-section dd{margin:0;padding:14px;border-bottom:1px solid var(--neutral-border);font-size:14px;}
+.apply-detail-section dt{font-weight:800;background:var(--neutral-surface);}
+.apply-detail-section ul{margin:0;padding-left:20px;}
+.apply-detail-cta{display:flex;justify-content:center;gap:10px;margin-top:28px;}
+.apply-complete{max-width:900px;margin:0 auto;}
+.apply-complete__hero{padding:54px 28px;border:1px solid var(--neutral-border);border-radius:10px;background:#fff;text-align:center;}
+.apply-complete__icon{display:grid;width:68px;height:68px;place-items:center;margin:0 auto;border:2px solid var(--neutral-text);border-radius:50%;}
+.apply-complete__icon svg{width:34px;height:34px;}
+.apply-complete__hero h1{margin:20px 0 8px;font-family:var(--font-display);font-size:30px;}
+.apply-complete__summary{display:grid;grid-template-columns:1fr 1fr;gap:0;margin:28px auto 0;max-width:620px;border:1px solid var(--neutral-border);border-radius:10px;overflow:hidden;text-align:left;}
+.apply-complete__summary div{padding:16px 18px;border-bottom:1px solid var(--neutral-border);}
+.apply-complete__summary div:nth-child(odd){border-right:1px solid var(--neutral-border);}
+.apply-complete__summary div:nth-last-child(-n+2){border-bottom:0;}
+.apply-complete__summary span{display:block;font-size:12px;color:var(--neutral-muted);}
+.apply-complete__summary strong{display:block;margin-top:5px;font-size:14px;}
+.apply-complete__actions{display:flex;justify-content:center;gap:10px;margin-top:24px;}
+.apply-complete .std-foot__grid{grid-template-columns:repeat(3,1fr);}
+.apply-loop-card{display:flex;min-height:210px;flex-direction:column;}
+.apply-loop-card__icon{display:grid;width:40px;height:40px;place-items:center;margin-bottom:16px;border:1px solid var(--neutral-border);border-radius:10px;background:var(--neutral-surface);}
+.apply-loop-card__icon svg{width:20px;height:20px;}
+.apply-loop-card h3{margin:0 0 10px;}
+.apply-loop-card p{margin:0;font-size:13px;line-height:1.65;color:var(--neutral-muted)!important;}
+.apply-loop-card .btn{align-self:flex-start;margin-top:auto;}
+
+/* ================================================================
+   역량강화 허브 — 단계형
+   ================================================================ */
+.prep-steps{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;}
+.prep-step{
+  position:relative;display:flex;flex-direction:column;padding:28px 24px;
+  border:1px solid var(--neutral-border);border-radius:10px;background:#fff;
+}
+.prep-step:not(:last-child)::after{
+  content:"";position:absolute;top:50%;right:-11px;width:9px;height:9px;
+  border-top:1px solid var(--neutral-border);border-right:1px solid var(--neutral-border);
+  transform:translateY(-50%) rotate(45deg);
+}
+.prep-step__num{font-size:11px;font-weight:700;letter-spacing:1.6px;}
+.prep-step__ico{
+  display:grid;width:54px;height:54px;place-items:center;margin-top:14px;
+  border:1px solid var(--neutral-border);border-radius:10px;background:var(--neutral-surface);
+}
+.prep-step__ico svg{width:25px;height:25px;stroke-width:1.5;}
+.prep-step strong{margin-top:16px;font-family:var(--font-display);font-size:19px;font-weight:700;}
+.prep-step p{margin:8px 0 14px;font-size:13px;line-height:1.6;color:var(--neutral-muted)!important;}
+.prep-step__state{
+  margin-bottom:12px;padding:8px 11px;border:1px solid var(--neutral-border);border-radius:10px;
+  background:var(--neutral-surface);font-size:12px;font-weight:700;
+}
+.prep-step .btn{margin-top:auto;}
+
+/* 역량강화 — 서비스 카드 */
+.prep-services{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;}
+.prep-card{display:flex;gap:16px;padding:24px;border:1px solid var(--neutral-border);border-radius:10px;background:#fff;}
+.prep-card:hover{background:var(--neutral-surface);}
+.prep-card>svg,.prep-card>[data-lucide]{width:34px;height:34px;flex:none;stroke-width:1.5;}
+.prep-card strong{display:block;font-size:16px;font-weight:800;}
+.prep-card p{margin:6px 0 0;font-size:12px;line-height:1.55;color:var(--neutral-muted)!important;}
+
+/* ================================================================
+   기업서비스 홈
+   ================================================================ */
+.biz-hero{
+  display:grid;grid-template-columns:1.4fr 1fr;gap:16px;align-items:stretch;margin-top:24px;
+}
+.biz-hero__main{
+  padding:44px 48px;border:1px solid var(--neutral-border);border-radius:10px;background:var(--neutral-surface);
+  display:flex;flex-direction:column;justify-content:center;
+}
+.biz-hero__main strong{font-family:var(--font-display);font-size:34px;font-weight:700;line-height:1.25;letter-spacing:-1px;}
+.biz-hero__main p{margin:14px 0 0;font-size:14px;color:var(--neutral-muted)!important;}
+.biz-hero__cta{display:flex;gap:10px;margin-top:22px;flex-wrap:wrap;}
+.biz-hero__side{display:grid;grid-template-rows:1fr 1fr;gap:16px;}
+.biz-stat{
+  display:flex;flex-direction:column;justify-content:center;padding:24px;
+  border:1px solid var(--neutral-border);border-radius:10px;background:#fff;
+}
+.biz-stat b{font-family:var(--font-display);font-size:30px;font-weight:700;}
+.biz-stat span{margin-top:4px;font-size:13px;color:var(--neutral-muted)!important;}
+
+.biz-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;}
+.biz-card{display:flex;flex-direction:column;padding:26px;border:1px solid var(--neutral-border);border-radius:10px;background:#fff;}
+.biz-card:hover{background:var(--neutral-surface);}
+.biz-card__ico{
+  display:grid;width:52px;height:52px;place-items:center;
+  border:1px solid var(--neutral-border);border-radius:10px;background:var(--neutral-surface);
+}
+.biz-card__ico svg{width:24px;height:24px;stroke-width:1.5;}
+.biz-card strong{margin-top:16px;font-size:17px;font-weight:800;}
+.biz-card p{margin:8px 0 0;font-size:12px;line-height:1.6;color:var(--neutral-muted)!important;}
+.biz-card__link{margin-top:14px;font-size:12px;font-weight:800;}
+.biz-section{margin-top:48px;scroll-margin-top:110px;}
+.biz-source{
+  display:inline-flex;align-items:center;padding:7px 11px;border:1px solid var(--neutral-border);
+  border-radius:999px;background:#fff;font-size:11px;font-weight:700;white-space:nowrap;
+}
+.biz-policy-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;}
+.biz-policy-card{display:flex;min-width:0;flex-direction:column;overflow:hidden;border:1px solid var(--neutral-border);border-radius:10px;background:#fff;}
+.biz-policy-card:hover{transform:translateY(-2px);box-shadow:var(--sh-sm);}
+.biz-policy-card__thumb{display:grid;min-height:150px;place-items:center;background:var(--neutral-surface);}
+.biz-policy-card__thumb svg{width:38px;height:38px;stroke-width:1.25;}
+.biz-policy-card__body{position:relative;display:flex;min-height:190px;flex:1;flex-direction:column;padding:18px;}
+.biz-policy-card__body .card__badges{display:flex;gap:5px;flex-wrap:wrap;}
+.biz-policy-card__body strong{margin-top:13px;font-size:15px;line-height:1.45;}
+.biz-policy-card__body small{margin-top:12px;line-height:1.5;color:var(--neutral-muted)!important;}
+.biz-policy-card__body em{margin-top:auto;padding-top:13px;font-style:normal;font-size:11px;font-weight:800;}
+.biz-calendar{
+  display:grid;grid-template-columns:220px minmax(0,1fr);overflow:hidden;
+  border:1px solid var(--neutral-border);border-radius:10px;background:#fff;
+}
+.biz-calendar__month{
+  display:flex;min-height:250px;flex-direction:column;align-items:center;justify-content:center;
+  padding:28px;border-right:1px solid var(--neutral-border);background:var(--neutral-surface);
+}
+.biz-calendar__month span{font-size:13px;font-weight:700;}
+.biz-calendar__month strong{margin-top:3px;font-family:var(--font-display);font-size:38px;letter-spacing:-1px;}
+.biz-calendar__month small{margin-top:8px;color:var(--neutral-muted)!important;}
+.biz-calendar__list{margin:0;padding:0;list-style:none;}
+.biz-calendar__list li{
+  display:grid;grid-template-columns:82px minmax(0,1fr);gap:18px;align-items:center;
+  min-height:72px;padding:13px 22px;border-bottom:1px solid var(--neutral-border);
+}
+.biz-calendar__list li:last-child{border-bottom:0;}
+.biz-calendar__list time{font-size:15px;font-weight:800;}
+.biz-calendar__list div{display:flex;min-width:0;align-items:center;gap:12px;}
+.biz-calendar__list strong{min-width:0;font-size:14px;}
+.biz-calendar__list small{margin-left:auto;color:var(--neutral-muted)!important;white-space:nowrap;}
+.biz-calendar__notice{display:flex;align-items:center;gap:7px;margin:12px 0 0;font-size:11px;color:var(--neutral-muted)!important;}
+.biz-calendar__notice svg{width:15px;height:15px;flex:none;}
+.biz-contact .std-foot__grid{grid-template-columns:repeat(3,1fr);}
+.biz-dashboard{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;}
+.biz-dash{display:flex;min-height:150px;flex-direction:column;padding:22px;border:1px solid var(--neutral-border);border-radius:10px;background:#fff;}
+.biz-dash:hover{background:var(--neutral-surface);}
+.biz-dash>span{display:flex;align-items:center;gap:7px;font-size:13px;font-weight:700;}
+.biz-dash>span svg{width:17px;height:17px;}
+.biz-dash strong{margin-top:auto;font-family:var(--font-display);font-size:34px;}
+.biz-dash small{margin-top:2px;color:var(--neutral-muted)!important;}
+.biz-member-panels{display:grid;grid-template-columns:minmax(0,1.35fr) minmax(280px,.65fr);gap:16px;}
+.biz-panel{padding:24px;border:1px solid var(--neutral-border);border-radius:10px;background:#fff;}
+.biz-panel__head{display:flex;align-items:center;justify-content:space-between;gap:12px;padding-bottom:15px;border-bottom:1px solid var(--neutral-border);}
+.biz-panel__head strong{font-size:16px;}
+.biz-panel__head a{font-size:12px;font-weight:700;}
+.biz-list{margin:0;padding:0;list-style:none;}
+.biz-list li{display:flex;align-items:center;justify-content:space-between;gap:16px;padding:16px 0;border-bottom:1px solid var(--neutral-border);}
+.biz-list li:last-child{padding-bottom:0;border-bottom:0;}
+.biz-list li>div{display:grid;grid-template-columns:auto 1fr;align-items:center;gap:5px 9px;min-width:0;}
+.biz-list strong{min-width:0;font-size:14px;}
+.biz-list small{grid-column:2;color:var(--neutral-muted)!important;}
+.biz-stage{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-top:18px;}
+.biz-stage div{padding:14px 8px;border:1px solid var(--neutral-border);border-radius:8px;text-align:center;}
+.biz-stage span{display:block;font-size:11px;color:var(--neutral-muted)!important;}
+.biz-stage strong{display:block;margin-top:5px;font-size:21px;}
+.biz-panel__note{display:flex;align-items:center;gap:7px;margin:18px 0 0;padding:12px;border-radius:8px;background:var(--neutral-surface);font-size:12px;}
+.biz-panel__note svg{width:16px;height:16px;}
+
+/* ================================================================
+   대상별 서비스 허브
+   ================================================================ */
+.tg-tabs-row{display:flex;flex-wrap:wrap;align-items:center;gap:8px;margin-bottom:26px;}
+.tg-tabs{display:flex;flex-wrap:wrap;gap:8px;}
+.tg-tabs button,.tg-tabs__extlink{
+  display:inline-flex;align-items:center;gap:6px;
+  padding:11px 20px;border:1px solid var(--neutral-border);border-radius:999px;background:#fff;
+  font-family:var(--font-base);font-size:14px;font-weight:700;cursor:pointer;text-decoration:none;color:inherit;
+}
+.tg-tabs button:hover,.tg-tabs__extlink:hover{background:var(--neutral-surface);}
+.tg-tabs button[aria-selected="true"]{background:var(--neutral-text);border-color:var(--neutral-text);}
+.tg-tabs button[aria-selected="true"]{color:#fff!important;}
+.tg-tabs button[aria-selected="true"] *{color:#fff!important;}
+.tg-tabs__extlink svg{width:14px;height:14px;stroke-width:2;}
+
+.tg-areas{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;}
+.tg-area{display:flex;flex-direction:column;padding:28px;border:1px solid var(--neutral-border);border-radius:10px;background:#fff;}
+.tg-area__head{display:flex;align-items:center;gap:12px;padding-bottom:16px;border-bottom:1px solid var(--neutral-border);}
+.tg-area__ico{
+  display:grid;width:46px;height:46px;place-items:center;flex:none;
+  border:1px solid var(--neutral-border);border-radius:10px;background:var(--neutral-surface);
+}
+.tg-area__ico svg{width:22px;height:22px;stroke-width:1.5;}
+.tg-area__head strong{font-family:var(--font-display);font-size:18px;font-weight:700;}
+.tg-area__head span{display:block;margin-top:2px;font-size:11px;color:var(--neutral-muted)!important;}
+.tg-links{margin:16px 0 0;padding:0;list-style:none;}
+.tg-links li{border-bottom:1px solid var(--neutral-border);}
+.tg-links li:last-child{border-bottom:0;}
+.tg-links a{display:flex;align-items:center;justify-content:space-between;gap:10px;padding:12px 2px;font-size:14px;font-weight:600;}
+.tg-links a:hover{background:var(--neutral-surface);}
+.tg-links em{font-style:normal;font-size:11px;color:var(--neutral-muted)!important;flex:none;}
+.tg-area .btn{margin-top:16px;}
+
+/* ================================================================
+   반응형
+   ================================================================ */
+@media(max-width:1024px){
+  .ap-guide ol,.prep-steps,.biz-grid,.tg-areas{grid-template-columns:1fr 1fr;}
+  .biz-policy-grid{grid-template-columns:1fr 1fr;}
+  .ap-region-grid{grid-template-columns:repeat(4,1fr);}
+  .ap-card-grid{grid-template-columns:repeat(2,1fr);}
+  .prep-services{grid-template-columns:1fr;}
+  .biz-hero{grid-template-columns:1fr;}
+  .biz-dashboard{grid-template-columns:1fr 1fr;}
+  .biz-member-panels{grid-template-columns:1fr;}
+  .biz-contact .std-foot__grid{grid-template-columns:1fr 1fr;}
+  .prep-step:not(:last-child)::after{display:none;}
+}
+@media(max-width:768px){
+  .ap-carousel{padding:28px 24px 52px;}
+  .ap-carousel__slide strong{font-size:24px;}
+  .ap-carousel__slide{grid-template-columns:1fr;}
+  .ap-carousel__visual{display:none;}
+  .ap-original-filter{grid-template-columns:1fr;}
+  .ap-type-filter{border-left:0;border-top:1px solid var(--neutral-border);}
+  .ap-region-grid{grid-template-columns:repeat(2,1fr);}
+  .ap-type-grid{grid-template-columns:repeat(2,1fr);}
+  .ap-card-grid{grid-template-columns:1fr;}
+  .ap-filter-actions{width:100%;}
+  .ap-search-row{align-items:stretch;}
+  .ap-search-row .btn{flex:none;}
+  .ap-filter-select{flex:1 1 160px;min-width:0;}
+  .ap-item{grid-template-columns:1fr;gap:12px;}
+  .ap-item__state{justify-self:start;padding:6px 14px;}
+  .ap-item__meta{align-items:flex-start;}
+  .ap-guide ol,.prep-steps,.biz-grid,.tg-areas{grid-template-columns:1fr;}
+  .biz-policy-grid{grid-template-columns:1fr;}
+  .apply-detail-head{grid-template-columns:1fr;}
+  .apply-detail-head__poster{min-height:150px;}
+  .apply-detail-nav{grid-template-columns:1fr;}
+  .apply-detail-nav a{border-right:0;border-bottom:1px solid var(--neutral-border);}
+  .apply-detail-nav a:last-child{border-bottom:0;}
+  .apply-detail-section dl{grid-template-columns:1fr;}
+  .apply-detail-section dt{border-bottom:0;}
+  .apply-complete__summary{grid-template-columns:1fr;}
+  .apply-complete__summary div,.apply-complete__summary div:nth-child(odd){border-right:0;border-bottom:1px solid var(--neutral-border);}
+  .apply-complete__summary div:last-child{border-bottom:0;}
+  .apply-complete .std-foot__grid{grid-template-columns:1fr;}
+  .biz-hero__main{padding:28px 24px;}
+  .biz-hero__main strong{font-size:26px;}
+  .biz-calendar{grid-template-columns:1fr;}
+  .biz-calendar__month{min-height:auto;border-right:0;border-bottom:1px solid var(--neutral-border);}
+  .biz-calendar__list li{grid-template-columns:64px minmax(0,1fr);padding:14px;}
+  .biz-calendar__list div{align-items:flex-start;flex-direction:column;gap:6px;}
+  .biz-calendar__list small{margin-left:0;}
+  .biz-dashboard{grid-template-columns:1fr;}
+  .biz-list li{align-items:flex-start;flex-direction:column;}
+  .biz-list li .btn{width:100%;}
+  .biz-stage{grid-template-columns:1fr;}
+  .biz-contact .std-foot__grid{grid-template-columns:1fr;}
+}
+
+/* ================================================================
+   대상별 서비스 — 데이터 출처 구분 (자체 / 외부)
+   실측: 잡아바 채용데이터에 여성·장애인 구분 없음, 정책만 생애주기 3구분.
+   따라서 대상별로 "자체 신청 가능" 과 "외부 전문서비스"를 시각적으로 분리한다.
+   ================================================================ */
+/* 대상 패널 */
+.tg-panel[hidden]{display:none;}
+
+/* 출처 배지 */
+.tg-src{
+  display:inline-flex;align-items:center;gap:5px;padding:3px 9px;border-radius:999px;
+  border:1px solid var(--neutral-text);background:#fff;font-size:11px;font-weight:800;
+}
+.tg-src--ext{border:1px dashed var(--neutral-border);font-weight:700;color:var(--neutral-muted)!important;}
+
+/* 자체 신청 가능 사업 (강조) */
+.tg-own{border:1px solid var(--neutral-text);border-radius:10px;padding:24px;background:#fff;margin-bottom:16px;}
+.tg-own__head{display:flex;align-items:center;justify-content:space-between;gap:12px;margin-bottom:14px;}
+.tg-own__head strong{font-family:var(--font-display);font-size:19px;font-weight:700;}
+.tg-own-list{margin:0;padding:0;list-style:none;}
+.tg-own-list li{border-top:1px solid var(--neutral-border);}
+.tg-own-list li:first-child{border-top:0;}
+.tg-own-list a{display:flex;align-items:center;gap:12px;padding:14px 2px;}
+.tg-own-list a:hover{background:var(--neutral-surface);}
+.tg-own-list .ow-dday{
+  flex:none;min-width:52px;padding:4px 8px;border:1px solid var(--neutral-text);border-radius:10px;
+  font-size:11px;font-weight:800;text-align:center;
+}
+.tg-own-list .ow-title{flex:1;min-width:0;font-size:14px;font-weight:700;}
+.tg-own-list .ow-date{flex:none;font-size:11px;color:var(--neutral-muted)!important;}
+
+/* 외부 전문서비스 카드 */
+.tg-ext-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:14px;}
+.tg-ext{display:flex;flex-direction:column;padding:22px;border:1px dashed var(--neutral-border);border-radius:10px;background:#fff;}
+.tg-ext:hover{background:var(--neutral-surface);}
+.tg-ext__top{display:flex;align-items:center;justify-content:space-between;gap:10px;}
+.tg-ext strong{font-size:16px;font-weight:800;}
+.tg-ext p{margin:9px 0 0;font-size:12px;line-height:1.6;color:var(--neutral-muted)!important;}
+.tg-ext__go{margin-top:12px;font-size:12px;font-weight:800;display:inline-flex;align-items:center;gap:5px;}
+.tg-ext__go svg{width:13px;height:13px;}
+
+@media(max-width:768px){
+  .tg-ext-grid{grid-template-columns:1fr;}
+  .tg-own-list a{flex-wrap:wrap;gap:8px;}
+}

@@ -1,0 +1,215 @@
+<!doctype html>
+<html lang="ko"><head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>잡아바 프로토타입 — 마이페이지</title>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css">
+<link rel="stylesheet" href="css/proto.css?v=1264">
+<link rel="stylesheet" href="css/theme-neutral.css?v=6">
+<link rel="stylesheet" href="css/proto-linkmark.css?v=5">
+<script src="https://unpkg.com/lucide@latest"></script>
+<script src="js/proto.js?v=1270"></script>
+</head>
+<body data-user="member">
+<div id="site-header"></div>
+
+<main class="container section">
+  <!-- 상단 대시보드 카드 (유지) -->
+  <div class="card" style="margin-bottom:var(--sp-6)">
+    <div style="display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:var(--sp-3)">
+      <div><i data-lucide="user"></i> <strong style="color:var(--c-heading)">개인회원 | 김청년</strong>
+        <span class="small muted">(청년 · 수원 · IT·개발)</span></div>
+      <div style="display:flex;align-items:center;gap:var(--sp-3)">
+        <span class="small">취업추천서비스</span>
+        <button class="toggle" aria-checked="true" aria-label="추천서비스 켬"></button>
+        <button class="btn btn--outline btn--sm">정보수정</button>
+      </div>
+    </div>
+    <div class="stat-grid" style="margin-top:var(--sp-5)">
+      <a class="stat" data-show="g-apply" href="#"><div class="stat__num">1</div><div class="stat__label">이력서</div></a>
+      <a class="stat" data-show="g-apply" href="#"><div class="stat__num">3</div><div class="stat__label">입사지원</div></a>
+      <a class="stat" data-show="g-apply" href="#"><div class="stat__num">2</div><div class="stat__label">공고추천</div></a>
+      <a class="stat" data-show="g-apply" href="#"><div class="stat__num">8</div><div class="stat__label">찜한 공고</div></a>
+    </div>
+  </div>
+
+  <div class="mypage-layout">
+    <!-- 좌측: 실서비스 마이페이지 정보구조 -->
+    <aside class="lnb" data-showgroup>
+      <a class="lnb__link" data-show="g-home" aria-current="page" href="#">마이페이지 메인</a>
+      <a class="lnb__link" data-show="g-interest" href="#">정책·정보</a>
+      <a class="lnb__link" data-show="g-apply" href="#">취업활동</a>
+      <a class="lnb__link" data-show="g-prep" href="#">취업준비</a>
+      <a class="lnb__link" data-show="g-apply2" href="#">통합접수</a>
+      <a class="lnb__link" data-show="g-qna" href="#">1:1 문의</a>
+      <a class="lnb__link" data-show="g-account" href="#">회원정보</a>
+    </aside>
+
+    <!-- 콘텐츠: 대분류별 패널, 하위 메뉴는 콘텐츠 상단 탭 -->
+    <section class="mypage-content">
+
+      <!-- 마이페이지 메인 -->
+      <div class="panel" id="g-home">
+        <h2 class="panel__title">마이페이지 메인</h2>
+        <div class="row-card">
+          <div><div class="card__badges"><span class="badge badge--strong">D-2</span></div>
+            <strong>경기도 공공기관 사무행정 채용</strong><p class="small muted">지원 진행중 · 서류 제출 대기</p></div>
+          <a class="btn btn--primary btn--sm" href="detail-member.html">이어서 지원</a>
+        </div>
+        <div class="row-card">
+          <div><strong>작성 중 이력서</strong><p class="small muted">기본 이력서 · 80% 완료</p></div>
+          <a class="btn btn--outline btn--sm" data-show="g-apply" href="#">이어서 작성</a>
+        </div>
+        <div class="empty" style="margin-top:var(--sp-4)"><i data-lucide="bookmark"></i>
+          <p>찜한 공고 8건 중 2건이 마감 임박이에요.</p>
+          <a class="btn btn--outline btn--sm" data-show="g-apply" href="#">지원·활동에서 보기</a></div>
+        <h3 style="margin:var(--sp-6) 0 var(--sp-3)">추천 정보</h3>
+        <div class="tabs" data-showgroup>
+          <button class="tab" data-show="r-policy" aria-selected="true">일자리지원사업</button>
+          <button class="tab" data-show="r-edu">취업교육</button>
+          <button class="tab" data-show="r-extra">대외활동</button>
+          <button class="tab" data-show="r-biz">기업지원정책</button>
+          <button class="tab" data-show="r-company">기업추천</button>
+          <button class="tab" data-show="r-dict">잡학사전</button>
+        </div>
+        <div class="sub-panels">
+          <div class="panel" id="r-policy"><div class="row-card"><div><span class="badge badge--strong">맞춤</span> <strong>경기청년 역량강화 기회 지원</strong><p class="small muted">수원 · 청년 · D-12</p></div><a class="btn btn--outline btn--sm" href="detail-policy-member.html">보기</a></div></div>
+          <div class="panel" id="r-edu" hidden><div class="row-card"><div><strong>AI 면접의 이해와 퍼펙트 대비</strong><p class="small muted">온라인 · 무료 · 4차시</p></div><a class="btn btn--outline btn--sm" href="detail-edu.html?user=member">보기</a></div></div>
+          <div class="panel" id="r-extra" hidden><div class="empty"><i data-lucide="users"></i><p>관심 직무 기반 대외활동을 준비 중입니다.</p></div></div>
+          <div class="panel" id="r-biz" hidden><div class="row-card"><div><strong>청년 채용 장려금 지원</strong><p class="small muted">인건비 · D-5</p></div><a class="btn btn--outline btn--sm" href="detail-biz-policy.html?user=member">보기</a></div></div>
+          <div class="panel" id="r-company" hidden><div class="row-card"><div><span class="badge badge--solid">매칭 92%</span> <strong>공공데이터 웹서비스 개발기업</strong><p class="small muted">경기 수원 · IT·개발</p></div><a class="btn btn--outline btn--sm" href="detail-corp-member.html">보기</a></div></div>
+          <div class="panel" id="r-dict" hidden><div class="row-card"><div><strong>면접 답변을 구조화하는 3단계</strong><p class="small muted">취업준비 콘텐츠 · 5분 읽기</p></div><button class="btn btn--outline btn--sm">읽기</button></div></div>
+        </div>
+      </div>
+
+      <!-- 취업활동 -->
+      <div class="panel" id="g-apply" hidden>
+        <h2 class="panel__title">취업활동</h2>
+        <div class="tabs" data-showgroup>
+          <button class="tab" data-show="s-resume" aria-selected="true">이력서 관리</button>
+          <button class="tab" data-show="s-applied">입사지원 관리</button>
+          <button class="tab" data-show="s-rcmd">공고추천 관리</button>
+          <button class="tab" data-show="s-saved">취업 추천서비스</button>
+        </div>
+        <div class="sub-panels">
+          <div class="panel" id="s-resume">
+            <div class="row-card"><div><strong>기본 이력서</strong><p class="small muted">80% 완료 · 포트폴리오 미작성</p></div>
+              <button class="btn btn--primary btn--sm">이어서 작성</button></div>
+            <button class="btn btn--outline btn--sm"><i data-lucide="plus"></i>새 이력서 만들기</button>
+          </div>
+          <div class="panel" id="s-applied" hidden>
+            <div class="row-card"><div><span class="badge">접수완료</span> <strong>SW 품질 테스터(QA) 신입</strong><p class="small muted">서류 심사중</p></div>
+              <a class="btn btn--outline btn--sm" href="detail-member.html">상세</a></div>
+            <div class="row-card"><div><span class="badge badge--strong">D-2</span> <strong>경기도 공공기관 사무행정</strong><p class="small muted">지원 진행중</p></div>
+              <a class="btn btn--primary btn--sm" href="detail-member.html">이어서 지원</a></div>
+          </div>
+          <div class="panel" id="s-rcmd" hidden>
+            <div class="row-card"><div><span class="badge badge--solid">매칭 92%</span> <strong>공공데이터 웹서비스 개발(신입)</strong><p class="small muted">경기 수원 · 관심직무 기반 추천</p></div>
+              <a class="btn btn--outline btn--sm" href="detail-member.html">보기</a></div>
+            <div class="row-card"><div><span class="badge badge--solid">매칭 84%</span> <strong>프론트엔드 개발 청년인턴</strong><p class="small muted">경기 판교</p></div>
+              <a class="btn btn--outline btn--sm" href="detail-member.html">보기</a></div>
+          </div>
+          <div class="panel" id="s-saved" hidden>
+            <div class="form-row"><label>취업추천서비스</label><button class="toggle" aria-checked="true"></button><span class="small muted">관심 직무와 활동 이력을 기준으로 맞춤 정보를 추천합니다.</span></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 통합접수 -->
+      <div class="panel" id="g-apply2" hidden>
+        <h2 class="panel__title">통합접수</h2>
+        <p class="small muted" style="margin-bottom:var(--sp-4)"><i data-lucide="info"></i> 지원사업 신청, 자료보완 요청과 찜 내역을 한곳에서 확인합니다.</p>
+        <div class="tabs" data-showgroup>
+          <button class="tab" data-show="ap-status" aria-selected="true">최근 신청현황</button>
+          <button class="tab" data-show="ap-supplement">자료보완 요청</button>
+          <button class="tab" data-show="ap-saved">나의 찜한 내역</button>
+        </div>
+        <div class="sub-panels">
+          <div class="panel" id="ap-status">
+            <div class="row-card"><div><span class="badge">접수완료</span> <strong>미래내일 일경험 워크베이스 캠프</strong><p class="small muted">심사중</p></div>
+              <button class="btn btn--outline btn--sm">접수내역 보기</button></div>
+            <div class="row-card"><div><span class="badge badge--strong">D-2</span> <strong>청년도전지원사업</strong><p class="small muted">작성중</p></div>
+              <button class="btn btn--primary btn--sm">이어서 접수</button></div>
+          </div>
+          <div class="panel" id="ap-supplement" hidden><div class="empty"><i data-lucide="clipboard-check"></i>
+            <p>현재 자료보완 요청이 없습니다.</p></div></div>
+          <div class="panel" id="ap-saved" hidden><div class="row-card"><div><span class="badge badge--strong">D-6</span> <strong>경기청년 면접수당</strong><p class="small muted">수원 · 청년지원</p></div><a class="btn btn--outline btn--sm" href="#">보기</a></div></div>
+        </div>
+      </div>
+
+      <!-- 취업준비 -->
+      <div class="panel" id="g-prep" hidden>
+        <h2 class="panel__title">취업준비</h2>
+        <div class="tabs" data-showgroup>
+          <button class="tab" data-show="p-diag" aria-selected="true">취업진단</button>
+          <button class="tab" data-show="p-untact">비대면 취업지원</button>
+        </div>
+        <div class="sub-panels">
+          <div class="panel" id="p-diag"><div class="empty"><i data-lucide="clipboard-list"></i>
+            <p>아직 취업진단 결과가 없어요.</p><button class="btn btn--primary btn--sm">취업진단 시작</button></div></div>
+          <div class="panel" id="p-untact" hidden>
+            <div class="row-card"><div><strong>자기소개서 첨삭</strong><p class="small muted">신청 0건</p></div><button class="btn btn--outline btn--sm">신청</button></div>
+            <div class="row-card"><div><strong>AI 역량검사·화상 상담</strong><p class="small muted">이용 0회</p></div><button class="btn btn--primary btn--sm">프로그램 보기</button></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 정책·정보 -->
+      <div class="panel" id="g-interest" hidden>
+        <h2 class="panel__title">정책·정보</h2>
+        <div class="tabs" data-showgroup>
+          <button class="tab" data-show="i-intrs" aria-selected="true">관심등록 정보</button>
+          <button class="tab" data-show="i-alarm">알림등록 정보</button>
+        </div>
+        <div class="sub-panels">
+          <div class="panel" id="i-intrs">
+            <p class="small muted" style="margin-bottom:var(--sp-2)">관심 직무·지역 (맞춤 추천 기준)</p>
+            <div class="chips"><button class="chip" aria-pressed="true">소프트웨어개발 ×</button>
+              <button class="chip" aria-pressed="true">수원 ×</button><button class="chip">+ 추가</button></div>
+          </div>
+          <div class="panel" id="i-alarm" hidden>
+            <div class="form-row"><label>마감 임박</label><button class="toggle" aria-checked="true"></button></div>
+            <div class="form-row"><label>신규 매칭 공고</label><button class="toggle" aria-checked="true"></button></div>
+            <div class="form-row"><label>신규 청년정책</label><button class="toggle" aria-checked="false"></button></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 1:1 문의 -->
+      <div class="panel" id="g-qna" hidden>
+        <h2 class="panel__title">1:1 문의</h2>
+        <div class="empty"><i data-lucide="message-circle"></i><p>문의 내역이 없어요.</p><button class="btn btn--primary btn--sm">1:1 문의하기</button></div>
+      </div>
+
+      <!-- 회원정보 -->
+      <div class="panel" id="g-account" hidden>
+        <h2 class="panel__title">회원정보</h2>
+        <div class="tabs" data-showgroup>
+          <button class="tab" data-show="a-info" aria-selected="true">개인정보 수정</button>
+          <button class="tab" data-show="a-pw">비밀번호 변경</button>
+          <button class="tab" data-show="a-out">회원탈퇴</button>
+        </div>
+        <div class="sub-panels">
+          <div class="panel" id="a-info">
+            <div class="form-row"><label>이름</label><span>김청년</span></div>
+            <div class="form-row"><label>지역</label><span>경기 수원</span></div>
+            <div class="form-row"><label>대상유형</label><span>청년(19~39)</span></div>
+            <button class="btn btn--primary btn--sm" style="margin-top:var(--sp-3)">수정 저장</button>
+          </div>
+          <div class="panel" id="a-pw" hidden>
+            <div class="form-row"><label>현재 비밀번호</label><input class="input" type="password" style="max-width:240px"></div>
+            <div class="form-row"><label>새 비밀번호</label><input class="input" type="password" style="max-width:240px"></div>
+            <button class="btn btn--primary btn--sm" style="margin-top:var(--sp-3)">변경</button>
+          </div>
+          <div class="panel" id="a-out" hidden>
+            <p class="small muted">탈퇴 시 지원·찜·이력서 등 활동 정보가 모두 삭제됩니다.</p>
+            <button class="btn btn--outline btn--sm">회원탈퇴 진행</button>
+          </div>
+        </div>
+      </div>
+
+    </section>
+  </div>
+</main>
+
+<div id="site-footer"></div>
+</body></html>

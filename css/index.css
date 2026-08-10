@@ -1,0 +1,93 @@
+/* ================================================================
+   화면 인덱스 전용 스타일 (index.css)
+   - 상단 GNB/헤더 없음. 문서형 인덱스.
+   - theme-neutral.css 뒤에 로드
+   ================================================================ */
+.idx-body{background:#fff;}
+.idx{padding:64px 20px 96px;}
+
+/* ---- 헤더 ---- */
+.idx-head{padding-bottom:34px;border-bottom:2px solid var(--neutral-text);}
+.idx-eyebrow{margin:0;font-size:11px;font-weight:700;letter-spacing:2px;}
+.idx-head h1{margin:12px 0 0;font-family:var(--font-display);font-size:44px;font-weight:700;letter-spacing:-1.5px;}
+.idx-lead{margin:16px 0 0;font-size:15px;line-height:1.7;color:var(--neutral-muted)!important;}
+.idx-lead strong{color:var(--neutral-text)!important;font-weight:800;}
+.idx-meta{display:flex;flex-wrap:wrap;gap:10px;margin-top:22px;}
+.idx-meta span{
+  padding:7px 13px;border:1px solid var(--neutral-border);border-radius:999px;
+  background:#fff;font-size:12px;
+}
+.idx-meta b{font-weight:800;margin-right:5px;}
+
+/* ---- 섹션 ---- */
+.idx-sec{margin-top:56px;}
+.idx-sec__head{margin-bottom:22px;}
+.idx-sec__head h2{margin:0;font-family:var(--font-display);font-size:26px;font-weight:700;letter-spacing:-.8px;}
+.idx-sec__head p{margin:8px 0 0;font-size:14px;color:var(--neutral-muted)!important;}
+.idx-sec__head strong{color:var(--neutral-text)!important;font-weight:800;}
+
+.idx-grid{display:grid;gap:16px;}
+.idx-grid--2{grid-template-columns:1fr 1fr;}
+
+/* ---- 메인 디자인 타입 카드 ---- */
+.idx-card{
+  display:flex;flex-direction:column;padding:30px;
+  border:1px solid var(--neutral-border);border-radius:10px;background:#fff;
+}
+.idx-card:hover{background:var(--neutral-surface);}
+.idx-tag{
+  align-self:flex-start;padding:5px 12px;border:1px solid var(--neutral-text);border-radius:999px;
+  font-size:11px;font-weight:700;letter-spacing:1px;
+}
+.idx-card strong{margin-top:16px;font-family:var(--font-display);font-size:24px;font-weight:700;letter-spacing:-.8px;}
+.idx-card p{margin:12px 0 0;font-size:13px;line-height:1.65;color:var(--neutral-muted)!important;}
+.idx-go{margin-top:20px;display:inline-flex;align-items:center;gap:6px;font-size:13px;font-weight:800;}
+.idx-go svg{width:15px;height:15px;}
+
+/* ---- 여정 카드 ---- */
+.idx-journey{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;}
+.idx-jcard{
+  display:flex;flex-direction:column;padding:26px;
+  border:1px solid var(--neutral-border);border-radius:10px;background:#fff;
+}
+.idx-jhead{display:flex;align-items:center;gap:10px;}
+.idx-num{
+  padding:4px 10px;border:1px solid var(--neutral-border);border-radius:999px;
+  background:var(--neutral-surface);font-size:11px;font-weight:700;white-space:nowrap;
+}
+.idx-jhead h3{margin:0;font-family:var(--font-display);font-size:19px;font-weight:700;letter-spacing:-.5px;}
+.idx-jdesc{margin:12px 0 16px;font-size:13px;line-height:1.6;color:var(--neutral-muted)!important;}
+.idx-list{margin:0;padding:0;list-style:none;counter-reset:idx;}
+.idx-list li{counter-increment:idx;border-top:1px solid var(--neutral-border);}
+.idx-list li:last-child{border-bottom:1px solid var(--neutral-border);}
+.idx-list a{
+  display:flex;align-items:center;gap:9px;padding:11px 4px;font-size:14px;font-weight:700;
+}
+.idx-list a::before{
+  content:counter(idx);display:grid;width:22px;height:22px;place-items:center;flex:none;
+  border:1px solid var(--neutral-border);border-radius:50%;font-size:11px;font-weight:800;
+}
+.idx-list a:hover{background:var(--neutral-surface);}
+.idx-list em{margin-left:auto;font-style:normal;font-size:11px;font-weight:500;color:var(--neutral-muted)!important;}
+
+/* ---- 반응형 ---- */
+@media(max-width:1024px){
+  .idx-journey{grid-template-columns:1fr 1fr;}
+}
+@media(max-width:768px){
+  .idx{padding:44px 20px 72px;}
+  .idx-head h1{font-size:32px;}
+  .idx-grid--2,.idx-journey{grid-template-columns:1fr;}
+}
+
+/* 검토중 표시 · 보조 안내문 (로그인 후 메인 섹션) */
+.idx-sec__head h2 .idx-flag{
+  margin-left:10px;padding:4px 10px;border:1px solid var(--c-border-strong);border-radius:999px;
+  font-size:12px;font-weight:700;color:var(--c-muted);vertical-align:middle;
+}
+.idx-note{
+  margin:18px 0 0;padding:14px 16px;border:1px dashed var(--c-border-strong);border-radius:10px;
+  font-size:13px;line-height:1.6;color:var(--c-muted);
+}
+.idx-note b{color:var(--c-heading);}
+.idx-note a{text-decoration:underline;text-underline-offset:2px;}

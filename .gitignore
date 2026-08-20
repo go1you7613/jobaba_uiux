@@ -2,5 +2,6 @@
 .gstack/
 .hallmark/
 .omc/
+.playwright-cli/
 _backup_*/
 _to_delete_*/

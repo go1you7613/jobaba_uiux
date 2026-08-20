@@ -216,6 +216,125 @@
     });
   }
 
+  function setupMobileMenu(){
+    var header = document.querySelector(".header");
+    var headerInner = header ? header.querySelector(".header__inner") : null;
+    var desktopNav = headerInner ? headerInner.querySelector(".gnb") : null;
+    var searchButton = headerInner ? headerInner.querySelector(".header__search-icon") : null;
+    var returnFocus = null;
+
+    if(!header || !headerInner || !desktopNav || headerInner.querySelector("[data-mobile-menu-toggle]")) return;
+
+    var toggle = document.createElement("button");
+    toggle.className = "header__menu-toggle";
+    toggle.type = "button";
+    toggle.setAttribute("aria-label", "전체 메뉴 열기");
+    toggle.setAttribute("aria-controls", "mobile-menu");
+    toggle.setAttribute("aria-expanded", "false");
+    toggle.setAttribute("data-mobile-menu-toggle", "");
+    toggle.innerHTML = '<i data-lucide="menu" aria-hidden="true"></i>';
+    headerInner.insertBefore(toggle, searchButton ? searchButton.nextSibling : null);
+
+    var menu = document.createElement("div");
+    menu.className = "mobile-menu";
+    menu.id = "mobile-menu";
+    menu.hidden = true;
+    menu.innerHTML =
+      '<div class="mobile-menu__backdrop" data-mobile-menu-close></div>'+
+      '<section class="mobile-menu__panel" role="dialog" aria-modal="true" aria-labelledby="mobile-menu-title" tabindex="-1">'+
+        '<div class="mobile-menu__head">'+
+          '<h2 id="mobile-menu-title">전체 메뉴</h2>'+
+          '<button type="button" class="mobile-menu__close" data-mobile-menu-close aria-label="전체 메뉴 닫기">'+
+            '<i data-lucide="x" aria-hidden="true"></i>'+
+          '</button>'+
+        '</div>'+
+        '<div class="mobile-menu__body"></div>'+
+      '</section>';
+
+    var body = menu.querySelector(".mobile-menu__body");
+    var mobileNav = desktopNav.cloneNode(true);
+    var utilityLeft = document.querySelector(".utilbar__left");
+    var utilityRight = document.querySelector(".utilbar__right");
+    mobileNav.className = "mobile-menu__nav";
+    mobileNav.setAttribute("aria-label", "모바일 전체 메뉴");
+    [].forEach.call(mobileNav.querySelectorAll(".gnb__unit"), function(unit){
+      var top = [].slice.call(unit.children).find(function(child){
+        return child.classList.contains("gnb__item");
+      });
+      if(top && unit.firstElementChild !== top) unit.insertBefore(top, unit.firstElementChild);
+    });
+    body.appendChild(mobileNav);
+
+    if(utilityLeft){
+      var shortcuts = utilityLeft.cloneNode(true);
+      shortcuts.className = "mobile-menu__shortcuts";
+      body.appendChild(shortcuts);
+    }
+    if(utilityRight){
+      var account = utilityRight.cloneNode(true);
+      account.className = "mobile-menu__account";
+      body.appendChild(account);
+    }
+    document.body.appendChild(menu);
+
+    var panel = menu.querySelector(".mobile-menu__panel");
+
+    function open(){
+      returnFocus = document.activeElement;
+      menu.hidden = false;
+      toggle.setAttribute("aria-expanded", "true");
+      toggle.setAttribute("aria-label", "전체 메뉴 닫기");
+      document.body.classList.add("is-mobile-menu-open");
+      panel.focus();
+    }
+
+    function close(restoreFocus){
+      if(menu.hidden) return;
+      menu.hidden = true;
+      toggle.setAttribute("aria-expanded", "false");
+      toggle.setAttribute("aria-label", "전체 메뉴 열기");
+      document.body.classList.remove("is-mobile-menu-open");
+      if(restoreFocus !== false && returnFocus && document.contains(returnFocus)) returnFocus.focus();
+      returnFocus = null;
+    }
+
+    toggle.addEventListener("click", function(){
+      if(menu.hidden) open();
+      else close();
+    });
+    menu.addEventListener("click", function(event){
+      if(event.target.closest("[data-mobile-menu-close]") || event.target.closest("a[href]")) close();
+    });
+    document.addEventListener("keydown", function(event){
+      if(menu.hidden) return;
+      if(event.key === "Escape"){
+        event.preventDefault();
+        close();
+        return;
+      }
+      if(event.key !== "Tab") return;
+
+      var focusable = [].slice.call(panel.querySelectorAll('a[href], button:not([disabled]), [tabindex]:not([tabindex="-1"])'));
+      if(!focusable.length) return;
+      var first = focusable[0];
+      var last = focusable[focusable.length - 1];
+      if(event.shiftKey && document.activeElement === first){
+        event.preventDefault();
+        last.focus();
+      }else if(!event.shiftKey && document.activeElement === last){
+        event.preventDefault();
+        first.focus();
+      }
+    });
+
+    var mobileQuery = window.matchMedia("(max-width: 768px)");
+    function closeOnDesktop(event){ if(!event.matches) close(false); }
+    if(mobileQuery.addEventListener) mobileQuery.addEventListener("change", closeOnDesktop);
+    else mobileQuery.addListener(closeOnDesktop);
+
+    if(window.lucide) window.lucide.createIcons();
+  }
+
   document.addEventListener("DOMContentLoaded", function(){
     var sequence = document.querySelector("[data-slider-sequence]");
     var roots = sequence ? [].slice.call(sequence.querySelectorAll("[data-slider]")) : [];
@@ -250,6 +369,7 @@
 
     [].forEach.call(document.querySelectorAll("[data-journey-tabs]"), setupJourneyTabs);
     [].forEach.call(document.querySelectorAll("[data-affiliate-slider]"), setupAffiliateSlider);
+    setupMobileMenu();
     setupRecentSearch();
     setupScrollReveals();
     setupProtoDestInfo();

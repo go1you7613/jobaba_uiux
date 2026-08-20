@@ -310,6 +310,8 @@
      상시 노출 버튼은 상담톡 FAB + 맨 위로 버튼이고, 상담톡 클릭 시 상담톡 창을 연다.
      [개발 연동] 상담톡은 외부 상담 시스템(상담톡 채팅) 연동. */
   function renderFloat(user){
+    // 별도 멀티사이트 화면(러닝센터)에는 잡아바 플로팅 퀵메뉴를 노출하지 않는다.
+    if(document.body.getAttribute("data-site") === "external") return;
     var box = el(
       '<div class="floatmenu" data-floatmenu>'+
         '<button type="button" class="floatmenu__top" data-float-top aria-label="맨 위로">'+

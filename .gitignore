@@ -1,0 +1,6 @@
+.DS_Store
+.gstack/
+.hallmark/
+.omc/
+_backup_*/
+_to_delete_*/

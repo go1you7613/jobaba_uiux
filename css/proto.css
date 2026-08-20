@@ -502,3 +502,113 @@ a:not([href]){cursor:default;}
 .actinfo{margin-top:var(--sp-2);display:grid;grid-template-columns:auto 1fr;gap:2px var(--sp-3);font-size:var(--fs-12);color:var(--c-muted);}
 .actinfo dt{font-weight:var(--fw-bold);color:var(--c-text);}
 .actinfo dd{margin:0;}
+
+/* ================================================================
+   러닝센터(온라인교육) 화면 전용 — learning-center.html
+   별도 멀티사이트라 자체 헤더/푸터를 쓴다. 색은 공통 무채색 토큰만 사용.
+   ================================================================ */
+.lc-util{border-bottom:1px solid var(--c-border);background:var(--c-bg-subtle);}
+.lc-util__inner{display:flex;justify-content:space-between;align-items:center;height:38px;font-size:var(--fs-12);}
+.lc-util__inner a{color:var(--c-muted);}
+.lc-util__inner span a+a{margin-left:var(--sp-4);}
+.lc-header{border-bottom:1px solid var(--c-border);background:var(--c-bg);}
+.lc-header__inner{display:flex;align-items:center;gap:var(--sp-8);height:70px;}
+.lc-logo{font-size:var(--fs-20);color:var(--c-heading);font-weight:var(--fw-medium);}
+.lc-logo b{font-weight:var(--fw-bold);}
+.lc-gnb{display:flex;gap:var(--sp-8);flex:1;}
+.lc-gnb a{font-size:var(--fs-16);color:var(--c-heading);white-space:nowrap;}
+.lc-gnb a[aria-current="page"]{font-weight:var(--fw-bold);border-bottom:2px solid var(--c-ink);padding-bottom:2px;}
+.lc-search{color:var(--c-heading);}
+
+/* 열린강좌 히어로 */
+.lc-open{background:var(--c-bg-subtle);border-bottom:1px solid var(--c-border);padding:var(--sp-8) 0;}
+.lc-open__inner{display:grid;grid-template-columns:1.7fr 1fr;gap:var(--sp-8);align-items:start;}
+.lc-open__eyebrow{display:flex;align-items:center;gap:8px;font-size:var(--fs-14);color:var(--c-muted);}
+.lc-open__title{font-size:var(--fs-28);font-weight:var(--fw-bold);color:var(--c-heading);margin:10px 0 16px;line-height:1.35;}
+.lc-player{
+  position:relative;display:flex;align-items:center;justify-content:center;
+  aspect-ratio:16/9;border:1px solid var(--c-border);border-radius:var(--r-lg);background:var(--c-bg);
+}
+.lc-player__play{
+  width:60px;height:60px;border-radius:50%;background:var(--c-ink);color:var(--c-on-ink);
+  display:flex;align-items:center;justify-content:center;
+}
+.lc-player__time{position:absolute;right:14px;bottom:12px;font-size:var(--fs-12);color:var(--c-muted);}
+.lc-open__meta{display:flex;flex-wrap:wrap;gap:var(--sp-5);margin-top:var(--sp-4);font-size:var(--fs-14);color:var(--c-text);}
+.lc-open__meta b{color:var(--c-muted);font-weight:var(--fw-regular);margin-right:6px;}
+.lc-open__side{border:1px solid var(--c-border);border-radius:var(--r-lg);background:var(--c-bg);padding:var(--sp-6);}
+.lc-side__title{font-size:var(--fs-18);font-weight:var(--fw-bold);color:var(--c-heading);}
+.lc-related{display:flex;flex-direction:column;gap:2px;margin:var(--sp-4) 0;}
+.lc-related a{display:block;padding:10px 8px;border-radius:8px;}
+.lc-related a:hover{background:var(--c-bg-subtle);}
+.lc-related strong{display:block;font-size:var(--fs-14);color:var(--c-heading);margin:4px 0 2px;}
+.lc-related small{font-size:var(--fs-12);color:var(--c-muted);}
+
+/* 강좌 카드 — 마우스오버 시 설명 오버레이 */
+.lc-course-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:var(--sp-5);}
+.lc-course{
+  position:relative;display:block;overflow:hidden;
+  border:1px solid var(--c-border);border-radius:var(--r-lg);background:var(--c-bg);
+}
+.lc-course__rank{
+  position:absolute;top:10px;left:10px;z-index:2;
+  width:26px;height:26px;border-radius:50%;background:var(--c-ink);color:var(--c-on-ink);
+  display:flex;align-items:center;justify-content:center;font-size:var(--fs-12);font-weight:var(--fw-bold);
+}
+.lc-course__thumb{
+  display:flex;align-items:center;justify-content:center;height:132px;
+  background:var(--c-bg-subtle);border-bottom:1px solid var(--c-border);color:var(--c-muted);
+}
+.lc-course__body{display:block;padding:14px 16px 16px;}
+.lc-course__body strong{display:block;font-size:var(--fs-16);color:var(--c-heading);margin:6px 0 4px;}
+.lc-course__body small{font-size:var(--fs-12);color:var(--c-muted);}
+.lc-course__hover{
+  position:absolute;inset:0;display:flex;flex-direction:column;justify-content:center;gap:10px;
+  padding:var(--sp-6);background:var(--c-bg);border-radius:var(--r-lg);
+  opacity:0;visibility:hidden;transition:opacity .15s;
+}
+.lc-course:hover .lc-course__hover,
+.lc-course:focus-within .lc-course__hover{opacity:1;visibility:visible;}
+.lc-course__hover b{font-size:var(--fs-14);color:var(--c-heading);font-weight:var(--fw-medium);line-height:1.6;}
+.lc-course__tags{display:flex;flex-wrap:wrap;gap:6px;}
+.lc-course__tags i{
+  font-style:normal;padding:2px 8px;border:1px solid var(--c-border);border-radius:999px;
+  font-size:var(--fs-12);color:var(--c-muted);
+}
+.lc-course__go{font-size:var(--fs-14);font-weight:var(--fw-medium);color:var(--c-heading);}
+
+/* 취업역량강화 교차 진입 카드 */
+.lc-cross{background:var(--c-bg-subtle);padding:var(--sp-8) 0;}
+.lc-cross__card{padding:var(--sp-6);}
+.lc-cross__icon{
+  display:flex;align-items:center;justify-content:center;width:44px;height:44px;
+  border-radius:12px;background:var(--c-bg-subtle);color:var(--c-heading);margin-bottom:12px;
+}
+.lc-cross__card strong{display:block;font-size:var(--fs-18);color:var(--c-heading);margin-bottom:6px;}
+.lc-cross__card p{margin-bottom:10px;}
+
+/* 후기 / 공지 */
+.lc-bottom{display:grid;grid-template-columns:1.4fr 1fr;gap:var(--sp-8);}
+.lc-reviews{display:flex;flex-direction:column;gap:var(--sp-3);}
+.lc-reviews li{padding:16px 18px;border:1px solid var(--c-border);border-radius:var(--r-md);background:var(--c-bg);}
+.lc-reviews p{font-size:var(--fs-14);color:var(--c-text);margin-bottom:6px;}
+.lc-reviews small{font-size:var(--fs-12);color:var(--c-muted);}
+.lc-notice li a{display:flex;justify-content:space-between;gap:var(--sp-4);padding:14px 4px;border-bottom:1px solid var(--c-border);}
+.lc-notice strong{font-size:var(--fs-14);font-weight:var(--fw-regular);color:var(--c-text);}
+.lc-notice small{font-size:var(--fs-12);color:var(--c-muted);white-space:nowrap;}
+
+/* 자체 푸터 */
+.lc-footer{margin-top:var(--sp-12);padding:var(--sp-8) 0;border-top:1px solid var(--c-border);background:var(--c-bg-subtle);}
+.lc-footer strong{display:block;font-size:var(--fs-16);color:var(--c-heading);margin-bottom:8px;}
+
+@media(max-width:900px){
+  .lc-open__inner{grid-template-columns:1fr;}
+  .lc-course-grid{grid-template-columns:repeat(2,1fr);}
+  .lc-bottom{grid-template-columns:1fr;}
+  .lc-gnb{gap:var(--sp-5);overflow-x:auto;}
+}
+@media(max-width:600px){
+  .lc-course-grid{grid-template-columns:1fr;}
+  /* 터치 환경에는 hover가 없으므로 설명을 항상 노출한다 */
+  .lc-course__hover{position:static;opacity:1;visibility:visible;padding:0 16px 16px;}
+}

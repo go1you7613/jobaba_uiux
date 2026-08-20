@@ -5,12 +5,12 @@
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css">
 <link rel="stylesheet" href="css/proto.css?v=1269">
 <link rel="stylesheet" href="css/theme-neutral.css?v=6">
-  <link rel="stylesheet" href="css/theme-a.css?v=24">
+  <link rel="stylesheet" href="css/theme-a.css?v=28">
 <link rel="stylesheet" href="css/proto-linkmark.css?v=5">
 <script src="https://unpkg.com/lucide@latest"></script>
 <script src="js/feature-definitions.js?v=1"></script>
 <script src="js/proto.js?v=1273"></script>
-  <script src="js/main-guest-a.js?v=1250" defer></script>
+  <script src="js/main-guest-a.js?v=1252" defer></script>
 </head>
 <body data-user="guest">
 <div id="site-header"></div>
@@ -88,10 +88,14 @@
     <aside class="portal-side">
       <div class="portal-search">
         <h2>통합검색</h2>
-        <label>
-          <input aria-label="채용, 정책, 지원사업 통합검색" placeholder="채용, 정책, 지원사업을 검색하세요">
-          <i data-lucide="search" aria-hidden="true"></i>
-        </label>
+        <form class="portal-search__form" data-recent-search-form role="search">
+          <input aria-label="채용, 정책, 지원사업 통합검색" placeholder="채용, 정책, 지원사업을 검색하세요" maxlength="80" autocomplete="off" data-recent-search-input>
+          <button type="submit" aria-label="통합검색 실행"><i data-lucide="search" aria-hidden="true"></i></button>
+        </form>
+        <div class="portal-recent" data-recent-searches hidden>
+          <b>최근 검색어</b>
+          <div data-recent-search-list aria-live="polite"></div>
+        </div>
       </div>
       <div class="portal-login">
         <h2>로그인하고<br>잡아바에서 제공하는<br>맞춤정보를 만나보세요.</h2>
@@ -101,24 +105,21 @@
     </aside>
   </section>
 
-  <nav class="quick-menu container" aria-label="빠른 서비스">
-    <a><span><i data-lucide="notebook-tabs"></i></span>정책 찾기</a>
-    <a href="list-guest.html"><span><i data-lucide="briefcase"></i></span>채용정보</a>
-    <a><span><i data-lucide="send"></i></span>사업 신청</a>
-    <a><span><i data-lucide="scan-face"></i></span>AI 면접</a>
-    <a><span><i data-lucide="file-pen-line"></i></span>자소서 첨삭</a>
-    <a><span><i data-lucide="messages-square"></i></span>취업 상담</a>
+  <nav class="vs-promos quick-services container" aria-label="빠른 서비스">
+    <a class="vs-promo" href="learning-center.html"><i data-lucide="graduation-cap"></i><div><div class="vp-label">러닝센터</div><div class="vp-title">온라인 취업교육</div></div></a>
+    <a class="vs-promo" href="apply-guest.html"><i data-lucide="send"></i><div><div class="vp-label">통합접수</div><div class="vp-title">신청·접수</div></div></a>
+    <a class="vs-promo" href="prep-hub-guest.html"><i data-lucide="brain-circuit"></i><div><div class="vp-label">취업역량 분석</div><div class="vp-title">AI 역량진단</div></div></a>
+    <a class="vs-promo"><i data-lucide="messages-square"></i><div><div class="vp-label">1:1 상담톡</div><div class="vp-title">취업 상담</div></div></a>
   </nav>
 
   <section class="journey-section">
     <div class="container">
-      <div class="section-title-row"><div><span>CAREER JOURNEY</span><h2>무엇을 준비하고 계신가요?</h2></div></div>
+      <div class="section-title-row"><div><span>CAREER JOURNEY</span><h2>지금 나에게 필요한 서비스</h2></div></div>
       <div class="journey-panel" data-journey-tabs>
         <div class="journey-tabs" role="tablist" aria-label="대상별 서비스">
           <button id="journey-tab-jobseeker" class="is-active" type="button" role="tab" aria-selected="true" aria-controls="journey-panel-jobseeker" data-journey-tab>취업준비생</button>
           <button id="journey-tab-worker" type="button" role="tab" aria-selected="false" aria-controls="journey-panel-worker" tabindex="-1" data-journey-tab>재직자</button>
           <button id="journey-tab-senior" type="button" role="tab" aria-selected="false" aria-controls="journey-panel-senior" tabindex="-1" data-journey-tab>중장년</button>
-          <button id="journey-tab-company" type="button" role="tab" aria-selected="false" aria-controls="journey-panel-company" tabindex="-1" data-journey-tab>기업회원</button>
         </div>
         <!-- [개발 연동] 여정 카드 목적지
              · 프로토타입 화면이 있는 카드 : href로 실제 이동 (proto-linkmark.css가 파란색 표시)
@@ -140,12 +141,6 @@
           <a href="list-edu.html"><i data-lucide="monitor-up"></i><div><strong>디지털·OA 기초교육</strong><p>업무에 필요한 OA와 디지털 도구 활용 과정을 찾아보세요.</p><span>교육 찾기 →</span></div></a>
           <a href="target-hub-guest.html"><i data-lucide="hand-heart"></i><div><strong>중장년 일자리 지원사업</strong><p>베이비부머를 위한 일자리와 지원사업을 확인하세요.</p><span>지원사업 →</span></div></a>
           <a href="list-guest.html"><i data-lucide="users"></i><div><strong>중장년 채용정보</strong><p>경험과 전문성을 활용할 수 있는 채용정보를 확인하세요.</p><span>채용 보기 →</span></div></a>
-        </div>
-        <div id="journey-panel-company" class="journey-grid journey-tabpanel" role="tabpanel" aria-labelledby="journey-tab-company" data-journey-panel hidden>
-          <a href="biz-home.html"><i data-lucide="file-plus-2"></i><div><strong>인재 채용공고 등록</strong><p>기업회원으로 채용공고를 등록하고 지원자를 만나보세요.</p><span>공고 등록 →</span></div></a>
-          <a href="list-biz-policy.html"><i data-lucide="landmark"></i><div><strong>기업지원정책 찾기</strong><p>채용과 기업 운영에 활용할 수 있는 지원정책을 찾아보세요.</p><span>정책 찾기 →</span></div></a>
-          <a href="list-edu.html"><i data-lucide="graduation-cap"></i><div><strong>재직자 직무교육 안내</strong><p>구성원이 개별 신청할 수 있는 온라인 직무교육을 확인하세요.</p><span>교육 안내 →</span></div></a>
-          <a href="biz-home.html"><i data-lucide="user-search"></i><div><strong>인재추천 요청·채용 지원</strong><p>채용공고 등록 후 상담사의 인재추천과 채용 지원을 요청하세요.</p><span>채용 지원 →</span></div></a>
         </div>
       </div>
     </div>
@@ -200,92 +195,26 @@
     </div>
   </section>
 
-  <section class="content-section exhibition-section">
+  <section class="section vs-affil" aria-label="제휴·특화 바로가기" data-affiliate-slider>
     <div class="container">
-      <div class="section-title-row">
-        <div><span>ONLINE EXHIBITION</span><h2>온라인 채용관</h2></div>
-        <a>채용관 전체보기 <i data-lucide="arrow-up-right"></i></a>
+      <div class="vs-center-head">
+        <span class="vs-affil__eyebrow">PARTNER SERVICES</span>
+        <h2>유관서비스</h2>
+        <p>유관기관에서 제공하는 일자리·교육·지원 서비스를 한 곳에서 확인하세요.</p>
       </div>
-      <div class="exhibition-layout">
-        <a class="exhibition-feature">
-          <span class="exhibition-feature__visual"><i data-lucide="cpu"></i><b>NEW EXHIBITION</b></span>
-          <small>2026.06.01 ~ 2027.12.31</small>
-          <strong>반도체 우수기업<br>온라인 채용관</strong>
-          <p>반도체 제조·소재·부품·장비·설계 분야의 경기도 강소기업 채용정보를 만나보세요.</p>
-          <span class="exhibition-link">최신 채용관 보기 →</span>
-        </a>
-        <div class="exhibition-carousel" data-slider data-autoplay-interval="4000" role="region" aria-roledescription="carousel" aria-label="온라인 채용관 목록">
-          <div class="slider-viewport">
-            <div class="exhibition-page slider-slide is-active" data-slider-slide aria-hidden="false">
-              <a class="exhibition-card">
-                <span><i data-lucide="users-round"></i></span>
-                <div><small>2026.04.15 ~ 2026.08.31</small><strong>일자리 매치업 플러스</strong><p>경기청년과 참여기업을 연결하는 일자리 매칭 채용관</p></div>
-              </a>
-              <a class="exhibition-card">
-                <span><i data-lucide="car-front"></i></span>
-                <div><small>2026.03.27 ~ 2026.12.31</small><strong>경기 자동차산업 특화 채용관</strong><p>자동차산업 기업의 맞춤형 채용정보</p></div>
-              </a>
-              <a class="exhibition-card">
-                <span><i data-lucide="accessibility"></i></span>
-                <div><small>2025.08.26 ~ 2026.12.31</small><strong>잡아바 장애인채용관</strong><p>경기도 내 장애인 채용 희망기업을 한 곳에</p></div>
-              </a>
-            </div>
-            <div class="exhibition-page slider-slide" data-slider-slide aria-hidden="true" hidden>
-              <a class="exhibition-card">
-                <span><i data-lucide="globe-2"></i></span>
-                <div><small>2025.01.31 ~ 2026.12.31</small><strong>잡아바 외국인채용관</strong><p>Jobs for Foreigners, 다국어 채용정보 제공</p></div>
-              </a>
-              <a class="exhibition-card">
-                <span><i data-lucide="shield-check"></i></span>
-                <div><small>2024.12.02 ~ 2026.12.31</small><strong>노동안전보건 우수기업 채용관</strong><p>안전한 일터를 만드는 우수기업 채용정보</p></div>
-              </a>
-              <a class="exhibition-card">
-                <span><i data-lucide="award"></i></span>
-                <div><small>2023.11.10 ~ 2026.12.31</small><strong>경기도 일자리 우수기업 채용관</strong><p>고용과 근로환경이 우수한 도내 기업 채용정보</p></div>
-              </a>
-            </div>
-          </div>
-          <div class="slider-controls exhibition-controls">
-            <button type="button" data-slider-prev aria-label="이전 온라인 채용관">이전</button>
-            <span data-slider-status aria-live="polite">1 / 2</span>
-            <button type="button" data-slider-toggle aria-label="온라인 채용관 목록 자동 전환 정지">정지</button>
-            <button type="button" data-slider-next aria-label="다음 온라인 채용관">다음</button>
-          </div>
+      <div class="vs-affil__wrap">
+        <button type="button" class="vs-affil__arrow prev" aria-label="이전 유관서비스" data-affiliate-prev><i data-lucide="chevron-left"></i></button>
+        <div class="vs-affil__track" role="list" data-affiliate-track>
+          <a class="vs-affil-item" role="listitem"><span class="vs-affil-ico"><i data-lucide="briefcase-business"></i></span><b>베이비부머 일자리</b></a>
+          <a class="vs-affil-item" role="listitem"><span class="vs-affil-ico"><i data-lucide="settings-2"></i></span><b>산업기술훈련 <i data-lucide="arrow-up-right" class="vs-affil-ext"></i></b></a>
+          <a class="vs-affil-item" role="listitem"><span class="vs-affil-ico"><i data-lucide="user-round"></i></span><b>여성 취업·창업 <i data-lucide="arrow-up-right" class="vs-affil-ext"></i></b></a>
+          <a class="vs-affil-item" role="listitem"><span class="vs-affil-ico"><i data-lucide="heart-handshake"></i></span><b>청년노동자 지원 <i data-lucide="arrow-up-right" class="vs-affil-ext"></i></b></a>
+          <a class="vs-affil-item" role="listitem"><span class="vs-affil-ico"><i data-lucide="accessibility"></i></span><b>장애인 채용관</b></a>
+          <a class="vs-affil-item" role="listitem"><span class="vs-affil-ico"><i data-lucide="globe"></i></span><b>Jobs for Foreigners</b></a>
+          <a class="vs-affil-item" role="listitem"><span class="vs-affil-ico"><i data-lucide="sprout"></i></span><b>청년 창업 <i data-lucide="arrow-up-right" class="vs-affil-ext"></i></b></a>
+          <a class="vs-affil-item" role="listitem"><span class="vs-affil-ico"><i data-lucide="palette"></i></span><b>문화예술인 채용관</b></a>
         </div>
-      </div>
-    </div>
-  </section>
-
-  <section class="coach-section container">
-    <div class="coach-shell">
-      <div class="coach-title"><span>PARTNER SERVICES</span><h2>유관서비스</h2><p>유관기관에서 제공하는 일자리·교육·지원 서비스를 한 곳에서 확인하세요.</p></div>
-      <div class="coach-grid">
-        <!-- [개발 연동] 카드 타이틀 아래 제공 사이트명 노출 -->
-        <a>
-          <span class="coach-avatar"><i data-lucide="briefcase-business"></i></span>
-          <strong>베이비부머 일자리</strong>
-          <small class="coach-site">경기도일자리재단</small>
-        </a>
-        <a>
-          <span class="coach-avatar"><i data-lucide="settings-2"></i></span>
-          <strong>산업기술훈련 <i class="coach-external" data-lucide="arrow-up-right" aria-hidden="true"></i></strong>
-          <small class="coach-site">경기도기술학교</small>
-        </a>
-        <a>
-          <span class="coach-avatar"><i data-lucide="user-round"></i></span>
-          <strong>여성 취업·창업 <i class="coach-external" data-lucide="arrow-up-right" aria-hidden="true"></i></strong>
-          <small class="coach-site">꿈날개</small>
-        </a>
-        <a>
-          <span class="coach-avatar"><i data-lucide="heart-handshake"></i></span>
-          <strong>청년노동자 지원 <i class="coach-external" data-lucide="arrow-up-right" aria-hidden="true"></i></strong>
-          <small class="coach-site">청년노동자 지원사업</small>
-        </a>
-        <a>
-          <span class="coach-avatar"><i data-lucide="sprout"></i></span>
-          <strong>청년 창업 <i class="coach-external" data-lucide="arrow-up-right" aria-hidden="true"></i></strong>
-          <small class="coach-site">경기청년포털</small>
-        </a>
+        <button type="button" class="vs-affil__arrow next" aria-label="다음 유관서비스" data-affiliate-next><i data-lucide="chevron-right"></i></button>
       </div>
     </div>
   </section>

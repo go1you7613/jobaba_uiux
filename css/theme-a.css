@@ -84,11 +84,18 @@ h1,h2,h3,.portal-banner strong,.portal-login h2,.section-title-row h2,.coach-tit
 .portal-search,.portal-login{border-radius:var(--a-radius);padding:27px;}
 .portal-search{background:#e8f0fb;}
 .portal-search h2{margin:0 0 15px;text-align:center;font-size:22px;}
-.portal-search label{display:flex;height:54px;align-items:center;padding:0 16px;border-radius:10px;background:#fff;}
+.portal-search label,.portal-search__form{display:flex;height:54px;align-items:center;padding:0 16px;border-radius:10px;background:#fff;}
 .portal-search input{width:100%;border:0;outline:0;font:inherit;}
-.portal-search label svg{width:20px;height:20px;margin-left:10px;flex:none;stroke-width:1.8;}
+.portal-search label svg,.portal-search__form svg{width:20px;height:20px;flex:none;stroke-width:1.8;}
+.portal-search__form button{display:grid;flex:none;width:36px;height:36px;margin-left:6px;padding:0;place-items:center;border:0;background:transparent;color:inherit;cursor:pointer;}
 .portal-search p{margin:12px 0 0;font-size:11px;color:#647187;white-space:nowrap;}
 .portal-search p b{color:var(--navy);margin-right:5px;}
+.portal-recent{display:flex;align-items:flex-start;gap:8px;margin-top:12px;}
+.portal-recent[hidden]{display:none;}
+.portal-recent>b{flex:none;padding-top:5px;font-size:11px;color:var(--neutral-text);}
+.portal-recent>div{display:flex;min-width:0;flex-wrap:wrap;gap:5px;overflow:visible;}
+.portal-recent button{flex:none;max-width:118px;padding:4px 8px;overflow:hidden;border:1px solid var(--neutral-border);border-radius:999px;background:#fff;color:var(--neutral-text);font:inherit;font-size:11px;text-overflow:ellipsis;white-space:nowrap;cursor:pointer;}
+.portal-recent button:hover,.portal-recent button:focus-visible{background:var(--neutral-surface);}
 .portal-login{display:flex;flex-direction:column;justify-content:center;background:var(--navy);color:#fff;}
 .portal-login h2{margin:0 0 19px;color:#fff;font-size:22px;line-height:1.4;letter-spacing:-1.2px;}
 .portal-login h2 em{font-style:normal;color:var(--lime);}
@@ -104,6 +111,15 @@ h1,h2,h3,.portal-banner strong,.portal-login h2,.section-title-row h2,.coach-tit
 .quick-menu a:nth-child(3n+1) span{color:#8664d6;background:#f3efff;}
 .quick-menu a:nth-child(3n+2) span{color:#13a85e;background:#eaf9ee;}
 .quick-menu a:nth-child(3n) span{color:#f27a68;background:#fff0ee;}
+
+/* B타입 빠른 서비스 카드 */
+.vs-promos{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;margin-top:16px;}
+.quick-services{margin-bottom:38px;}
+.vs-promo{display:flex;align-items:center;gap:16px;padding:22px;border:1px solid var(--neutral-border);border-radius:10px;background:#fff;}
+.vs-promo:hover{background:var(--neutral-surface);}
+.vs-promo [data-lucide]{width:32px;height:32px;flex:none;stroke-width:1.5;}
+.vs-promo .vp-label{font-size:12px;}
+.vs-promo .vp-title{font-family:var(--font-display);font-size:18px;font-weight:700;}
 
 /* section common */
 .section-title-row{display:flex;align-items:flex-end;justify-content:space-between;margin-bottom:27px;}
@@ -288,6 +304,27 @@ h1,h2,h3,.portal-banner strong,.portal-login h2,.section-title-row h2,.coach-tit
 /* 유관서비스 카드: 타이틀 아래 제공 사이트명(기본 굵기) */
 .coach-site{margin-top:5px;font-size:14px;font-weight:400;}
 
+/* B타입 유관서비스 슬라이더 */
+.vs-center-head{text-align:center;margin-bottom:32px;}
+.vs-center-head h2{margin:12px 0 0;font-family:var(--font-display);font-size:36px;font-weight:700;line-height:1.25;letter-spacing:-1px;}
+.vs-center-head p{margin:8px 0 0;font-size:14px;}
+.vs-affil{background:var(--neutral-surface);}
+.vs-affil__eyebrow{display:inline-flex;padding:5px 13px;border:1px solid var(--neutral-border);border-radius:10px;background:#fff;font-weight:800;font-size:12px;}
+.vs-affil__wrap{position:relative;}
+.vs-affil__track{display:flex;gap:16px;overflow-x:auto;padding:8px 4px 12px;scroll-behavior:smooth;scrollbar-width:none;}
+.vs-affil__track::-webkit-scrollbar{display:none;}
+.vs-affil-item{display:flex;flex:0 0 150px;flex-direction:column;align-items:center;gap:12px;padding:24px 12px;border:1px solid var(--neutral-border);border-radius:10px;background:#fff;text-align:center;}
+.vs-affil-item:hover{background:var(--neutral-surface);}
+.vs-affil-ico{display:grid;width:60px;height:60px;place-items:center;border:1px solid var(--neutral-border);border-radius:10px;background:var(--neutral-surface);}
+.vs-affil-ico svg{width:27px;height:27px;stroke-width:1.5;}
+.vs-affil-item b{font-size:14px;font-weight:700;line-height:1.35;}
+.vs-affil-ext{width:13px;height:13px;vertical-align:-1px;}
+.vs-affil__arrow{position:absolute;z-index:2;top:calc(50% + 6px);display:grid;width:42px;height:42px;place-items:center;border:1px solid var(--neutral-border);border-radius:10px;background:#fff;cursor:pointer;transform:translateY(-50%);}
+.vs-affil__arrow.prev{left:-10px;}
+.vs-affil__arrow.next{right:-10px;}
+.vs-affil__arrow:hover{background:var(--neutral-surface);}
+.vs-affil__arrow svg{width:20px;height:20px;}
+
 .footer{border-top:1px solid #edf0f3;background:#fff;color:#717881;}
 .footer .container{padding-top:32px;padding-bottom:32px;}
 
@@ -300,6 +337,7 @@ h1,h2,h3,.portal-banner strong,.portal-login h2,.section-title-row h2,.coach-tit
   .resource-grid{grid-template-columns:1fr 1fr;}
   .resource-education{grid-column:1/-1;}
   .coach-grid{grid-template-columns:repeat(3,1fr);}
+  .vs-promos{grid-template-columns:1fr 1fr;}
 }
 @media(max-width:768px){
   .utilbar{display:none;}
@@ -323,6 +361,9 @@ h1,h2,h3,.portal-banner strong,.portal-login h2,.section-title-row h2,.coach-tit
   .coach-section{padding-top:55px;padding-bottom:55px;}
   .coach-shell{padding:34px 20px;}
   .coach-grid{grid-template-columns:1fr 1fr;}
+  .vs-promos{grid-template-columns:1fr;}
+  .vs-affil__arrow{display:none;}
+  .vs-center-head h2{font-size:28px;}
 }
 @media(max-width:480px){
   .portal-promos{grid-template-columns:1fr;}
@@ -397,6 +438,7 @@ a:hover{color:var(--neutral-text);}
 .portal-search,
 .portal-login,
 .portal-search label,
+.portal-search__form,
 .portal-login__btn,
 .quick-menu a span,
 .journey-panel,
@@ -424,6 +466,7 @@ a:hover{color:var(--neutral-text);}
 
 .promo-card,
 .portal-search label,
+.portal-search__form,
 .quick-menu a span,
 .journey-panel,
 .coach-grid>a{background:#fff;}
@@ -950,4 +993,23 @@ a:hover{color:var(--neutral-text);}
 
 @media(max-width:1024px){
   .reco-grid{grid-template-columns:1fr;}
+}
+
+/* 메인 A 모바일 구성: 핵심 행동과 주요 배너만 우선 노출 */
+@media(max-width:768px){
+  .portal-hero{
+    display:flex;
+    flex-direction:column;
+  }
+  .portal-promos,
+  .portal-search{
+    display:none;
+  }
+  .portal-side{display:contents;}
+  .portal-login,
+  .portal-me{
+    order:-1;
+    margin:0 0 14px;
+  }
+  body[data-user="guest"] .resource-section{display:none;}
 }

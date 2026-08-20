@@ -1,0 +1,381 @@
+<!doctype html>
+<html lang="ko"><head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>잡아바 프로토타입 — 통합접수 연계 이벤트 팝업</title>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css">
+<link rel="stylesheet" href="css/proto.css?v=1269"><link rel="stylesheet" href="css/theme-neutral.css?v=6"><link rel="stylesheet" href="css/page-sub.css?v=12"><link rel="stylesheet" href="css/proto-linkmark.css?v=5">
+<script src="https://unpkg.com/lucide@latest"></script><script src="js/feature-definitions.js?v=1"></script>
+<script src="js/proto.js?v=1273"></script>
+
+<!-- ================================================================
+     이벤트 팝업 전용 스타일
+     ※ 퍼블리싱 시 page-sub.css 로 이관 권장
+     ※ 토큰은 proto.css / theme-neutral.css 값을 그대로 사용
+     ================================================================ -->
+<style>
+/* 팝업 박스 — 기본 .modal__box(400px, 가운데정렬) 대비 폭 확대 + 좌측정렬 */
+.evt-modal .modal__box{max-width:648px;text-align:left;padding:0;overflow:hidden;}
+.evt-pop{display:flex;flex-direction:column;max-height:calc(100vh - 48px);}
+
+/* 상단 비주얼 : 이미지 영역 (퍼블리싱 시 이미지로 대체) */
+.evt-pop__visual{position:relative;height:200px;overflow:hidden;padding:12px 28px;border-bottom:1px solid var(--neutral-border);
+  background-color:#e6e6e6;
+  background-image:
+    linear-gradient(to top right, transparent calc(50% - .7px), #b3b3b3 50%, transparent calc(50% + .7px)),
+    linear-gradient(to bottom right, transparent calc(50% - .7px), #b3b3b3 50%, transparent calc(50% + .7px));
+  background-size:100% 100%;background-repeat:no-repeat;}
+.evt-pop__visual-tag{position:absolute;left:12px;top:46px;padding:2px 8px;border:1px solid #bdbdbd;
+  border-radius:var(--r-sm);background:rgba(255,255,255,.9);font-size:11px;letter-spacing:-.2px;
+  color:#6b6b6b!important;}
+
+/* 헤더 : 배지 + 닫기 */
+.evt-pop__top{display:flex;align-items:center;justify-content:space-between;}
+.evt-pop__close{width:32px;height:32px;display:grid;place-items:center;border:0;background:none;
+  border-radius:var(--r-sm);cursor:pointer;font-family:inherit;}
+.evt-pop__close:hover{background:var(--neutral-surface);}
+.evt-pop__close span{font-size:17px;line-height:1;}
+
+/* 본문 스크롤 영역 */
+.evt-pop__body{padding:16px 28px;overflow-y:auto;}
+
+/* 아이콘 — apply-complete__icon 패턴 준용 */
+.evt-pop__icon{display:grid;width:44px;height:44px;place-items:center;margin:0 auto;
+  border:2px solid var(--neutral-text);border-radius:50%;background:rgba(255,255,255,.82);}
+.evt-pop__icon svg{width:22px;height:22px;}
+
+/* 타이포 */
+.evt-pop__title{margin:8px 0 2px;text-align:center;font-family:var(--font-display);font-size:20px;letter-spacing:-.5px;line-height:1.3;}
+.evt-pop__sub{margin:0;text-align:center;font-size:var(--fs-16);font-weight:var(--fw-medium);line-height:1.4;}
+.evt-pop__desc{margin:6px 0 0;text-align:center;font-size:13px;line-height:1.5;color:var(--neutral-muted)!important;}
+.evt-pop__visual .evt-pop__title,.evt-pop__visual .evt-pop__sub,.evt-pop__visual .evt-pop__desc{position:relative;}
+
+/* 참여 방법 3단계 */
+.evt-pop__steps{margin:0;padding:14px 16px;border-radius:var(--r-md);background:var(--neutral-surface);
+  list-style:none;display:grid;grid-template-columns:repeat(3,1fr);gap:12px;}
+.evt-pop__steps li{display:flex;gap:7px;align-items:flex-start;font-size:var(--fs-13);line-height:1.45;}
+.evt-pop__steps b{flex:none;width:18px;height:18px;margin-top:1px;display:grid;place-items:center;
+  border:1px solid var(--neutral-text);border-radius:50%;font-size:11px;font-weight:700;}
+
+/* 동의 영역 */
+.evt-pop__agree{margin:12px 0 0;padding:10px 16px;border:1px solid var(--neutral-border);border-radius:var(--r-md);}
+.evt-pop__agree-all{display:flex;align-items:center;gap:8px;font-size:var(--fs-16);font-weight:var(--fw-bold);cursor:pointer;}
+.evt-pop__agree-list{margin:10px 0 0;padding:10px 0 0;border-top:1px solid var(--neutral-border);display:grid;gap:8px;}
+.evt-pop__agree-row{display:flex;align-items:center;gap:8px;font-size:var(--fs-14);}
+.evt-pop__agree-row label{display:flex;align-items:center;gap:8px;cursor:pointer;flex:1;}
+.evt-pop__req{font-size:var(--fs-12);font-weight:700;}
+.evt-pop__view{flex:none;border:0;background:none;padding:2px 4px;font-size:var(--fs-12);
+  text-decoration:underline;cursor:pointer;font-family:inherit;color:var(--neutral-muted)!important;}
+
+/* 필수 고지 */
+.evt-pop__notice{margin:12px 0 0;padding:10px 14px;border:1px solid var(--neutral-text);border-radius:var(--r-md);
+  font-size:var(--fs-14);line-height:1.6;display:flex;gap:8px;align-items:flex-start;}
+.evt-pop__notice svg{flex:none;width:18px;height:18px;margin-top:1px;}
+
+/* 이벤트 참여 유의사항 — 고정 높이 + 내부 스크롤 */
+.evt-pop__terms{margin:12px 0 0;}
+.evt-pop__terms-head{display:flex;align-items:center;justify-content:space-between;margin:0 0 6px;
+  font-size:var(--fs-14);font-weight:var(--fw-bold);}
+.evt-pop__terms-head span{font-size:var(--fs-12);font-weight:400;color:var(--neutral-muted)!important;}
+.evt-pop__terms-box{max-height:92px;overflow-y:auto;padding:12px 14px;
+  border:1px solid var(--neutral-border);border-radius:var(--r-md);background:#fbfbfb;}
+.evt-pop__terms-box ol{margin:0;padding:0;list-style:none;display:grid;gap:5px;}
+.evt-pop__terms-box li{display:flex;gap:6px;font-size:var(--fs-12);line-height:1.6;
+  color:var(--neutral-muted)!important;}
+.evt-pop__terms-box li b{flex:none;font-weight:400;}
+.evt-pop__terms-box::-webkit-scrollbar{width:6px;}
+.evt-pop__terms-box::-webkit-scrollbar-thumb{background:#c9c9c9;border-radius:3px;}
+.evt-pop__terms-box::-webkit-scrollbar-track{background:transparent;}
+
+/* 상태 안내(P3·P4) */
+.evt-pop__state{margin:14px 0 0;padding:16px 18px;border-radius:var(--r-md);background:var(--neutral-surface);
+  font-size:var(--fs-14);line-height:var(--lh-loose);text-align:center;}
+
+/* 액션 */
+.evt-pop__actions{display:flex;gap:8px;padding:14px 28px;border-top:1px solid var(--neutral-border);}
+.evt-pop__actions .btn{flex:1;justify-content:center;}
+.evt-pop__actions .btn--primary{flex:1.6;}
+
+/* 푸터 */
+.evt-pop__foot{padding:0 28px 16px;text-align:center;font-size:var(--fs-12);color:var(--neutral-muted)!important;}
+
+/* 약관 전문 레이어 */
+.evt-terms .modal__box{max-width:600px;text-align:left;}
+.evt-terms__body{max-height:50vh;overflow-y:auto;padding:14px 16px;border:1px solid var(--neutral-border);
+  border-radius:var(--r-md);font-size:var(--fs-14);line-height:var(--lh-loose);}
+.evt-terms__body table{width:100%;border-collapse:collapse;margin-top:10px;font-size:var(--fs-13);}
+.evt-terms__body th,.evt-terms__body td{border:1px solid var(--neutral-border);padding:8px 10px;text-align:left;}
+
+/* 검토용 상태 전환바 (실제 서비스 미포함) */
+.proto-switch{position:fixed;left:0;right:0;bottom:0;z-index:200;display:flex;gap:8px;align-items:center;
+  justify-content:center;flex-wrap:wrap;padding:10px 16px;background:#fff;border-top:1px solid var(--neutral-border);
+  box-shadow:0 -2px 8px rgba(0,0,0,.06);font-size:var(--fs-14);}
+.proto-switch strong{font-size:var(--fs-12);}
+</style>
+</head>
+<body data-user="member"><div id="site-header"></div>
+
+<!-- 배경 : 사업신청 완료 화면 (apply-complete-member.html 동일 구조) -->
+<main class="container section apply-complete">
+  <section class="apply-complete__hero">
+    <span class="apply-complete__icon"><i data-lucide="check"></i></span>
+    <h1>사업신청이 완료되었습니다</h1>
+    <p class="muted">접수내역과 진행 상태는 마이페이지에서 확인할 수 있습니다.</p>
+    <div class="apply-complete__summary">
+      <div><span>접수번호</span><strong>AP-20260901-0017</strong></div>
+      <div><span>접수상태</span><strong>접수완료</strong></div>
+      <div><span>신청사업</span><strong>시스템반도체 아카데미(2차)</strong></div>
+      <div><span>신청일시</span><strong>2026-09-01 14:30</strong></div>
+    </div>
+    <div class="apply-complete__actions">
+      <a class="btn btn--outline" href="apply-member.html">지원사업 더보기</a>
+      <a class="btn btn--primary" href="mypage-member.html">내 신청현황 보기</a>
+    </div>
+  </section>
+
+  <section class="std-foot" aria-labelledby="jobaba-next-title">
+    <div class="sub-head"><div>
+      <h2 id="jobaba-next-title">잡아바에서 다양한 서비스를 이용해 보세요</h2>
+      <p>신청을 마쳤다면 잡아바의 지원정책, 취업준비, 일자리 서비스를 이어서 이용해 보세요.</p>
+    </div></div>
+    <div class="std-foot__grid">
+      <div class="std-foot__col apply-loop-card"><span class="apply-loop-card__icon"><i data-lucide="landmark" aria-hidden="true"></i></span><h3>일자리 지원정책 찾아보기</h3><p>청년·재직·생활·기업지원 등 경기도의 다양한 지원정책을 확인하세요.</p><a class="btn btn--sm" href="list-policy-member.html">지원정책 보기</a></div>
+      <div class="std-foot__col apply-loop-card"><span class="apply-loop-card__icon"><i data-lucide="clipboard-check" aria-hidden="true"></i></span><h3>취업 준비 이어가기</h3><p>취업진단, 자소서 첨삭, AI 역량검사로 다음 취업 단계를 준비하세요.</p><a class="btn btn--sm" href="prep-hub-member.html">취업 준비 시작</a></div>
+      <div class="std-foot__col apply-loop-card"><span class="apply-loop-card__icon"><i data-lucide="briefcase-business" aria-hidden="true"></i></span><h3>새로운 일자리 찾기</h3><p>경기도 채용정보와 공공·민간 일자리를 살펴보세요.</p><a class="btn btn--sm" href="list-member.html">일자리 찾아보기</a></div>
+    </div>
+  </section>
+</main>
+
+<!-- ================================================================
+     이벤트 팝업 (P1 미동의 / P2 동의완료 / P3 동의기보유 / P4 응모완료)
+     ================================================================ -->
+<div class="modal evt-modal is-open" id="evt-popup" role="dialog" aria-modal="true" aria-labelledby="evt-pop-title" aria-hidden="false">
+  <div class="modal__box">
+    <div class="evt-pop">
+
+      <!-- 상단 비주얼 : 이미지 영역 (회색 배경 + 대각선 표시) -->
+      <div class="evt-pop__visual">
+        <div class="evt-pop__top">
+          <span class="badge badge--accent">이벤트</span>
+          <button type="button" class="evt-pop__close" data-modal-close aria-label="이벤트 안내 닫기"><span aria-hidden="true">&#10005;</span></button>
+        </div>
+
+        <span class="evt-pop__icon"><i data-lucide="gift" aria-hidden="true"></i></span>
+
+        <h3 class="evt-pop__title" id="evt-pop-title">사업신청이 완료되었습니다</h3>
+        <p class="evt-pop__sub" data-evt="sub">잡아바에서 다양한 취업지원서비스를 받아보세요</p>
+        <p class="evt-pop__desc" data-evt="desc">내 취업 준비도를 진단하고, 매월 <strong>300명</strong>에게 메가커피 쿠폰을 드립니다.</p>
+
+        <span class="evt-pop__visual-tag">이미지 영역 648 × 200</span>
+      </div>
+
+      <div class="evt-pop__body">
+        <!-- 참여 방법 : P1·P2 노출 -->
+        <ol class="evt-pop__steps" data-evt="steps">
+          <li><b>1</b><span><strong>약관 동의</strong> 후 참여</span></li>
+          <li><b>2</b><span data-evt="step2">취업진단 완료</span></li>
+          <li><b>3</b><span>자동 응모 완료</span></li>
+        </ol>
+
+        <!-- 상태 안내 : P3·P4 노출 -->
+        <p class="evt-pop__state" data-evt="state" hidden></p>
+
+        <!-- 동의 영역 : P1·P2 노출 -->
+        <div class="evt-pop__agree" data-evt="agree">
+          <label class="evt-pop__agree-all">
+            <input type="checkbox" id="evt-agree-all"> 약관 전체 동의하기
+          </label>
+          <div class="evt-pop__agree-list">
+            <div class="evt-pop__agree-row">
+              <label><input type="checkbox" class="evt-agree" id="evt-agree-1">
+                <span><span class="evt-pop__req">[필수]</span> 개인정보 수집·이용 동의</span></label>
+              <button type="button" class="evt-pop__view" data-terms="collect">보기</button>
+            </div>
+            <div class="evt-pop__agree-row">
+              <label><input type="checkbox" class="evt-agree" id="evt-agree-2">
+                <span><span class="evt-pop__req">[필수]</span> 개인정보 제3자 제공 동의</span></label>
+              <button type="button" class="evt-pop__view" data-terms="third">보기</button>
+            </div>
+          </div>
+        </div>
+
+        <!-- 필수 고지 : P1·P2 노출 -->
+        <p class="evt-pop__notice" data-evt="notice">
+          <i data-lucide="info" aria-hidden="true"></i>
+          <span data-evt="notice-txt">취업진단을 완료하시면 <strong>별도 응모 절차 없이 자동으로</strong> 응모 처리됩니다.</span>
+        </p>
+
+        <!-- 이벤트 참여 유의사항 : 고정 높이 스크롤 영역 -->
+        <div class="evt-pop__terms" data-evt="terms">
+          <p class="evt-pop__terms-head">이벤트 참여 유의사항 <span>스크롤하여 전체 확인</span></p>
+          <div class="evt-pop__terms-box" tabindex="0" role="region" aria-label="이벤트 참여 유의사항">
+            <ol>
+              <li><b>가.</b><span>잡아바 통합회원에 한하여 이벤트 참여가 가능합니다.</span></li>
+              <li><b>나.</b><span>통합접수에서 사업 신청을 최종제출 완료한 회원에 한하여 참여가 가능합니다.</span></li>
+              <li><b>다.</b><span>이벤트 참여 동의 이후 이용·완료한 서비스에 한하여 응모가 인정되며, 동의 이전 이용 이력은 인정되지 않습니다.</span></li>
+              <li><b>라.</b><span>미션 서비스를 완료하시면 별도의 응모 절차 없이 자동으로 응모 처리됩니다.</span></li>
+              <li><b>마.</b><span>응모는 회원당 월 1회 가능하며, 사업 신청을 복수 건 진행하여도 응모는 1회로 처리됩니다.</span></li>
+              <li><b>바.</b><span>미션 서비스를 완료하지 않은 경우 응모가 성립되지 않습니다.</span></li>
+              <li><b>사.</b><span>응모 회차는 미션 서비스를 완료한 시점의 월을 기준으로 적용됩니다.</span></li>
+              <li><b>아.</b><span>타인의 계정 도용, 허위 사실 기재, 기타 부정한 방법으로 참여하는 경우 당첨이 취소될 수 있습니다.</span></li>
+              <li><b>자.</b><span>경품은 이벤트 회차 종료 후 당첨 대상자에 한하여 지급됩니다.</span></li>
+              <li><b>차.</b><span>경품 발송은 회원정보에 등록된 휴대전화 번호를 기준으로 진행되며, 회원정보 오기재 또는 스팸 차단 등 개인 사유로 인한 미수령 시 재발송되지 않습니다.</span></li>
+              <li><b>카.</b><span>당첨자 발표는 잡아바 공지사항 게시판을 통해 발표되며, 당첨 시 개별 안내됩니다.</span></li>
+              <li><b>타.</b><span>경품 발송을 위해 당사 경품 대행사에 참여자 신청 정보가 제공되며 이벤트 종료 후 파기됩니다.</span></li>
+              <li><b>파.</b><span>이벤트 참여를 위해 수집된 개인정보는 회차 종료 후 3개월간 보유 후 파기됩니다.</span></li>
+              <li><b>하.</b><span>경품 지급 시기는 사정에 따라 변경될 수 있으며, 이 경우 잡아바 홈페이지를 통해 공고합니다.</span></li>
+              <li><b>거.</b><span>이벤트에 응모하는 경우 상기 내용에 모두 동의하는 것으로 간주합니다.</span></li>
+              <li><b>너.</b><span>본 사이트의 이벤트는 경기도일자리재단의 위탁을 받아 ㈜케이브레인에서 운영·관리합니다.</span></li>
+              <li><b>더.</b><span>잡아바에서 진행하는 경품 이벤트는 경기도일자리재단에서 주관·주최하는 이벤트로서 경품 생산 및 발송 기업의 경우 경품 이벤트와 무관하며, 어떠한 식으로든 관여하지 않습니다.</span></li>
+            </ol>
+          </div>
+        </div>
+      </div>
+
+      <div class="evt-pop__actions">
+        <button type="button" class="btn btn--outline btn--lg" data-modal-close data-evt="btn-sub">다음에 하기</button>
+        <button type="button" class="btn btn--primary btn--lg" id="evt-go" data-evt="btn-main" disabled>취업진단 하러 가기</button>
+      </div>
+
+      <p class="evt-pop__foot" data-evt="foot">이벤트 기간 2026.9.1 ~ 9.30 · 매월 300명 추첨</p>
+
+    </div>
+  </div>
+</div>
+
+<!-- 약관 전문 레이어 -->
+<div class="modal evt-terms" id="evt-terms" role="dialog" aria-modal="true" aria-labelledby="evt-terms-title" aria-hidden="true">
+  <div class="modal__box">
+    <h3 id="evt-terms-title">개인정보 수집·이용 동의</h3>
+    <div class="evt-terms__body" id="evt-terms-body"></div>
+    <div class="modal__actions" style="margin-top:16px;">
+      <button type="button" class="btn btn--outline btn--block" data-modal-close>닫기</button>
+    </div>
+  </div>
+</div>
+
+<!-- 검토용 상태 전환바 (실제 서비스에는 포함하지 않음) -->
+<div class="proto-switch">
+  <strong>검토용 상태 전환</strong>
+  <button type="button" class="chip" data-state="P1" aria-pressed="true">P1 미동의</button>
+  <button type="button" class="chip" data-state="P2" aria-pressed="false">P2 동의완료</button>
+  <button type="button" class="chip" data-state="P3" aria-pressed="false">P3 동의기보유</button>
+  <button type="button" class="chip" data-state="P4" aria-pressed="false">P4 응모완료</button>
+  <button type="button" class="btn btn--sm" id="evt-reopen">팝업 다시 열기</button>
+</div>
+
+<div id="site-footer"></div>
+
+<script>
+(function(){
+  var pop      = document.getElementById("evt-popup");
+  var all      = document.getElementById("evt-agree-all");
+  var items    = Array.prototype.slice.call(document.querySelectorAll(".evt-agree"));
+  var goBtn    = document.getElementById("evt-go");
+  var terms    = document.getElementById("evt-terms");
+  var termsTit = document.getElementById("evt-terms-title");
+  var termsBody= document.getElementById("evt-terms-body");
+  var el = function(k){ return pop.querySelector('[data-evt="'+k+'"]'); };
+
+  /* ---- 약관 전문(안) ---- */
+  var TERMS = {
+    collect:{
+      title:"개인정보 수집·이용 동의",
+      html:'<p>경기도일자리재단은 이벤트 응모자 확인 및 경품 발송을 위하여 아래와 같이 개인정보를 수집·이용합니다.</p>'+
+           '<table><tr><th>수집 항목</th><td>성명, 휴대전화 번호, 회원 식별정보</td></tr>'+
+           '<tr><th>수집 목적</th><td>이벤트 응모자 확인, 당첨자 선정 및 경품 발송</td></tr>'+
+           '<tr><th>보유 기간</th><td>이벤트 회차 종료 후 3개월</td></tr></table>'+
+           '<p style="margin-top:10px;">동의를 거부하실 수 있으며, 거부 시 이벤트 참여가 제한됩니다.</p>'
+    },
+    third:{
+      title:"개인정보 제3자 제공 동의",
+      html:'<p>경품 발송을 위하여 아래와 같이 개인정보를 제3자에게 제공합니다.</p>'+
+           '<table><tr><th>제공받는 자</th><td>경품 발송 대행사</td></tr>'+
+           '<tr><th>제공 항목</th><td>성명, 휴대전화 번호</td></tr>'+
+           '<tr><th>제공 목적</th><td>경품(모바일 쿠폰) 발송</td></tr>'+
+           '<tr><th>보유 기간</th><td>경품 발송 완료 후 즉시 파기</td></tr></table>'+
+           '<p style="margin-top:10px;">동의를 거부하실 수 있으며, 거부 시 이벤트 참여가 제한됩니다.</p>'
+    }
+  };
+
+  /* ---- 동의 연동 : 전체동의 ↔ 개별동의 ---- */
+  function sync(){
+    var done = items.filter(function(c){ return c.checked; }).length;
+    all.checked = (done === items.length);
+    all.indeterminate = (done > 0 && done < items.length);
+    goBtn.disabled = (done !== items.length);
+  }
+  all.addEventListener("change", function(){
+    items.forEach(function(c){ c.checked = all.checked; });
+    sync();
+  });
+  items.forEach(function(c){ c.addEventListener("change", sync); });
+
+  /* ---- 약관 전문 보기 ---- */
+  document.addEventListener("click", function(e){
+    var v = e.target.closest("[data-terms]");
+    if(!v) return;
+    var t = TERMS[v.getAttribute("data-terms")];
+    termsTit.textContent = t.title;
+    termsBody.innerHTML  = t.html;
+    terms.classList.add("is-open");
+    terms.setAttribute("aria-hidden","false");
+  });
+
+  /* ---- 주 액션 ---- */
+  goBtn.addEventListener("click", function(){
+    if(goBtn.disabled) return;
+    alert("[프로토타입]\n참여 정보 저장 → 팝업 닫기 → 취업진단 화면으로 이동");
+  });
+
+  /* ---- 상태 전환 (검토용) ---- */
+  var STATES = {
+    P1:{ agree:true,  steps:true,  notice:true,  state:null,
+         main:"취업진단 하러 가기", sub:"다음에 하기", disabled:true,  check:false },
+    P2:{ agree:true,  steps:true,  notice:true,  state:null,
+         main:"취업진단 하러 가기", sub:"다음에 하기", disabled:false, check:true },
+    P3:{ agree:false, steps:false, notice:true,  state:"이미 이벤트에 참여 중입니다.<br>취업진단을 완료하면 응모가 완료됩니다.",
+         main:"취업진단 하러 가기", sub:"다음에 하기", disabled:false, check:true },
+    P4:{ agree:false, steps:false, notice:false, state:"이번 달 응모가 완료되었습니다.<br>당첨자는 <strong>10월 3일</strong> 잡아바 공지사항에서 발표됩니다.",
+         main:null,                sub:"확인",       disabled:true,  check:true }
+  };
+  function setState(key){
+    var s = STATES[key];
+    items.forEach(function(c){ c.checked = s.check; });
+    sync();
+
+    el("agree").hidden  = !s.agree;
+    el("terms").hidden  = !s.agree;
+    el("steps").hidden  = !s.steps;
+    el("notice").hidden = !s.notice;
+    el("desc").hidden   = !s.steps;
+
+    var st = el("state");
+    if(s.state){ st.innerHTML = s.state; st.hidden = false; } else { st.hidden = true; }
+
+    el("btn-sub").textContent = s.sub;
+    if(s.main){ goBtn.hidden = false; goBtn.textContent = s.main; goBtn.disabled = s.disabled; }
+    else { goBtn.hidden = true; }
+
+    el("sub").hidden = (key === "P4");
+    el("foot").hidden = (key === "P4");
+
+    document.querySelectorAll(".proto-switch [data-state]").forEach(function(b){
+      b.setAttribute("aria-pressed", String(b.getAttribute("data-state") === key));
+    });
+    if(!pop.classList.contains("is-open")){
+      pop.classList.add("is-open"); pop.setAttribute("aria-hidden","false");
+    }
+  }
+  document.querySelectorAll(".proto-switch [data-state]").forEach(function(b){
+    b.addEventListener("click", function(){ setState(b.getAttribute("data-state")); });
+  });
+  document.getElementById("evt-reopen").addEventListener("click", function(){
+    pop.classList.add("is-open"); pop.setAttribute("aria-hidden","false");
+    document.body.classList.add("is-modal-open");
+  });
+
+  setState("P1");
+  if(window.lucide) lucide.createIcons();
+})();
+</script>
+</body></html>

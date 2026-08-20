@@ -1,0 +1,312 @@
+<!doctype html>
+<html lang="ko"><head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>잡아바 프로토타입 — 러닝센터 온라인교육</title>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css">
+<link rel="stylesheet" href="css/proto.css?v=1269">
+<link rel="stylesheet" href="css/theme-neutral.css?v=6">
+<link rel="stylesheet" href="css/page-sub.css?v=8">
+<link rel="stylesheet" href="css/proto-linkmark.css?v=5">
+<script src="https://unpkg.com/lucide@latest"></script>
+<script src="js/feature-definitions.js?v=1"></script>
+<script src="js/proto.js?v=1273"></script>
+</head>
+<body data-user="guest" data-site="external"><!-- data-site=external : 잡아바 공통 헤더·푸터·플로팅 미적용 -->
+
+<!-- ================================================================
+     러닝센터(온라인교육) 메인 — 2026-08-14 회의 반영 신규 화면
+
+     [전제] 러닝센터(lms.gg.go.kr)는 잡아바와 분리된 별도 멀티사이트다.
+            따라서 잡아바 공통 헤더(#site-header)를 쓰지 않고 자체 헤더를 둔다.
+     [구성 근거]
+       · 일자리재단 담당자 구성안(Figma Make) = 레이아웃·인터랙션
+       · 운영 페이지(lms.gg.go.kr/gjf/home.do) = 메뉴체계·섹션 구성
+     [회의 요청 반영]
+       ① 열린강좌를 메인에 노출          → §2
+       ② 강좌 마우스오버 시 설명 노출     → §3, §5
+     [확정] GNB 5종 = 취업교육 / 테마교육 / 역량강화 / 참여소통 / 마이페이지
+     ================================================================ -->
+
+<!-- ══════════ ① 자체 헤더 ══════════ -->
+<div class="lc-util">
+  <div class="container lc-util__inner">
+    <!-- [개발 연동] 잡아바 통합로그인(SSO) 연계 -->
+    <a href="main-guest-a.html">잡아바 일자리포털</a>
+    <span><a>로그인</a><a>회원가입</a></span>
+  </div>
+</div>
+<header class="lc-header">
+  <div class="container lc-header__inner">
+    <a class="lc-logo" href="learning-center.html">잡아바 <b>러닝센터</b></a>
+    <nav class="lc-gnb" aria-label="러닝센터 주메뉴">
+      <a aria-current="page">취업교육</a>
+      <a>테마교육</a>
+      <a>역량강화</a>
+      <a>참여소통</a>
+      <a>마이페이지</a>
+    </nav>
+    <button type="button" class="lc-search" aria-label="강좌 검색"><i data-lucide="search"></i></button>
+  </div>
+</header>
+
+<main>
+
+  <!-- ══════════ ② 열린강좌 히어로 (회의 요청 ①) ══════════ -->
+  <!-- [개발 연동] 매월 선정되는 열린강좌 1건. 로그인·수강신청 없이 재생 가능한 강좌만 노출한다. -->
+  <section class="lc-open">
+    <div class="container lc-open__inner">
+      <div class="lc-open__main">
+        <p class="lc-open__eyebrow"><span class="badge badge--solid">8월의 열린강좌</span> 로그인·수강신청 없이 무료로 시청하세요</p>
+        <h1 class="lc-open__title">ChatGPT로 업무 자동화하기<br>누구나 따라 하는 AI 활용법</h1>
+        <div class="lc-player" role="img" aria-label="강좌 미리보기 영상 영역">
+          <button type="button" class="lc-player__play" aria-label="강좌 재생"><i data-lucide="play"></i></button>
+          <span class="lc-player__time">0:00 / 4시간 20분</span>
+        </div>
+        <ul class="lc-open__meta">
+          <li><b>강사</b> 김민준 · AI 솔루션 컨설턴트</li>
+          <li><b>난이도</b> 입문~중급</li>
+          <li><b>수강시간</b> 4시간 20분</li>
+        </ul>
+      </div>
+      <aside class="lc-open__side">
+        <h2 class="lc-side__title">연관 강좌</h2>
+        <p class="small muted">이 강의와 함께 들으면 좋아요</p>
+        <ul class="lc-related">
+          <li><a><span class="badge">취업교육</span><strong>Python 데이터 분석 완전정복</strong><small>8.4천명 수강중</small></a></li>
+          <li><a><span class="badge">취업교육</span><strong>엑셀 매크로 &amp; VBA 업무 자동화</strong><small>6.1천명 수강중</small></a></li>
+          <li><a><span class="badge">취업교육</span><strong>머신러닝 기초부터 실전까지</strong><small>5.9천명 수강중</small></a></li>
+          <li><a><span class="badge">테마교육</span><strong>챗봇 개발 with GPT API</strong><small>4.2천명 수강중</small></a></li>
+        </ul>
+        <a class="btn btn--outline btn--sm btn--block">관련 강좌 더보기</a>
+      </aside>
+    </div>
+  </section>
+
+  <!-- ══════════ ③ 인기 강좌 (회의 요청 ②: 마우스오버 설명) ══════════ -->
+  <section class="container section">
+    <div class="sub-head">
+      <h2>지금 가장 많이 듣는 <b>인기 강좌</b></h2>
+      <a class="small">전체보기 →</a>
+    </div>
+    <!-- [개발 연동] 최근 30일 수강신청 수 기준 상위 6건.
+         카드에 마우스를 올리면 강좌 설명·태그·수강시간이 오버레이로 나타난다(회의 요청). -->
+    <div class="lc-course-grid" data-lc-courses>
+      <a class="lc-course">
+        <span class="lc-course__rank">1</span>
+        <span class="lc-course__thumb"><i data-lucide="landmark"></i></span>
+        <span class="lc-course__body">
+          <span class="badge">테마교육</span>
+          <strong>한국사능력검정시험 심화 완성</strong>
+          <small>박지훈 · ★4.9(1,842) · 2.3만명</small>
+        </span>
+        <span class="lc-course__hover">
+          <b>최신 기출 분석과 핵심 개념 정리로 한능검 심화 1급을 목표로 합니다.</b>
+          <span class="lc-course__tags"><i>역사</i><i>자격증</i><i>시험대비</i></span>
+          <span class="lc-course__go">62시간 · 수강신청 바로가기 →</span>
+        </span>
+      </a>
+      <a class="lc-course">
+        <span class="lc-course__rank">2</span>
+        <span class="lc-course__thumb"><i data-lucide="languages"></i></span>
+        <span class="lc-course__body">
+          <span class="badge">테마교육</span>
+          <strong>OPIc IH 목표 달성 전략</strong>
+          <small>이소연 · ★4.8(1,356) · 1.9만명</small>
+        </span>
+        <span class="lc-course__hover">
+          <b>실전 롤플레이와 스크립트 트레이닝으로 OPIc IH를 확실히 달성하세요.</b>
+          <span class="lc-course__tags"><i>영어</i><i>스피킹</i><i>OPIc</i></span>
+          <span class="lc-course__go">28시간 · 수강신청 바로가기 →</span>
+        </span>
+      </a>
+      <a class="lc-course">
+        <span class="lc-course__rank">3</span>
+        <span class="lc-course__thumb"><i data-lucide="file-pen-line"></i></span>
+        <span class="lc-course__body">
+          <span class="badge">역량강화</span>
+          <strong>직무별 자기소개서 완성 클래스</strong>
+          <small>최지영 · ★4.9(2,103) · 1.6만명</small>
+        </span>
+        <span class="lc-course__hover">
+          <b>현직 HR 담당자가 알려주는 합격하는 자기소개서 작성 전략.</b>
+          <span class="lc-course__tags"><i>취업</i><i>자기소개서</i><i>HR</i></span>
+          <span class="lc-course__go">16시간 · 수강신청 바로가기 →</span>
+        </span>
+      </a>
+      <a class="lc-course">
+        <span class="lc-course__rank">4</span>
+        <span class="lc-course__thumb"><i data-lucide="code-2"></i></span>
+        <span class="lc-course__body">
+          <span class="badge">취업교육</span>
+          <strong>React + TypeScript 풀스택 개발</strong>
+          <small>정현우 · ★4.7(987) · 1.2만명</small>
+        </span>
+        <span class="lc-course__hover">
+          <b>React와 TypeScript를 활용한 현업 수준의 웹 서비스 개발 과정.</b>
+          <span class="lc-course__tags"><i>React</i><i>TypeScript</i><i>웹개발</i></span>
+          <span class="lc-course__go">45시간 · 수강신청 바로가기 →</span>
+        </span>
+      </a>
+      <a class="lc-course">
+        <span class="lc-course__rank">5</span>
+        <span class="lc-course__thumb"><i data-lucide="table-2"></i></span>
+        <span class="lc-course__body">
+          <span class="badge">취업교육</span>
+          <strong>비즈니스 엑셀 데이터 분석</strong>
+          <small>강민서 · ★4.6(743) · 1.1만명</small>
+        </span>
+        <span class="lc-course__hover">
+          <b>피벗테이블부터 고급 함수까지, 데이터로 이야기하는 법을 배웁니다.</b>
+          <span class="lc-course__tags"><i>엑셀</i><i>데이터분석</i><i>오피스</i></span>
+          <span class="lc-course__go">22시간 · 수강신청 바로가기 →</span>
+        </span>
+      </a>
+      <a class="lc-course">
+        <span class="lc-course__rank">6</span>
+        <span class="lc-course__thumb"><i data-lucide="message-square-text"></i></span>
+        <span class="lc-course__body">
+          <span class="badge">테마교육</span>
+          <strong>왕초보 일본어 첫걸음</strong>
+          <small>야마다 유키 · ★4.8(821) · 9.4천명</small>
+        </span>
+        <span class="lc-course__hover">
+          <b>히라가나부터 시작해 일상 회화까지 체계적으로 배우는 일본어 입문 과정.</b>
+          <span class="lc-course__tags"><i>일본어</i><i>입문</i><i>회화</i></span>
+          <span class="lc-course__go">18시간 · 수강신청 바로가기 →</span>
+        </span>
+      </a>
+    </div>
+  </section>
+
+  <!-- ══════════ ④ 취업역량강화 서비스 3카드 ══════════ -->
+  <!-- [유지 필수] 러닝센터 → 잡아바로 넘어가는 유일한 교차 진입점이다.
+       구성안에는 빠져 있었으나 운영 페이지에 존재하므로 복원한다. -->
+  <section class="lc-cross">
+    <div class="container">
+      <div class="sub-head"><h2>취업역량강화 서비스</h2></div>
+      <p class="small muted" style="margin:-8px 0 18px">잡아바에서 제공하는 1:1 상담·첨삭·진단 서비스와 연결됩니다.</p>
+      <div class="grid grid--3">
+        <a class="card lc-cross__card">
+          <span class="lc-cross__icon"><i data-lucide="messages-square"></i></span>
+          <strong>진로상담</strong>
+          <p class="small muted">전문 상담사와 1:1 진로·취업 상담을 신청합니다.</p>
+          <span class="small">신청하기 →</span>
+        </a>
+        <a class="card lc-cross__card" href="main-guest-a.html">
+          <span class="lc-cross__icon"><i data-lucide="file-pen-line"></i></span>
+          <strong>자기소개서 첨삭</strong>
+          <p class="small muted">전문 컨설턴트가 48시간 이내 맞춤 첨삭을 제공합니다.</p>
+          <span class="small">잡아바에서 신청 →</span>
+        </a>
+        <a class="card lc-cross__card" href="main-guest-a.html">
+          <span class="lc-cross__icon"><i data-lucide="scan-face"></i></span>
+          <strong>AI 역량검사</strong>
+          <p class="small muted">성향파악·전략게임·영상면접 3가지 유형으로 역량을 진단합니다.</p>
+          <span class="small">잡아바에서 신청 →</span>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══════════ ⑤ 전체 강좌 + 카테고리 필터 ══════════ -->
+  <!-- [확정] 필터 축은 확정 GNB(취업교육·테마교육·역량강화)와 동일하게 맞춘다.
+       구성안의 자격증/외국어/자소서·면접/IT·개발/비즈니스 5분류는 채택하지 않는다. -->
+  <section class="container section">
+    <div class="sub-head"><h2>전체 강좌</h2><span class="small muted" data-lc-count>6개</span></div>
+    <div class="tabs" data-lc-filter>
+      <button class="tab" type="button" data-lc-cat="all" aria-selected="true">전체</button>
+      <button class="tab" type="button" data-lc-cat="취업교육" aria-selected="false">취업교육</button>
+      <button class="tab" type="button" data-lc-cat="테마교육" aria-selected="false">테마교육</button>
+      <button class="tab" type="button" data-lc-cat="역량강화" aria-selected="false">역량강화</button>
+    </div>
+    <div class="lc-course-grid" data-lc-list style="margin-top:var(--sp-6)">
+      <a class="lc-course" data-cat="역량강화">
+        <span class="lc-course__thumb"><i data-lucide="mic"></i></span>
+        <span class="lc-course__body"><span class="badge">역량강화</span><strong>면접 스피치 &amp; 압박 면접 대응</strong><small>이재원 · ★4.8(672) · 8.9천명</small></span>
+        <span class="lc-course__hover"><b>실전 모의면접으로 답변 구조와 태도를 함께 다듬습니다.</b><span class="lc-course__tags"><i>면접</i><i>스피치</i></span><span class="lc-course__go">12시간 · 수강신청 바로가기 →</span></span>
+      </a>
+      <a class="lc-course" data-cat="취업교육">
+        <span class="lc-course__thumb"><i data-lucide="database"></i></span>
+        <span class="lc-course__body"><span class="badge">취업교육</span><strong>SQL로 시작하는 데이터베이스</strong><small>박성민 · ★4.5(412) · 6.7천명</small></span>
+        <span class="lc-course__hover"><b>SQL 기초부터 고급 쿼리까지, 데이터베이스를 실무에 적용하는 법.</b><span class="lc-course__tags"><i>SQL</i><i>백엔드</i></span><span class="lc-course__go">25시간 · 수강신청 바로가기 →</span></span>
+      </a>
+      <a class="lc-course" data-cat="취업교육">
+        <span class="lc-course__thumb"><i data-lucide="presentation"></i></span>
+        <span class="lc-course__body"><span class="badge">취업교육</span><strong>프레젠테이션 기획·디자인 마스터</strong><small>김유진 · ★4.7(389) · 5.2천명</small></span>
+        <span class="lc-course__hover"><b>설득력 있는 발표 자료 만들기부터 프레젠테이션 스킬까지.</b><span class="lc-course__tags"><i>기획</i><i>디자인</i></span><span class="lc-course__go">14시간 · 수강신청 바로가기 →</span></span>
+      </a>
+      <a class="lc-course" data-cat="테마교육">
+        <span class="lc-course__thumb"><i data-lucide="languages"></i></span>
+        <span class="lc-course__body"><span class="badge">테마교육</span><strong>중국어 비즈니스 회화</strong><small>왕리 · ★4.6(298) · 4.2천명</small></span>
+        <span class="lc-course__hover"><b>비즈니스 현장에서 바로 쓸 수 있는 실전 중국어 회화.</b><span class="lc-course__tags"><i>중국어</i><i>회화</i></span><span class="lc-course__go">20시간 · 수강신청 바로가기 →</span></span>
+      </a>
+      <a class="lc-course" data-cat="테마교육">
+        <span class="lc-course__thumb"><i data-lucide="monitor-check"></i></span>
+        <span class="lc-course__body"><span class="badge">테마교육</span><strong>컴퓨터활용능력 2급 실기</strong><small>정수민 · ★4.7(1,204) · 3.8천명</small></span>
+        <span class="lc-course__hover"><b>기출 유형별 풀이로 실기 합격까지 한 번에 준비합니다.</b><span class="lc-course__tags"><i>컴활</i><i>자격증</i></span><span class="lc-course__go">30시간 · 수강신청 바로가기 →</span></span>
+      </a>
+      <a class="lc-course" data-cat="역량강화">
+        <span class="lc-course__thumb"><i data-lucide="compass"></i></span>
+        <span class="lc-course__body"><span class="badge">역량강화</span><strong>중장년 재취업 진로설계</strong><small>한지수 · ★4.6(311) · 2.9천명</small></span>
+        <span class="lc-course__hover"><b>경력 재정비부터 재취업 전략까지 단계별로 설계합니다.</b><span class="lc-course__tags"><i>중장년</i><i>진로설계</i></span><span class="lc-course__go">10시간 · 수강신청 바로가기 →</span></span>
+      </a>
+    </div>
+    <div class="empty" data-lc-empty hidden><i data-lucide="search-x"></i><p>해당 분류의 강좌가 없습니다.</p></div>
+  </section>
+
+  <!-- ══════════ ⑥ 수강생 후기 / 공지사항 ══════════ -->
+  <section class="container section lc-bottom">
+    <div>
+      <div class="sub-head"><h2>수강생 후기</h2><a class="small">전체보기 →</a></div>
+      <!-- [개발 연동] 실제 후기 데이터 연동. 작성자는 성만 표기한다(개인정보 보호). -->
+      <ul class="lc-reviews">
+        <li><p>“퇴근 후에도 부담 없이 들을 수 있는 분량이라 끝까지 완주했습니다.”</p><small>김○○ · 비즈니스 엑셀 데이터 분석 · 2026.07</small></li>
+        <li><p>“실습 파일이 함께 제공돼서 바로 업무에 적용해 볼 수 있었어요.”</p><small>이○○ · SQL로 시작하는 데이터베이스 · 2026.07</small></li>
+        <li><p>“면접 답변 구조를 잡는 데 큰 도움이 됐습니다.”</p><small>박○○ · 면접 스피치 &amp; 압박 면접 대응 · 2026.06</small></li>
+      </ul>
+    </div>
+    <div>
+      <div class="sub-head"><h2>공지사항</h2><a class="small">더보기 →</a></div>
+      <ul class="lc-notice">
+        <li><a><strong>2026년 하반기 열린강좌 운영 안내</strong><small>2026.08.01</small></a></li>
+        <li><a><strong>시스템 정기점검에 따른 수강 일시중단 안내</strong><small>2026.07.24</small></a></li>
+        <li><a><strong>수료 기준 및 이수증 발급 절차 변경 안내</strong><small>2026.07.10</small></a></li>
+      </ul>
+    </div>
+  </section>
+</main>
+
+<!-- ══════════ ⑦ 자체 푸터 ══════════ -->
+<footer class="lc-footer">
+  <div class="container">
+    <strong>잡아바 러닝센터</strong>
+    <p class="small">경기도일자리재단 · 031-270-9988 · jobaba@GJF.or.kr · 평일 09:00~18:00</p>
+    <p class="small muted">모든 강좌 콘텐츠는 저작권법에 의해 보호됩니다.</p>
+  </div>
+</footer>
+
+<!-- 전체 강좌 카테고리 필터 — 프로토타입 동작 확인용 -->
+<script>
+(function(){
+  var tabs = document.querySelectorAll("[data-lc-filter] [data-lc-cat]");
+  var list = document.querySelector("[data-lc-list]");
+  var count = document.querySelector("[data-lc-count]");
+  var empty = document.querySelector("[data-lc-empty]");
+  if(!tabs.length || !list) return;
+  Array.prototype.forEach.call(tabs, function(btn){
+    btn.addEventListener("click", function(){
+      var cat = btn.getAttribute("data-lc-cat");
+      Array.prototype.forEach.call(tabs, function(b){ b.setAttribute("aria-selected", b === btn ? "true" : "false"); });
+      var shown = 0;
+      Array.prototype.forEach.call(list.children, function(card){
+        var ok = (cat === "all") || (card.getAttribute("data-cat") === cat);
+        card.hidden = !ok;
+        if(ok) shown++;
+      });
+      if(count) count.textContent = shown + "개";
+      if(empty) empty.hidden = shown > 0;
+    });
+  });
+})();
+</script>
+</body></html>

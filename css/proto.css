@@ -407,6 +407,57 @@ a:not([href]){cursor:default;}
   .gnb__sub{display:none;}
 }
 
+/* ---- 모바일 공통 GNB 드로어 ---- */
+.header__menu-toggle{display:none;}
+.mobile-menu[hidden]{display:none;}
+
+@media(max-width:768px){
+  body.is-mobile-menu-open{overflow:hidden;}
+  .header__inner{min-height:68px;flex-wrap:nowrap;gap:12px;padding:10px 0;}
+  .header__inner>.gnb{display:none;}
+  .header__search-icon{margin-left:auto;}
+  .header__menu-toggle,
+  .mobile-menu__close{
+    display:grid;width:42px;height:42px;flex:none;place-items:center;padding:0;
+    border:1px solid var(--c-border);border-radius:10px;background:var(--c-bg);color:var(--c-heading);cursor:pointer;
+  }
+  .header__menu-toggle svg,
+  .mobile-menu__close svg{width:22px;height:22px;}
+  .mobile-menu{position:fixed;z-index:1000;inset:0;}
+  .mobile-menu__backdrop{position:absolute;inset:0;background:rgba(0,0,0,.48);}
+  .mobile-menu__panel{
+    position:absolute;top:0;right:0;width:min(88vw,390px);height:100%;overflow-y:auto;
+    background:var(--c-bg);box-shadow:-12px 0 30px rgba(0,0,0,.12);outline:0;
+  }
+  .mobile-menu__head{
+    position:sticky;z-index:2;top:0;display:flex;min-height:68px;align-items:center;
+    justify-content:space-between;padding:12px 18px;border-bottom:1px solid var(--c-border);background:var(--c-bg);
+  }
+  .mobile-menu__head h2{font-size:20px;}
+  .mobile-menu__body{padding:6px 18px 24px;}
+  .mobile-menu__nav{display:block;}
+  .mobile-menu__nav .gnb__unit{
+    display:flex;align-items:stretch;flex-direction:column;padding:14px 0;border-bottom:1px solid var(--c-border);
+  }
+  .mobile-menu__nav .gnb__item{
+    order:-1;display:block;padding:0 0 8px;border:0;font-size:17px;font-weight:var(--fw-bold);
+  }
+  .mobile-menu__nav .gnb__item[aria-current="page"]{text-decoration:underline;text-underline-offset:5px;}
+  .mobile-menu__nav .gnb__sub{
+    position:static;display:grid;grid-template-columns:1fr 1fr;min-width:0;padding:0;border:0;
+    border-radius:0;gap:2px 8px;background:transparent;box-shadow:none;opacity:1;visibility:visible;transform:none;
+  }
+  .mobile-menu__nav .gnb__sub-item{padding:7px 0;text-align:left;white-space:normal;}
+  .mobile-menu__shortcuts,
+  .mobile-menu__account{display:flex;flex-wrap:wrap;gap:8px;padding-top:16px;}
+  .mobile-menu__shortcuts a,
+  .mobile-menu__account a,
+  .mobile-menu__account span{
+    display:inline-flex;min-height:40px;align-items:center;padding:8px 11px;
+    border:1px solid var(--c-border);border-radius:8px;background:var(--c-bg);font-size:12px;
+  }
+}
+
 /* 해당 구분에 공고가 없어 선택할 수 없는 칩 */
 .chip--off{
   color:var(--c-muted);background:var(--c-bg-subtle);border-style:dashed;

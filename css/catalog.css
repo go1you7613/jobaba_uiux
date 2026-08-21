@@ -85,6 +85,8 @@
   .catalog-detail__hero{display:block;}
   .catalog-detail__status{margin-top:var(--sp-3);}
   .business-catalog .business-hot-grid{grid-template-columns:1fr 1fr;}
+  .business-catalog .business-hot-grid .card{padding:14px;}
+  .business-catalog .business-hot-grid .hotissue__thumb{height:104px;min-height:0;aspect-ratio:auto;}
   .business-catalog{padding-bottom:var(--sp-12);}
   .business-catalog .listfilter__label{width:100%;padding-top:0;}
   .business-catalog .policard--thumb .card{flex-wrap:wrap;}

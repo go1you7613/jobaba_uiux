@@ -348,6 +348,12 @@ body.is-modal-open{overflow:hidden;}
 @media(max-width:600px){
   .proto-bar__title,.proto-bar__page{display:none;}
 }
+@media(max-width:360px){
+  .proto-bar{gap:6px;padding:0 8px;}
+  .proto-bar__left,.proto-bar__right{gap:6px;}
+  .proto-bar__btn{padding:4px 7px;}
+  .proto-bar__state{max-width:98px;overflow:hidden;padding:3px 7px;font-size:11px;text-overflow:ellipsis;}
+}
 
 /* ── [리뷰 보조] 링크/클릭 이동 식별용 : 파란 2px ──
    프로토타입 검토 중 링크 위치를 쉽게 찾기 위한 오버레이.

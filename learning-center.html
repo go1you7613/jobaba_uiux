@@ -3,12 +3,12 @@
 <meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
 <title>잡아바 프로토타입 — 러닝센터 온라인교육</title>
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css">
-<link rel="stylesheet" href="css/proto.css?v=1269">
+<link rel="stylesheet" href="css/proto.css?v=1273">
 <link rel="stylesheet" href="css/theme-neutral.css?v=6">
 <link rel="stylesheet" href="css/page-sub.css?v=8">
 <link rel="stylesheet" href="css/proto-linkmark.css?v=5">
 <script src="https://unpkg.com/lucide@latest"></script>
-<script src="js/feature-definitions.js?v=1"></script>
+<script src="js/feature-definitions.js?v=3"></script>
 <script src="js/proto.js?v=1273"></script>
 </head>
 <body data-user="guest" data-site="external"><!-- data-site=external : 잡아바 공통 헤더·푸터·플로팅 미적용 -->
@@ -24,28 +24,42 @@
      [회의 요청 반영]
        ① 열린강좌를 메인에 노출          → §2
        ② 강좌 마우스오버 시 설명 노출     → §3, §5
-     [확정] GNB 5종 = 취업교육 / 테마교육 / 역량강화 / 참여소통 / 마이페이지
+     [확정] 하단 GNB 5종 = 취업준비 / 자격증 / 역량강화 / 참여소통 / 마이페이지
+     [주의] 러닝센터 마이페이지는 잡아바 마이페이지와 별도이며 전용 URL 확정 전까지 링크하지 않는다.
      ================================================================ -->
 
 <!-- ══════════ ① 자체 헤더 ══════════ -->
 <div class="lc-util">
   <div class="container lc-util__inner">
-    <!-- [개발 연동] 잡아바 통합로그인(SSO) 연계 -->
-    <a href="main-guest-a.html">잡아바 일자리포털</a>
-    <span><a>로그인</a><a>회원가입</a></span>
+    <nav class="lc-sites" aria-label="잡아바 연계 서비스">
+      <a href="main-guest-a.html">잡아바</a>
+      <a href="learning-center.html" aria-current="page">잡아바 러닝센터</a>
+      <a href="apply-guest.html">일자리 사업신청</a>
+    </nav>
+    <!-- [개발 연동] 잡아바 통합로그인(SSO) 및 러닝센터 공지사항 URL 연계 -->
+    <nav class="lc-util__right" aria-label="러닝센터 유틸리티">
+      <a>통합 로그인</a>
+      <a>공지사항</a>
+    </nav>
   </div>
 </div>
 <header class="lc-header">
   <div class="container lc-header__inner">
-    <a class="lc-logo" href="learning-center.html">잡아바 <b>러닝센터</b></a>
+    <a class="lc-logo" href="learning-center.html" aria-label="잡아바 러닝센터 홈">
+      <span class="lc-logo__crop"><img src="image/learning-center-header-reference.png" alt="잡아바 러닝센터"></span>
+    </a>
     <nav class="lc-gnb" aria-label="러닝센터 주메뉴">
-      <a aria-current="page">취업교육</a>
-      <a>테마교육</a>
+      <a aria-current="page">취업준비</a>
+      <a>자격증</a>
       <a>역량강화</a>
       <a>참여소통</a>
-      <a>마이페이지</a>
+      <!-- [개발 연동] 잡아바 마이페이지와 별개인 러닝센터 전용 마이페이지 URL 확정 후 href 추가 -->
+      <a aria-disabled="true">마이페이지</a>
     </nav>
-    <button type="button" class="lc-search" aria-label="강좌 검색"><i data-lucide="search"></i></button>
+    <div class="lc-header__actions">
+      <button type="button" class="lc-menu" aria-label="전체 메뉴"><i data-lucide="menu"></i></button>
+      <button type="button" class="lc-search" aria-label="강좌 검색"><i data-lucide="search"></i></button>
+    </div>
   </div>
 </header>
 

@@ -425,6 +425,70 @@ body:not([data-user="member"]) .ap-my-status{display:none;}
 /* 대상 패널 */
 .tg-panel[hidden]{display:none;}
 
+/* 장애인 탭 보기 도구 — 기존 채용관의 확대·명도 대비 기능을 3버튼으로 단순화 */
+.tg-view-tools{
+  display:flex;align-items:center;gap:14px;margin:0 0 28px;padding:16px 18px;
+  border:2px solid var(--neutral-text);border-radius:10px;background:var(--neutral-surface);
+}
+.tg-view-tools__title{display:inline-flex;align-items:center;gap:7px;flex:none;font-size:15px;}
+.tg-view-tools__title svg{width:19px;height:19px;}
+.tg-view-tools__actions{display:flex;flex-wrap:wrap;gap:8px;}
+.tg-view-tools__actions button{
+  display:inline-flex;align-items:center;gap:6px;min-height:38px;padding:8px 13px;
+  border:1px solid var(--neutral-text);border-radius:8px;background:#fff;
+  color:var(--neutral-text);font:inherit;font-size:13px;font-weight:800;cursor:pointer;
+}
+.tg-view-tools__actions button:hover{background:var(--neutral-surface);}
+.tg-view-tools__actions button[aria-pressed="true"]{--neutral-text:#fff;background:#363636;color:var(--neutral-text);}
+.tg-view-tools__actions button[aria-pressed="true"] *{color:#fff;}
+.tg-view-tools__actions svg{width:16px;height:16px;}
+.tg-view-tools__status{margin-left:auto;font-size:12px;color:var(--neutral-muted);white-space:nowrap;}
+
+/* body 클래스 기반 화면 전체 확대. 기존 채용관의 +/- 화면 확대 동작을 단일 토글로 제공한다. */
+body.is-text-large{zoom:1.125;}
+@supports not (zoom:1){
+  body.is-text-large{font-size:112.5%;}
+}
+
+/* body 클래스 기반 고대비 화면 — 헤더·본문·푸터와 모달까지 동일 적용 */
+body.is-high-contrast{
+  --neutral-text:#fff;--neutral-muted:#f2f2f2;--neutral-border:#fff;--neutral-surface:#171717;
+  --c-ink:#fff;--c-heading:#fff;--c-text:#fff;--c-muted:#f2f2f2;
+  --c-border:#fff;--c-border-strong:#fff;--c-bg:#000;--c-bg-subtle:#171717;--c-bg-hover:#292929;--c-on-ink:#000;
+  background:#000;color:#fff;
+}
+body.is-high-contrast *,body.is-high-contrast *::before,body.is-high-contrast *::after{
+  color:#fff;border-color:#fff;
+}
+body.is-high-contrast .proto-bar,
+body.is-high-contrast .utilbar,
+body.is-high-contrast .header,
+body.is-high-contrast .footer,
+body.is-high-contrast .footer__top,
+body.is-high-contrast .footer__bottom,
+body.is-high-contrast .card,
+body.is-high-contrast .tg-area,
+body.is-high-contrast .tg-own,
+body.is-high-contrast .tg-ext,
+body.is-high-contrast .tg-view-tools,
+body.is-high-contrast .tg-src,
+body.is-high-contrast .tg-tabs button,
+body.is-high-contrast .tg-tabs__extlink,
+body.is-high-contrast .btn,
+body.is-high-contrast .badge,
+body.is-high-contrast .modal__box{
+  background:#000;box-shadow:none;
+}
+body.is-high-contrast .tg-tabs button[aria-selected="true"],
+body.is-high-contrast .tg-view-tools__actions button[aria-pressed="true"]{
+  --neutral-text:#000;background:#fff;color:var(--neutral-text);
+}
+body.is-high-contrast .tg-tabs button[aria-selected="true"] *,
+body.is-high-contrast .tg-view-tools__actions button[aria-pressed="true"] *{color:#000;}
+body.is-high-contrast .tg-view-tools__actions button{background:#000;}
+body.is-high-contrast img{filter:grayscale(1) contrast(1.35);}
+body.is-high-contrast :focus-visible{outline-color:#ff0;}
+
 /* 출처 배지 */
 .tg-src{
   display:inline-flex;align-items:center;gap:5px;padding:3px 9px;border-radius:999px;
@@ -459,6 +523,10 @@ body:not([data-user="member"]) .ap-my-status{display:none;}
 .tg-ext__go svg{width:13px;height:13px;}
 
 @media(max-width:768px){
+  .tg-view-tools{align-items:flex-start;flex-direction:column;gap:10px;padding:14px;}
+  .tg-view-tools__actions{width:100%;}
+  .tg-view-tools__actions button{flex:1 1 110px;justify-content:center;}
+  .tg-view-tools__status{margin-left:0;white-space:normal;}
   .tg-ext-grid{grid-template-columns:1fr;}
   .tg-own-list a{flex-wrap:wrap;gap:8px;}
 }

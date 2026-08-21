@@ -7,7 +7,7 @@
 <link rel="stylesheet" href="css/theme-neutral.css?v=6">
 <link rel="stylesheet" href="css/proto-linkmark.css?v=5">
 <script src="https://unpkg.com/lucide@latest"></script>
-<script src="js/feature-definitions.js?v=1"></script>
+<script src="js/feature-definitions.js?v=2"></script>
 <script src="js/proto.js?v=1273"></script>
 </head>
 <body data-user="member">
@@ -20,26 +20,26 @@
     <div style="display:flex;gap:var(--sp-3);align-items:center;margin-top:var(--sp-3);flex-wrap:wrap">
       <span class="badge badge--strong">AI 매칭 상위 12건</span>
       <span class="small muted">관심분야 기준 · IT·개발(소프트웨어개발)</span>
-      <button class="btn btn--outline btn--sm"><i data-lucide="settings"></i>관심분야 설정</button>
+      <a class="btn btn--outline btn--sm" href="mypage-member.html#s-saved"><i data-lucide="settings"></i>관심분야 설정</a>
     </div>
   </div>
 </section>
 
 <!-- 내 활동 요약 위젯 (마이페이지 자산 승격) -->
 <section class="container section">
-  <div class="section__head"><span class="section__title">내 활동 요약</span><a class="small muted" href="mypage-member.html">마이페이지 →</a></div>
+  <div class="section__head"><span class="section__title">내 활동 요약</span><a class="small muted" href="mypage-member.html#g-home">마이페이지 →</a></div>
   <div class="stat-grid">
-    <a class="stat" href="mypage-member.html"><div class="stat__num">1</div><div class="stat__label">작성 중 이력서</div></a>
-    <a class="stat" href="mypage-member.html"><div class="stat__num">3</div><div class="stat__label">지원 진행중</div></a>
-    <a class="stat" href="mypage-member.html"><div class="stat__num">8</div><div class="stat__label">찜한 공고</div></a>
-    <a class="stat" href="mypage-member.html"><div class="stat__num">2</div><div class="stat__label">마감 임박</div></a>
+    <a class="stat" href="mypage-member.html#s-resume"><div class="stat__num">1</div><div class="stat__label">작성 중 이력서</div></a>
+    <a class="stat" href="mypage-member.html#s-applied"><div class="stat__num">3</div><div class="stat__label">지원 진행중</div></a>
+    <a class="stat" href="mypage-member.html#i-intrs"><div class="stat__num">8</div><div class="stat__label">찜한 공고</div></a>
+    <a class="stat" href="mypage-member.html#i-alarm"><div class="stat__num">2</div><div class="stat__label">마감 임박</div></a>
   </div>
 </section>
 
 <!-- 마감 D-day 알림 (개인화 §2.5 · 배치안 A-3 보완) -->
 <!-- [개발 연동] 찜·신청·관심정책 중 D-3 이내 항목. 없으면 섹션 전체 미노출 -->
 <section class="container section">
-  <div class="section__head"><span class="section__title">마감이 얼마 안 남았어요</span><a class="small muted" href="mypage-member.html">알림 설정 →</a></div>
+  <div class="section__head"><span class="section__title">마감이 얼마 안 남았어요</span><a class="small muted" href="mypage-member.html#i-alarm">알림 설정 →</a></div>
   <ul class="dday-list">
     <li><a href="detail-member.html">
       <span class="dday-list__d">D-1</span>
@@ -101,7 +101,7 @@
       <div class="card" style="display:flex;justify-content:space-between;align-items:center;gap:var(--sp-3)">
         <div><div class="card__title" style="font-size:var(--fs-16)">작성 중이던 이력서</div>
           <p class="small muted">기본 이력서 · 80% 완료</p></div>
-        <a class="btn btn--outline btn--sm" href="mypage-member.html">이어서 작성</a>
+        <a class="btn btn--outline btn--sm" href="mypage-member.html#s-resume">이어서 작성</a>
       </div>
       <div class="card" style="display:flex;justify-content:space-between;align-items:center;gap:var(--sp-3)">
         <div><div class="card__title" style="font-size:var(--fs-16)">마감 임박 지원</div>
@@ -112,10 +112,10 @@
   </div>
 </section>
 
-<!-- 신청현황 요약 — 어플라이(통합접수) 연계 (배치안 A-3 보완 · 여정 J1-5) -->
+<!-- 신청현황 요약 — 어플라이(신청·접수) 연계 (배치안 A-3 보완 · 여정 J1-5) -->
 <!-- [개발 연동] 어플라이 SSO 연계. 단계별 건수와 최근 신청 2건 -->
 <section class="container section">
-  <div class="section__head"><span class="section__title">내 신청현황</span><a class="small muted" href="apply-member.html">어플라이 →</a></div>
+  <div class="section__head"><span class="section__title">내 신청현황</span><a class="small muted" href="apply-member.html">신청·접수 →</a></div>
   <div class="stat-grid">
     <a class="stat" href="apply-member.html"><div class="stat__num">1</div><div class="stat__label">작성 중</div></a>
     <a class="stat" href="apply-member.html"><div class="stat__num">2</div><div class="stat__label">접수 완료</div></a>

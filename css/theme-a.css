@@ -961,11 +961,9 @@ a:hover{color:var(--neutral-text);}
   margin:-14px 0 20px;font-size:13px;color:#647187;text-align:center;
 }
 .journey-mine b{font-weight:800;color:var(--neutral-text);}
-.journey-mine a{margin-left:8px;text-decoration:underline;text-underline-offset:2px;}
 
 /* 내 맞춤 추천 */
 .reco-section{padding-top:78px;padding-bottom:84px;}
-.reco-switch{display:flex;align-items:center;gap:10px;font-size:12px;font-weight:700;}
 .reco-tabs{justify-content:center;margin-bottom:27px;}
 .reco-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;}
 /* display:grid가 [hidden]의 기본 display:none을 덮으므로 명시적으로 되돌린다 */
@@ -1229,6 +1227,24 @@ a:hover{color:var(--neutral-text);}
   .journey-grid strong{display:block;font-size:14px;line-height:1.35;}
   .journey-grid p{display:none;}
   .journey-grid span{display:block;margin-top:6px;font-size:10px;line-height:1.2;}
+
+  .reco-section{padding-top:32px;padding-bottom:36px;}
+  .reco-section .section-title-row{margin-bottom:14px;}
+  .reco-tabs{margin-bottom:14px;}
+  .reco-tabs .tab{padding:7px 12px;font-size:12px;}
+  .reco-grid{gap:8px;}
+  .reco-card{
+    min-height:128px;
+    padding:14px;
+    border-radius:10px;
+  }
+  .reco-card__badges{gap:4px;margin-bottom:8px;}
+  .reco-card__badges b,
+  .reco-card__badges i{padding:2px 7px;font-size:9px;}
+  .reco-card>strong{font-size:14px;line-height:1.35;}
+  .reco-card>p{margin-top:5px;font-size:11px;line-height:1.4;}
+  .reco-card__why{padding-top:9px;font-size:10px;line-height:1.35;}
+  .reco-why{margin-top:12px;font-size:10px;line-height:1.45;}
 
   .vs-affil{padding-top:28px;padding-bottom:24px;}
   .vs-affil__track{gap:8px;padding:4px 2px;}

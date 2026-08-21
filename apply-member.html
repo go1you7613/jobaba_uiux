@@ -1,14 +1,14 @@
 <!doctype html>
 <html lang="ko"><head>
 <meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
-<title>잡아바 프로토타입 — 어플라이(통합접수) 지원사업</title>
+<title>잡아바 프로토타입 — 신청·접수 지원사업</title>
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css">
 <link rel="stylesheet" href="css/proto.css?v=1269">
 <link rel="stylesheet" href="css/theme-neutral.css?v=6">
 <link rel="stylesheet" href="css/page-sub.css?v=11">
 <link rel="stylesheet" href="css/proto-linkmark.css?v=5">
 <script src="https://unpkg.com/lucide@latest"></script>
-<script src="js/feature-definitions.js?v=1"></script>
+<script src="js/feature-definitions.js?v=2"></script>
 <script src="js/proto.js?v=1273"></script>
 <script src="js/apply.js?v=3" defer></script>
 </head>
@@ -16,7 +16,7 @@
 <div id="site-header"></div>
 
 <main class="container section">
-  <p class="small muted"><a href="main-member-a.html">홈</a> › 어플라이(통합접수)</p>
+  <p class="small muted"><a href="main-member-a.html">홈</a> › 신청·접수</p>
   <div class="apply-pagehead">
     <div>
       <h1 class="section__title">지원사업</h1>
@@ -68,13 +68,13 @@
         <h2 id="my-apply-title">내 신청현황</h2>
         <p>최근 신청한 사업의 진행 상태입니다.</p>
       </div>
-      <a class="small" href="mypage-member.html">전체 신청내역 보기 →</a>
+      <a class="small" href="mypage-member.html#ap-status">전체 신청내역 보기 →</a>
     </div>
     <div class="stat-grid">
-      <a class="stat" href="mypage-member.html"><div class="stat__num">2</div><div class="stat__label">작성중</div></a>
-      <a class="stat" href="mypage-member.html"><div class="stat__num">3</div><div class="stat__label">접수완료</div></a>
-      <a class="stat" href="mypage-member.html"><div class="stat__num">1</div><div class="stat__label">심사중</div></a>
-      <a class="stat" href="mypage-member.html"><div class="stat__num">1</div><div class="stat__label">자료보완 요청</div></a>
+      <a class="stat" href="mypage-member.html#ap-status"><div class="stat__num">2</div><div class="stat__label">작성중</div></a>
+      <a class="stat" href="mypage-member.html#ap-status"><div class="stat__num">3</div><div class="stat__label">접수완료</div></a>
+      <a class="stat" href="mypage-member.html#ap-status"><div class="stat__num">1</div><div class="stat__label">심사중</div></a>
+      <a class="stat" href="mypage-member.html#ap-supplement"><div class="stat__num">1</div><div class="stat__label">자료보완 요청</div></a>
     </div>
   </section>
 
@@ -83,13 +83,13 @@
     <div class="sub-head">
       <h2 id="program-title">지원사업 찾기</h2>
       <div class="ap-filter-actions">
-        <button type="button" class="ap-filter-select ap-detail-toggle" data-detail-toggle aria-expanded="true" aria-controls="apply-detail-filter">
-          <span data-detail-toggle-label>상세 검색 닫기</span><i data-lucide="chevron-up" aria-hidden="true"></i>
+        <button type="button" class="ap-filter-select ap-detail-toggle" data-detail-toggle aria-expanded="false" aria-controls="apply-detail-filter">
+          <span data-detail-toggle-label>상세 검색 열기</span><i data-lucide="chevron-down" aria-hidden="true"></i>
         </button>
       </div>
     </div>
 
-    <div class="ap-original-filter ap-original-filter--stacked" id="apply-detail-filter">
+    <div class="ap-original-filter ap-original-filter--stacked" id="apply-detail-filter" hidden>
       <section class="ap-region-filter ap-filter-group" id="apply-region-filter" data-filter-group>
         <div class="ap-filter-group__head"><h3>지역 선택</h3><label class="ap-filter-group__all"><input type="checkbox" data-apply-select-all checked>전체선택</label></div>
         <div class="ap-region-grid" role="group" aria-label="지역 다중선택">

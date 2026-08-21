@@ -68,7 +68,7 @@
       {
         badges: ["접수중", "D-43"],
         coverTitle: "중장년 인턴십<br>참여 근로자 모집",
-        tag: "경기도 · 잡아바 통합접수",
+        tag: "경기도 · 신청·접수",
         title: "2026년 중장년 인턴십 참여 근로자 등록",
         items: ["중장년(만 40~64세) 대상", "인턴 1인당 월 120만원 지원(기업)", "접수 ~2026.08.31"],
         href: "apply-member.html"
@@ -76,7 +76,7 @@
       {
         badges: ["접수중", "D-35"],
         coverTitle: "중장년 기회강사<br>양성과정 모집",
-        tag: "경기북부 · 잡아바 통합접수",
+        tag: "경기북부 · 신청·접수",
         title: "경기북부 직업교육 중장년 기회강사 양성과정",
         items: ["중장년(만 40~64세) 대상", "직업교육 기회강사 양성 프로그램", "접수 ~2026.08.23"],
         href: "#"
@@ -108,7 +108,7 @@
       { icon: "clipboard-check", title: "SW 품질 테스터 직무캠프", meta: "경기 수원 · 정규직 · ~D-14", href: "detail-guest.html" }
     ],
     senior: [
-      { icon: "briefcase-business", title: "경기북부 직업교육 중장년 기회강사 양성과정", meta: "경기 북부 · 통합접수 · ~D-35", href: "#" },
+      { icon: "briefcase-business", title: "경기북부 직업교육 중장년 기회강사 양성과정", meta: "경기 북부 · 신청·접수 · ~D-35", href: "#" },
       { icon: "wallet", title: "경기도일자리재단 중장년 사업", meta: "유연일자리 · 월 40만원 매칭 · 상시", href: "#" },
       { icon: "graduation-cap", title: "중장년내일센터 전직지원", meta: "경력진단·재취업지원 · 상시", href: "#" }
     ]

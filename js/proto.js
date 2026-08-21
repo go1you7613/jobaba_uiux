@@ -22,26 +22,34 @@
     ["정책·지원 찾기","policy",[
       ["일자리 지원정책","policy"],
       ["기업 지원정책","bizpolicy"],
-      ["정책활용꿀팁","#"]
+      ["정책활용꿀팁","#"],
+      ["취업지원 정책","edu"]
     ]],
     ["신청·접수","apply",[
       ["지원사업","apply"],
       ["기간제 채용관","#"]
     ]],
-    ["취업 준비·역량강화","prep",[
+    ["취업준비","prep",[
       ["취업진단","prep"],
       ["자소서첨삭","prep"],
       ["AI 역량검사","prep"],
-      ["취업교육","edu"],
-      // 동영상강의: 운영 시 러닝센터 open_class 외부링크
-      //   (https://lms.gg.go.kr/gjf/service/hr/open_class.do?codes=017,018,019,020&mid=1867)
-      //   프로토타입에는 화면이 없어 취업교육·잡학사전과 동일하게 비활성(#) 표시.
-      ["동영상강의","#"],
+      // 동영상강의: 현재 러닝센터 온라인교육 프로토타입으로 연결한다.
+      // 운영 시 확정된 러닝센터 URL로 교체한다.
+      ["동영상강의","learning-center.html"],
       ["잡학사전","#"]
     ]],
-    // 대상별 서비스는 하위메뉴를 GNB에 노출하지 않는다.
-    // 청년·중장년·장애인·여성 구분은 허브 화면 안의 탭으로만 제공한다.
-    ["대상별 서비스","target"],
+    // 대상별 5종은 GNB 드롭다운에 노출한다. 청년·중장년·장애인은 허브 탭,
+    // 여성·외국인은 외부 서비스로 바로 진입한다.
+    ["대상별 서비스","target",[
+      ["청년","target-youth"],
+      ["중장년","target-senior"],
+      // [개발 연동] 여성은 꿈날개 외부 URL 확정 후 현재 # 링크를 교체한다.
+      ["여성","external-women"],
+      ["장애인","target-disabled"],
+      // [개발 연동] 현재 잡아바 외국인채용관(exhb seq=149) 임시 연결 대상.
+      // 외국인 일자리포털 오픈 시 실제 URL로 교체하며, 현재 다국어는 제공하지 않는다.
+      ["외국인","external-foreigners"]
+    ]],
     ["고객지원","#",[
       ["공지사항","#"],
       ["Q&A","#"],
@@ -202,12 +210,12 @@
         '<a href="biz-home.html">로그아웃</a>'
       : isMember
       ? '<span class="utilbar__me">김청년님</span>'+
-        '<a href="mypage-member.html">마이페이지</a>'+
+        '<a href="mypage-member.html#g-home">마이페이지</a>'+
         '<a href="'+guestHome+'">로그아웃</a>'
       : '<a href="'+memberHome+'">로그인</a><a>회원가입</a>';
     var utilityLeft = '<div class="utilbar__left">'+
-      '<a class="utilbar__action">러닝센터</a>'+
-      '<a class="utilbar__action" href="'+(isMember?'apply-member.html':'apply-guest.html')+'">잡아바 어플라이</a>'+
+      '<a class="utilbar__action" href="learning-center.html">러닝센터</a>'+
+      '<a class="utilbar__action" href="'+(isMember?'apply-member.html':'apply-guest.html')+'">신청·접수</a>'+
       '<a class="utilbar__action" href="'+(isBizMember?'biz-home-member.html':'biz-home.html')+'">기업서비스</a>'+
     '</div>';
     // 기업서비스는 GNB 메뉴가 아니라 신설 페이지 — 위 유틸바로 진입(GNB 배열에서 제외).
@@ -223,6 +231,10 @@
       if(key === "apply") return isMember ? "apply-member.html" : "apply-guest.html";
       if(key === "prep") return isMember ? "prep-hub-member.html" : "prep-hub-guest.html";
       if(key === "target") return isMember ? "target-hub-member.html" : "target-hub-guest.html";
+      if(key.indexOf("external-") === 0) return "#";
+      if(key.indexOf("target-") === 0){
+        return (isMember ? "target-hub-member.html" : "target-hub-guest.html") + "?tab=" + key.slice(7);
+      }
       return key;
     }
 
@@ -230,7 +242,17 @@
       var href = resolve(g[1]);
       var subs = g[2] || [];
       // 하위 화면에 있을 때도 상위 메뉴를 현재 위치로 표시한다.
-      var inSub = subs.some(function(s2){ return resolve(s2[1]) === cur; });
+      var currentTab = new URL(window.location.href).searchParams.get("tab");
+      function isResolvedCurrent(resolved){
+        if(resolved === "#") return false;
+        var resolvedUrl = new URL(resolved, window.location.href);
+        var resolvedFile = resolvedUrl.pathname.split("/").pop();
+        var resolvedTab = resolvedUrl.searchParams.get("tab");
+        return resolvedFile === cur && (!resolvedTab || resolvedTab === currentTab);
+      }
+      var inSub = subs.some(function(s2){
+        return isResolvedCurrent(resolve(s2[1]));
+      });
       var isCurrent = (href === cur || inSub) ? ' aria-current="page"' : '';
       var top = (href === "#")
         ? '<span class="gnb__item gnb__item--off">'+g[0]+'</span>'
@@ -238,8 +260,8 @@
       if(!subs.length) return '<div class="gnb__unit">'+top+'</div>';
       var sub = subs.map(function(s2){
         var sh = resolve(s2[1]);
-        var noLink = (sh === "#");
-        var scur = (sh === cur) ? ' aria-current="page"' : '';
+        var noLink = (sh === "#" && s2[1].indexOf("external-") !== 0);
+        var scur = isResolvedCurrent(sh) ? ' aria-current="page"' : '';
         return noLink
           ? '<span class="gnb__sub-item gnb__sub-item--off">'+s2[0]+'</span>'
           : '<a class="gnb__sub-item" href="'+sh+'"'+scur+'>'+s2[0]+'</a>';
@@ -460,6 +482,50 @@
     }
   });
 
+  function findPanelControl(panel, fallback){
+    var controls = document.querySelectorAll("[data-show]");
+    var parentPanel = panel.parentElement && panel.parentElement.closest(".panel");
+    var lnbControl = null;
+    var matchedControl = null;
+    for(var i=0; i<controls.length; i++){
+      if(controls[i].getAttribute("data-show") !== panel.id) continue;
+      if(controls[i].classList.contains("lnb__link")) lnbControl = controls[i];
+      if(controls[i].closest(".panel") === parentPanel) matchedControl = controls[i];
+    }
+    return matchedControl || lnbControl || fallback;
+  }
+
+  function syncPanelControl(control){
+    if(!control) return;
+    var grp = control.closest("[data-showgroup]") || control.parentElement;
+    if(!grp) return;
+    [].forEach.call(grp.querySelectorAll("[data-show]"), function(x){
+      var on = x === control;
+      x.setAttribute("aria-selected", on ? "true" : "false");
+      if(x.classList.contains("lnb__link")) x.setAttribute("aria-current", on ? "page" : "false");
+    });
+  }
+
+  function activatePanelControl(control){
+    var panel = document.getElementById(control.getAttribute("data-show"));
+    if(!panel) return;
+
+    var panelPath = [];
+    var current = panel;
+    while(current && current.classList.contains("panel")){
+      panelPath.unshift(current);
+      current = current.parentElement && current.parentElement.closest(".panel");
+    }
+
+    panelPath.forEach(function(pathPanel){
+      [].forEach.call(pathPanel.parentElement.children, function(ch){
+        if(ch.classList.contains("panel")) ch.hidden = true;
+      });
+      pathPanel.hidden = false;
+      syncPanelControl(findPanelControl(pathPanel, pathPanel === panel ? control : null));
+    });
+  }
+
   /* ---- 인터랙션 위임 ---- */
   document.addEventListener("click", function(e){
     // 헤더 검색 아이콘 → 오버레이 열기 / 닫기
@@ -478,6 +544,16 @@
     if(tab && tab.parentElement){
       [].forEach.call(tab.parentElement.querySelectorAll(".tab"),function(t){t.setAttribute("aria-selected","false");});
       tab.setAttribute("aria-selected","true");
+    }
+    // 마이페이지 상세 콘텐츠 안의 실서비스 분류탭은 현재 패널 구조를 유지한 채 선택 상태만 전환한다.
+    var detailTab = e.target.closest(".mypage-category-tabs button");
+    if(detailTab && detailTab.parentElement){
+      [].forEach.call(detailTab.parentElement.querySelectorAll("button"),function(t){t.setAttribute("aria-selected","false");});
+      detailTab.setAttribute("aria-selected","true");
+    }
+    var keyword = e.target.closest(".mypage-keywords button");
+    if(keyword){
+      keyword.setAttribute("aria-pressed", keyword.getAttribute("aria-pressed")==="true" ? "false" : "true");
     }
     // 칩(다중 토글)
     // data-code / data-applied 칩은 목록 화면(js/list.js)이 상태를 직접 관리하므로 건드리지 않는다.
@@ -502,19 +578,7 @@
     var sw = e.target.closest("[data-show]");
     if(sw){
       e.preventDefault();
-      var panel = document.getElementById(sw.getAttribute("data-show"));
-      if(panel){
-        [].forEach.call(panel.parentElement.children, function(ch){
-          if(ch.classList.contains("panel")) ch.hidden = true;
-        });
-        panel.hidden = false;
-        var grp = sw.closest("[data-showgroup]") || sw.parentElement;
-        [].forEach.call(grp.querySelectorAll("[data-show]"), function(x){
-          var on = x===sw;
-          x.setAttribute("aria-selected", on?"true":"false");
-          if(x.classList.contains("lnb__link")) x.setAttribute("aria-current", on?"page":"false");
-        });
-      }
+      activatePanelControl(sw);
     }
     // 로그인 유도 모달 열기 (게스트 상세의 찜/신청)
     var need = e.target.closest("[data-need-login]");
@@ -556,7 +620,7 @@
     initPolicyTagFilter();
     if(window.lucide) lucide.createIcons();
 
-    // 마이페이지의 특정 패널로 직접 진입하는 링크 지원 (예: #g-interest)
+    // 마이페이지의 상위·중첩 패널로 직접 진입하는 링크 지원 (예: #s-resume, #ap-program)
     var initialPanelId = window.location.hash.slice(1);
     if(initialPanelId){
       var controls = document.querySelectorAll("[data-show]");

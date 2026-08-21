@@ -54,6 +54,7 @@
     detailToggle.addEventListener("click", function () {
       var nextOpen = detailToggle.getAttribute("aria-expanded") !== "true";
       detailToggle.setAttribute("aria-expanded", nextOpen ? "true" : "false");
+      // 패널 표시 상태만 전환한다. 체크박스의 현재 선택값은 유지한다.
       detailPanel.hidden = !nextOpen;
       detailToggle.innerHTML = '<span data-detail-toggle-label>상세 검색 ' + (nextOpen ? "닫기" : "열기") + '</span><i data-lucide="chevron-' + (nextOpen ? "up" : "down") + '" aria-hidden="true"></i>';
       if (window.lucide) window.lucide.createIcons();

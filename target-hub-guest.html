@@ -5,10 +5,10 @@
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css">
 <link rel="stylesheet" href="css/proto.css?v=1269">
 <link rel="stylesheet" href="css/theme-neutral.css?v=6">
-<link rel="stylesheet" href="css/page-sub.css?v=8">
+<link rel="stylesheet" href="css/page-sub.css?v=9">
 <link rel="stylesheet" href="css/proto-linkmark.css?v=5">
 <script src="https://unpkg.com/lucide@latest"></script>
-<script src="js/feature-definitions.js?v=1"></script>
+<script src="js/feature-definitions.js?v=2"></script>
 <script src="js/proto.js?v=1273"></script>
 </head>
 <body data-user="guest">
@@ -20,18 +20,18 @@
   <p class="muted small">대상에 맞는 정책·교육·채용정보를 한 곳에 모았습니다.</p>
 
   <!-- [상태] 대상 선택 탭. 기본값 청년(tg-youth) 노출, 나머지 hidden.
-       내부 메모: 청년·중장년·장애인은 잡아바 자체 데이터(정책 생애주기·통합접수·채용관)로 패널을 구성한다.
-       여성은 원천이 외부 기관(꿈날개)뿐이라 상세 패널 없이 외부링크로 바로 연결한다(role=tab이 아닌 일반 링크 —
-       tablist 안에는 실제 tab만 두어야 하므로 별도 요소로 분리). 외국인은 본 페이지 대상에서 제외,
-       main 화면 제휴 밴드의 Jobs for Foreigners로 직접 연결. 데이터 제약 자체는 UI에 노출하지 않는다
-       (설계 근거는 배치안 B-6 2026-07-20 갱신 · 개발확인요청 §4-2). -->
+       [개발 연동] GNB 2Depth의 ?tab=youth|senior|disabled 값으로 해당 탭에 직접 진입한다.
+       여성은 내부 탭·패널 없이 꿈날개 외부 서비스로 바로 이동하며 현재 href="#"로 처리한다.
+       외국인도 내부 탭·패널 없이 잡아바 외국인채용관(exhb seq=149)으로 바로 이동한다.
+       현재 href="#"는 임시 처리이며 외국인 일자리포털 오픈 시 실제 URL로 교체한다. 현재 다국어는 제공하지 않는다. -->
   <div class="tg-tabs-row">
     <div class="tg-tabs" role="tablist" aria-label="대상 선택">
       <button type="button" role="tab" id="tg-tab-youth" aria-controls="tg-youth" aria-selected="true" data-tg-tab="tg-youth">청년</button>
       <button type="button" role="tab" id="tg-tab-senior" aria-controls="tg-senior" aria-selected="false" tabindex="-1" data-tg-tab="tg-senior">중장년</button>
       <button type="button" role="tab" id="tg-tab-disabled" aria-controls="tg-disabled" aria-selected="false" tabindex="-1" data-tg-tab="tg-disabled">장애인</button>
     </div>
-    <a class="tg-tabs__extlink">여성 · 꿈날개<i data-lucide="arrow-up-right"></i></a>
+    <a class="tg-tabs__extlink" href="#">여성<i data-lucide="arrow-up-right"></i></a>
+    <a class="tg-tabs__extlink" href="#">외국인<i data-lucide="arrow-up-right"></i></a>
   </div>
 
   <!-- ══════════ 청년 패널 ══════════ -->
@@ -67,11 +67,11 @@
       <a class="btn btn--sm" href="prep-hub-guest.html">교육·역량강화 전체보기 →</a>
     </article>
 
-    <!-- ③ 통합접수 사업 -->
+    <!-- ③ 신청·접수 사업 -->
     <article class="tg-area">
       <div class="tg-area__head">
         <span class="tg-area__ico"><i data-lucide="send"></i></span>
-        <div><strong>통합접수 사업</strong><span>어플라이에서 바로 신청</span></div>
+        <div><strong>신청·접수 사업</strong><span>신청·접수에서 바로 신청</span></div>
       </div>
       <ul class="tg-links">
         <li><a href="apply-guest.html">청년 노동자 통장 <em>접수중</em></a></li>
@@ -79,7 +79,7 @@
         <li><a href="apply-guest.html">미래내일 일경험 <em>상시</em></a></li>
         <li><a href="apply-guest.html">역량강화 기회 지원(2차) <em>예정</em></a></li>
       </ul>
-      <a class="btn btn--sm" href="apply-guest.html">통합접수 전체보기 →</a>
+      <a class="btn btn--sm" href="apply-guest.html">신청·접수 전체보기 →</a>
     </article>
   </section>
 
@@ -113,11 +113,11 @@
   <!-- [상태] 중장년 탭 선택 시 표시. 기본값 hidden -->
   <div class="tg-panel" id="tg-senior" role="tabpanel" aria-labelledby="tg-tab-senior" tabindex="0" hidden>
 
-    <!-- ① 자체 신청 가능 사업 (통합접수) -->
+    <!-- ① 자체 신청 가능 사업 (신청·접수) -->
     <div class="tg-own">
       <div class="tg-own__head">
         <strong>잡아바에서 바로 신청할 수 있어요</strong>
-        <span class="tg-src"><i data-lucide="check"></i>잡아바 통합접수</span>
+        <span class="tg-src"><i data-lucide="check"></i>신청·접수</span>
       </div>
       <ul class="tg-own-list">
         <li><a href="apply-guest.html">
@@ -131,7 +131,7 @@
           <span class="ow-date">~ 2026.08.23</span>
         </a></li>
       </ul>
-      <a class="btn btn--sm" style="margin-top:14px" href="apply-guest.html">통합접수 전체보기 →</a>
+      <a class="btn btn--sm" style="margin-top:14px" href="apply-guest.html">신청·접수 전체보기 →</a>
     </div>
 
     <!-- ② 자체 정책정보 -->
@@ -200,6 +200,20 @@
   <!-- [상태] 장애인 탭 선택 시 표시. 기본값 hidden -->
   <div class="tg-panel" id="tg-disabled" role="tabpanel" aria-labelledby="tg-tab-disabled" tabindex="0" hidden>
 
+    <!-- [접근성 보기 도구]
+         기존 장애인채용관(exhb seq=159)의 확대·축소·명도 대비 도구를 분석해
+         글자 확대 / 명도 대비 / 원래대로 3개 명시적 버튼으로 단순화한다.
+         body 클래스 is-text-large / is-high-contrast를 토글해 헤더·본문·푸터 전체에 적용한다. -->
+    <div class="tg-view-tools" data-tg-view-tools>
+      <strong class="tg-view-tools__title"><i data-lucide="accessibility" aria-hidden="true"></i> 화면 보기</strong>
+      <div class="tg-view-tools__actions" role="group" aria-label="화면 보기 설정">
+        <button type="button" data-tg-view="text-large" aria-pressed="false"><i data-lucide="zoom-in" aria-hidden="true"></i>글자 확대</button>
+        <button type="button" data-tg-view="high-contrast" aria-pressed="false"><i data-lucide="circle-half" aria-hidden="true"></i>명도 대비</button>
+        <button type="button" data-tg-view="reset"><i data-lucide="rotate-ccw" aria-hidden="true"></i>원래대로</button>
+      </div>
+      <span class="tg-view-tools__status" role="status" aria-live="polite">기본 화면</span>
+    </div>
+
     <div class="sub-head">
       <h2>장애인 채용관 등록 채용정보</h2>
       <a class="small">채용관 전체보기 →</a>
@@ -252,16 +266,15 @@
     </div>
   </div><!-- /장애인 패널 -->
 
-  <p class="small muted" style="margin-top:40px;padding-top:24px;border-top:1px solid var(--neutral-border)">외국인 채용정보는 <a>Jobs for Foreigners 채용관</a>에서 별도로 확인할 수 있습니다.</p>
 </main>
 
 <script>
-  // 대상 탭 전환 (청년 / 중장년 / 여성 / 장애인) — 좌우 화살표 이동, URL 해시(#tg-xxx) 진입 지원
+  // 대상 탭 전환 3종 — 좌우 화살표 이동, URL 쿼리(?tab=xxx) 직접 진입 지원
   (function(){
     var tabs = Array.prototype.slice.call(document.querySelectorAll('[data-tg-tab]'));
     if(!tabs.length) return;
 
-    function select(btn){
+    function select(btn, updateUrl){
       tabs.forEach(function(b){
         var on = (b === btn);
         b.setAttribute('aria-selected', on ? 'true' : 'false');
@@ -269,29 +282,76 @@
         var panel = document.getElementById(b.getAttribute('data-tg-tab'));
         if(panel) panel.hidden = !on;
       });
+      if(updateUrl && window.history && window.history.replaceState){
+        var tabValue = btn.getAttribute('data-tg-tab').replace(/^tg-/, '');
+        var url = new URL(window.location.href);
+        url.searchParams.set('tab', tabValue);
+        window.history.replaceState(null, '', url.href);
+        Array.prototype.forEach.call(document.querySelectorAll('.gnb__sub-item[href*="?tab="]'), function(link){
+          var isCurrent = new URL(link.href).searchParams.get('tab') === tabValue;
+          if(isCurrent) link.setAttribute('aria-current', 'page');
+          else link.removeAttribute('aria-current');
+        });
+      }
     }
 
     tabs.forEach(function(btn, i){
-      btn.addEventListener('click', function(){ select(btn); btn.focus(); });
+      btn.addEventListener('click', function(){
+        select(btn, true); btn.focus();
+      });
       btn.addEventListener('keydown', function(e){
         if(e.key !== 'ArrowRight' && e.key !== 'ArrowLeft') return;
         e.preventDefault();
         var step = (e.key === 'ArrowRight') ? 1 : -1;
         var next = tabs[(i + step + tabs.length) % tabs.length];
-        select(next); next.focus();
+        select(next, true); next.focus();
       });
     });
 
-    var hash = window.location.hash.slice(1);
-    var matched = tabs.filter(function(b){ return b.getAttribute('data-tg-tab') === hash; })[0];
+    var queryTab = new URL(window.location.href).searchParams.get('tab');
+    var requestedPanel = queryTab ? 'tg-' + queryTab : window.location.hash.slice(1);
+    var matched = tabs.filter(function(b){ return b.getAttribute('data-tg-tab') === requestedPanel; })[0];
     if(matched){
-      select(matched);
-      // 네이티브 브라우저 앵커 스크롤(진입 시 하단으로 튀는 현상) 방지 — 해시를 제거해 재시도를 막는다
-      if(window.history && window.history.replaceState){
-        window.history.replaceState(null, '', window.location.pathname + window.location.search);
+      select(matched, false);
+      // 이전 해시 방식으로 진입한 경우 쿼리 방식으로 정규화한다.
+      if(!queryTab && window.history && window.history.replaceState){
+        var url = new URL(window.location.href);
+        url.hash = '';
+        url.searchParams.set('tab', requestedPanel.replace(/^tg-/, ''));
+        window.history.replaceState(null, '', url.href);
       }
       window.scrollTo(0, 0);
     }
+  })();
+
+  // 장애인 탭 보기 도구 — body 클래스 토글로 헤더·본문·푸터 전체에 적용
+  (function(){
+    var tools = document.querySelector('[data-tg-view-tools]');
+    if(!tools) return;
+    var textButton = tools.querySelector('[data-tg-view="text-large"]');
+    var contrastButton = tools.querySelector('[data-tg-view="high-contrast"]');
+    var resetButton = tools.querySelector('[data-tg-view="reset"]');
+    var status = tools.querySelector('.tg-view-tools__status');
+
+    function sync(message){
+      textButton.setAttribute('aria-pressed', document.body.classList.contains('is-text-large') ? 'true' : 'false');
+      contrastButton.setAttribute('aria-pressed', document.body.classList.contains('is-high-contrast') ? 'true' : 'false');
+      if(status) status.textContent = message;
+    }
+
+    textButton.addEventListener('click', function(){
+      var enabled = document.body.classList.toggle('is-text-large');
+      sync(enabled ? '글자 확대를 적용했습니다.' : '글자 확대를 해제했습니다.');
+    });
+    contrastButton.addEventListener('click', function(){
+      var enabled = document.body.classList.toggle('is-high-contrast');
+      sync(enabled ? '명도 대비를 적용했습니다.' : '명도 대비를 해제했습니다.');
+    });
+    resetButton.addEventListener('click', function(){
+      document.body.classList.remove('is-text-large', 'is-high-contrast');
+      sync('기본 화면으로 되돌렸습니다.');
+    });
+    sync('기본 화면');
   })();
 
   // 로그인 상태 공유 콘텐츠: [data-user-link]는 guest/member 페이지에서 동일 마크업을 쓰고,

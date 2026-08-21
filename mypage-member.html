@@ -3,11 +3,11 @@
 <meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
 <title>잡아바 프로토타입 — 마이페이지</title>
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css">
-<link rel="stylesheet" href="css/proto.css?v=1269">
+<link rel="stylesheet" href="css/proto.css?v=1272">
 <link rel="stylesheet" href="css/theme-neutral.css?v=6">
 <link rel="stylesheet" href="css/proto-linkmark.css?v=5">
 <script src="https://unpkg.com/lucide@latest"></script>
-<script src="js/feature-definitions.js?v=1"></script>
+<script src="js/feature-definitions.js?v=2"></script>
 <script src="js/proto.js?v=1273"></script>
 </head>
 <body data-user="member">
@@ -22,14 +22,14 @@
       <div style="display:flex;align-items:center;gap:var(--sp-3)">
         <span class="small">취업추천서비스</span>
         <button class="toggle" aria-checked="true" aria-label="추천서비스 켬"></button>
-        <button class="btn btn--outline btn--sm">정보수정</button>
+        <button class="btn btn--outline btn--sm" data-show="a-info">정보수정</button>
       </div>
     </div>
     <div class="stat-grid" style="margin-top:var(--sp-5)">
-      <a class="stat" data-show="g-apply" href="#"><div class="stat__num">1</div><div class="stat__label">이력서</div></a>
-      <a class="stat" data-show="g-apply" href="#"><div class="stat__num">3</div><div class="stat__label">입사지원</div></a>
-      <a class="stat" data-show="g-apply" href="#"><div class="stat__num">2</div><div class="stat__label">공고추천</div></a>
-      <a class="stat" data-show="g-apply" href="#"><div class="stat__num">8</div><div class="stat__label">찜한 공고</div></a>
+      <a class="stat" data-show="s-resume" href="#"><div class="stat__num">1</div><div class="stat__label">이력서</div></a>
+      <a class="stat" data-show="s-applied" href="#"><div class="stat__num">3</div><div class="stat__label">입사지원</div></a>
+      <a class="stat" data-show="s-rcmd" href="#"><div class="stat__num">2</div><div class="stat__label">공고추천</div></a>
+      <a class="stat" data-show="i-intrs" href="#"><div class="stat__num">8</div><div class="stat__label">찜한 공고</div></a>
     </div>
   </div>
 
@@ -40,7 +40,7 @@
       <a class="lnb__link" data-show="g-interest" href="#">정책·정보</a>
       <a class="lnb__link" data-show="g-apply" href="#">취업활동</a>
       <a class="lnb__link" data-show="g-prep" href="#">취업준비</a>
-      <a class="lnb__link" data-show="g-apply2" href="#">통합접수</a>
+      <a class="lnb__link" data-show="g-apply2" href="#">신청·접수</a>
       <a class="lnb__link" data-show="g-qna" href="#">1:1 문의</a>
       <a class="lnb__link" data-show="g-account" href="#">회원정보</a>
     </aside>
@@ -58,11 +58,11 @@
         </div>
         <div class="row-card">
           <div><strong>작성 중 이력서</strong><p class="small muted">기본 이력서 · 80% 완료</p></div>
-          <a class="btn btn--outline btn--sm" data-show="g-apply" href="#">이어서 작성</a>
+          <a class="btn btn--outline btn--sm" data-show="s-resume" href="#">이어서 작성</a>
         </div>
         <div class="empty" style="margin-top:var(--sp-4)"><i data-lucide="bookmark"></i>
           <p>찜한 공고 8건 중 2건이 마감 임박이에요.</p>
-          <a class="btn btn--outline btn--sm" data-show="g-apply" href="#">지원·활동에서 보기</a></div>
+          <a class="btn btn--outline btn--sm" data-show="i-intrs" href="#">찜한 내역 보기</a></div>
         <h3 style="margin:var(--sp-6) 0 var(--sp-3)">추천 정보</h3>
         <div class="tabs" data-showgroup>
           <button class="tab" data-show="r-policy" aria-selected="true">일자리지원사업</button>
@@ -93,31 +93,44 @@
         </div>
         <div class="sub-panels">
           <div class="panel" id="s-resume">
-            <div class="row-card"><div><strong>기본 이력서</strong><p class="small muted">80% 완료 · 포트폴리오 미작성</p></div>
-              <button class="btn btn--primary btn--sm">이어서 작성</button></div>
-            <button class="btn btn--outline btn--sm"><i data-lucide="plus"></i>새 이력서 만들기</button>
+            <div class="mypage-detail-head"><div><h3 class="mypage-detail-title">이력서 관리</h3><p class="small muted">이력서에 전형과 무관한 사생활 정보·민감정보를 기재하지 마세요.</p></div><button class="btn btn--primary btn--sm"><i data-lucide="plus"></i>신규이력서 작성</button></div>
+            <article class="mypage-resume-card">
+              <div class="mypage-resume-card__title"><span class="badge badge--solid">일반형</span><strong>[대표 이력서] 김청년 이력서</strong></div>
+              <p>정규직·계약직 · 희망연봉 3,400만원</p><p>IT 개발 · 소프트웨어 개발자</p><p class="small muted">수원시·성남시·서울특별시</p>
+              <div class="mypage-resume-card__foot"><div class="mypage-inline-actions"><button class="btn btn--outline btn--sm">수정</button><button class="btn btn--outline btn--sm">복사</button><button class="btn btn--outline btn--sm">삭제</button></div><span class="small muted">2026-08-05</span></div>
+            </article>
           </div>
           <div class="panel" id="s-applied" hidden>
-            <div class="row-card"><div><span class="badge">접수완료</span> <strong>SW 품질 테스터(QA) 신입</strong><p class="small muted">서류 심사중</p></div>
-              <a class="btn btn--outline btn--sm" href="detail-member.html">상세</a></div>
-            <div class="row-card"><div><span class="badge badge--strong">D-2</span> <strong>경기도 공공기관 사무행정</strong><p class="small muted">지원 진행중</p></div>
-              <a class="btn btn--primary btn--sm" href="detail-member.html">이어서 지원</a></div>
+            <h3 class="mypage-detail-title">입사지원 관리</h3>
+            <div class="mypage-table-wrap"><table class="mypage-table"><thead><tr><th>기업명</th><th>채용공고</th><th class="mypage-table__date">지원일</th><th class="mypage-table__action">진행상태</th></tr></thead><tbody>
+              <tr><td>잡아바테크</td><td><a href="detail-member.html">SW 품질 테스터(QA) 신입</a></td><td>2026-08-12</td><td><span class="badge">서류 심사중</span></td></tr>
+              <tr><td>경기공공서비스</td><td><a href="detail-member.html">공공데이터 웹서비스 개발</a></td><td>2026-08-08</td><td><span class="badge badge--strong">지원완료</span></td></tr>
+            </tbody></table></div>
           </div>
           <div class="panel" id="s-rcmd" hidden>
-            <div class="row-card"><div><span class="badge badge--solid">매칭 92%</span> <strong>공공데이터 웹서비스 개발(신입)</strong><p class="small muted">경기 수원 · 관심직무 기반 추천</p></div>
-              <a class="btn btn--outline btn--sm" href="detail-member.html">보기</a></div>
-            <div class="row-card"><div><span class="badge badge--solid">매칭 84%</span> <strong>프론트엔드 개발 청년인턴</strong><p class="small muted">경기 판교</p></div>
-              <a class="btn btn--outline btn--sm" href="detail-member.html">보기</a></div>
+            <h3 class="mypage-detail-title">공고추천 관리</h3>
+            <p class="small muted mypage-detail-desc">기업이 회원님의 이력서를 확인하고 추천한 채용공고입니다.</p>
+            <div class="row-card"><div><span class="badge">기업추천</span> <strong>[파인스킨] 자재·물류·입출고 경력무관 채용</strong><p class="small muted">추천일 2026-08-18</p></div><a class="btn btn--outline btn--sm" href="detail-member.html">공고보기</a></div>
+            <div class="row-card"><div><span class="badge">기업추천</span> <strong>경력사원 수시채용(교육담당)</strong><p class="small muted">추천일 2026-08-16</p></div><a class="btn btn--outline btn--sm" href="detail-member.html">공고보기</a></div>
           </div>
           <div class="panel" id="s-saved" hidden>
-            <div class="form-row"><label>취업추천서비스</label><button class="toggle" aria-checked="true"></button><span class="small muted">관심 직무와 활동 이력을 기준으로 맞춤 정보를 추천합니다.</span></div>
+            <h3 class="mypage-detail-title">취업 추천서비스</h3>
+            <p class="mypage-guide">취업을 희망하는 직종·근무지역 등을 선택해 주세요. 작성 내용을 기준으로 채용공고 정보를 제공합니다.</p>
+            <div class="mypage-form-section"><h4>희망직종 <em>*</em></h4><div class="chips"><button type="button" class="chip" aria-pressed="true">정보통신 연구원 및 기술자 ×</button></div><button type="button" class="mypage-select-box">선택(3개까지) +</button></div>
+            <div class="mypage-form-section"><h4>공공일자리 취업 희망</h4><div class="mypage-choice-list"><label><input type="radio" name="public-job" checked> 희망</label><label><input type="radio" name="public-job"> 희망하지 않음</label></div></div>
+            <div class="mypage-form-section"><h4>구직상태 <em>*</em></h4><div class="mypage-choice-list"><label><input type="radio" name="job-state" checked> 재직중</label><label><input type="radio" name="job-state"> 취업준비중</label><label><input type="radio" name="job-state"> 창업준비중</label><label><input type="radio" name="job-state"> 구직중</label><label><input type="radio" name="job-state"> 이직준비중</label><label><input type="radio" name="job-state"> 재학중</label><label><input type="radio" name="job-state"> 창업중</label><label><input type="radio" name="job-state"> 기타</label></div></div>
+            <div class="mypage-form-grid"><label>총 경력 <em>*</em><select class="select"><option>경력 선택</option><option>신입</option><option>1~3년</option><option>4~6년</option></select></label><label>최종학력 <em>*</em><select class="select"><option>학력 선택</option><option>고등학교 졸업</option><option>대학교 졸업</option></select></label></div>
+            <div class="mypage-form-section"><h4>희망근무지역 <em>*</em></h4><button type="button" class="mypage-select-box">선택 +</button></div>
+            <div class="mypage-form-section"><h4>관심 키워드</h4><div class="mypage-keywords"><button type="button">즉시채용</button><button type="button">수습없음</button><button type="button">탄력근무제</button><button type="button" aria-pressed="true">재택가능</button><button type="button">워라밸</button><button type="button">야근없음</button><button type="button">자기계발비</button><button type="button">인센티브</button><button type="button">성과급</button><button type="button">역세권</button><button type="button">식대제공</button><button type="button">청년우대</button><button type="button">자격증우대</button><button type="button">수평문화</button></div></div>
+            <div class="mypage-form-section"><h4>채용공고 정보 제공 동의</h4><div class="mypage-choice-list"><label><input type="radio" name="recommend-consent" checked> 동의함</label><label><input type="radio" name="recommend-consent"> 동의하지 않음</label></div></div>
+            <div class="mypage-form-actions"><button class="btn btn--outline">취소</button><button class="btn btn--primary">저장</button></div>
           </div>
         </div>
       </div>
 
-      <!-- 통합접수 -->
+      <!-- 신청·접수 -->
       <div class="panel" id="g-apply2" hidden>
-        <h2 class="panel__title">통합접수</h2>
+        <h2 class="panel__title">신청·접수</h2>
         <p class="small muted" style="margin-bottom:var(--sp-4)"><i data-lucide="info"></i> 지원사업 신청, 자료보완 요청과 찜 내역을 한곳에서 확인합니다.</p>
         <div class="tabs" data-showgroup>
           <button class="tab" data-show="ap-status" aria-selected="true">최근 신청현황</button>
@@ -126,14 +139,21 @@
         </div>
         <div class="sub-panels">
           <div class="panel" id="ap-status">
-            <div class="row-card"><div><span class="badge">접수완료</span> <strong>미래내일 일경험 워크베이스 캠프</strong><p class="small muted">심사중</p></div>
-              <button class="btn btn--outline btn--sm">접수내역 보기</button></div>
-            <div class="row-card"><div><span class="badge badge--strong">D-2</span> <strong>청년도전지원사업</strong><p class="small muted">작성중</p></div>
-              <button class="btn btn--primary btn--sm">이어서 접수</button></div>
+            <div class="tabs mypage-status-tabs" data-showgroup role="tablist" aria-label="최근 신청현황 구분">
+              <button type="button" class="tab" id="ap-program-tab" role="tab" aria-controls="ap-program" data-show="ap-program" aria-selected="true">지원사업</button>
+              <button type="button" class="tab" id="ap-recruit-tab" role="tab" aria-controls="ap-recruit" data-show="ap-recruit" aria-selected="false">채용관</button>
+            </div>
+            <div class="sub-panels mypage-status-panels">
+              <div class="panel" id="ap-program" role="tabpanel" aria-labelledby="ap-program-tab">
+                <div class="mypage-table-wrap"><table class="mypage-table"><thead><tr><th class="mypage-table__no">NO</th><th>사업명</th><th>기간</th><th class="mypage-table__date">신청일자</th><th class="mypage-table__date">선정예정일자</th><th class="mypage-table__action">신청상태</th></tr></thead><tbody><tr><td colspan="6" class="mypage-table__empty">등록된 데이터가 없습니다.</td></tr></tbody></table></div>
+              </div>
+              <div class="panel" id="ap-recruit" role="tabpanel" aria-labelledby="ap-recruit-tab" hidden>
+                <div class="mypage-table-wrap"><table class="mypage-table"><thead><tr><th class="mypage-table__no">NO</th><th>채용관명</th><th>기간</th><th class="mypage-table__date">신청일자</th><th class="mypage-table__action">신청상태</th></tr></thead><tbody><tr><td colspan="5" class="mypage-table__empty">등록된 데이터가 없습니다.</td></tr></tbody></table></div>
+              </div>
+            </div>
           </div>
-          <div class="panel" id="ap-supplement" hidden><div class="empty"><i data-lucide="clipboard-check"></i>
-            <p>현재 자료보완 요청이 없습니다.</p></div></div>
-          <div class="panel" id="ap-saved" hidden><div class="row-card"><div><span class="badge badge--strong">D-6</span> <strong>경기청년 면접수당</strong><p class="small muted">수원 · 청년지원</p></div><a class="btn btn--outline btn--sm" href="#">보기</a></div></div>
+          <div class="panel" id="ap-supplement" hidden><h3 class="mypage-detail-title">자료보완 요청</h3><div class="mypage-table-wrap"><table class="mypage-table"><thead><tr><th class="mypage-table__no">NO</th><th>사업명</th><th class="mypage-table__date">보완요청일</th><th class="mypage-table__date">보완기한</th><th class="mypage-table__action">처리상태</th></tr></thead><tbody><tr><td colspan="5" class="mypage-table__empty">등록된 데이터가 없습니다.</td></tr></tbody></table></div></div>
+          <div class="panel" id="ap-saved" hidden><h3 class="mypage-detail-title">나의 찜한 내역</h3><div class="mypage-table-wrap"><table class="mypage-table"><thead><tr><th class="mypage-table__no">NO</th><th>사업명</th><th>기간</th></tr></thead><tbody><tr><td colspan="3" class="mypage-table__empty">등록된 데이터가 없습니다.</td></tr></tbody></table></div></div>
         </div>
       </div>
 
@@ -163,14 +183,25 @@
         </div>
         <div class="sub-panels">
           <div class="panel" id="i-intrs">
-            <p class="small muted" style="margin-bottom:var(--sp-2)">관심 직무·지역 (맞춤 추천 기준)</p>
-            <div class="chips"><button class="chip" aria-pressed="true">소프트웨어개발 ×</button>
-              <button class="chip" aria-pressed="true">수원 ×</button><button class="chip">+ 추가</button></div>
+            <h3 class="mypage-detail-title">관심등록 정책/정보</h3>
+            <div class="mypage-category-tabs" role="tablist" aria-label="관심등록 콘텐츠 구분">
+              <button type="button" aria-selected="true">일자리지원사업</button><button type="button" aria-selected="false">취업교육</button>
+              <button type="button" aria-selected="false">대외활동</button><button type="button" aria-selected="false">기업지원정책</button>
+              <button type="button" aria-selected="false">채용정보</button><button type="button" aria-selected="false">탐나는기업관</button>
+              <button type="button" aria-selected="false">잡학사전</button><button type="button" aria-selected="false">동영상교육</button>
+            </div>
+            <div class="mypage-list-tools"><label class="small">목록 개수 <select class="select" aria-label="관심등록 목록 개수"><option>10개씩 보기</option><option>25개씩 보기</option><option>50개씩 보기</option><option>100개씩 보기</option></select></label></div>
+            <div class="mypage-table-wrap"><table class="mypage-table"><thead><tr><th>제목</th><th class="mypage-table__date">관심일자</th></tr></thead><tbody><tr><td colspan="2" class="mypage-table__empty">등록된 데이터가 없습니다.</td></tr></tbody></table></div>
           </div>
           <div class="panel" id="i-alarm" hidden>
-            <div class="form-row"><label>마감 임박</label><button class="toggle" aria-checked="true"></button></div>
-            <div class="form-row"><label>신규 매칭 공고</label><button class="toggle" aria-checked="true"></button></div>
-            <div class="form-row"><label>신규 청년정책</label><button class="toggle" aria-checked="false"></button></div>
+            <h3 class="mypage-detail-title">알림등록 정책/정보</h3>
+            <div class="mypage-category-tabs mypage-category-tabs--five" role="tablist" aria-label="알림등록 콘텐츠 구분">
+              <button type="button" aria-selected="true">일자리지원사업</button><button type="button" aria-selected="false">취업교육</button>
+              <button type="button" aria-selected="false">대외활동</button><button type="button" aria-selected="false">기업지원정책</button>
+              <button type="button" aria-selected="false">채용정보</button>
+            </div>
+            <div class="mypage-list-tools"><label class="small">목록 개수 <select class="select" aria-label="알림등록 목록 개수"><option>10개씩 보기</option><option>25개씩 보기</option><option>50개씩 보기</option><option>100개씩 보기</option></select></label></div>
+            <div class="mypage-table-wrap"><table class="mypage-table"><thead><tr><th>제목</th><th class="mypage-table__date">알림발송일</th><th class="mypage-table__action">취소</th></tr></thead><tbody><tr><td colspan="3" class="mypage-table__empty">등록된 데이터가 없습니다.</td></tr></tbody></table></div>
           </div>
         </div>
       </div>
@@ -178,7 +209,8 @@
       <!-- 1:1 문의 -->
       <div class="panel" id="g-qna" hidden>
         <h2 class="panel__title">1:1 문의</h2>
-        <div class="empty"><i data-lucide="message-circle"></i><p>문의 내역이 없어요.</p><button class="btn btn--primary btn--sm">1:1 문의하기</button></div>
+        <div class="mypage-detail-head"><p class="small muted">문의한 내용과 답변 상태를 확인할 수 있습니다.</p><button class="btn btn--primary btn--sm">1:1 문의하기</button></div>
+        <div class="mypage-table-wrap"><table class="mypage-table"><thead><tr><th class="mypage-table__no">NO</th><th>문의 제목</th><th class="mypage-table__date">등록일</th><th class="mypage-table__action">답변상태</th></tr></thead><tbody><tr><td colspan="4" class="mypage-table__empty">등록된 문의 내역이 없습니다.</td></tr></tbody></table></div>
       </div>
 
       <!-- 회원정보 -->
@@ -191,19 +223,33 @@
         </div>
         <div class="sub-panels">
           <div class="panel" id="a-info">
-            <div class="form-row"><label>이름</label><span>김청년</span></div>
-            <div class="form-row"><label>지역</label><span>경기 수원</span></div>
-            <div class="form-row"><label>대상유형</label><span>청년(19~39)</span></div>
-            <button class="btn btn--primary btn--sm" style="margin-top:var(--sp-3)">수정 저장</button>
+            <h3 class="mypage-detail-title">개인정보 수정</h3>
+            <section class="mypage-account-section"><h4>기본정보</h4>
+              <div class="mypage-account-row"><strong>아이디</strong><span>jobaba_user</span></div>
+              <div class="mypage-account-row"><strong>이름 <em>*</em></strong><span>김청년</span></div>
+              <div class="mypage-account-row"><strong>비밀번호 <em>*</em></strong><button class="btn btn--primary btn--sm mypage-account-action mypage-account-action--password" type="button">변경</button></div>
+              <div class="mypage-account-row"><label for="my-email">이메일 <em>*</em></label><input class="input" id="my-email" type="email" value="kimyoung@example.com"></div>
+              <div class="mypage-account-row"><strong>연락처 <em>*</em></strong><div class="mypage-inline-fields"><select class="select" aria-label="휴대전화 앞자리"><option>010</option></select><input class="input" value="1234" aria-label="휴대전화 가운데 자리"><input class="input" value="5678" aria-label="휴대전화 마지막 자리"><button class="btn btn--primary btn--sm mypage-account-action mypage-account-action--verify">인증번호 발송</button></div></div>
+              <div class="mypage-account-row"><strong>주소</strong><div class="mypage-address-fields"><div><input class="input" value="16490" aria-label="우편번호"><input class="input" value="경기도 수원시" aria-label="기본 주소"><button class="btn btn--primary btn--sm">주소검색</button></div><input class="input" value="상세주소" aria-label="상세 주소"></div></div>
+            </section>
+            <section class="mypage-account-section"><h4>구직상태</h4><div class="mypage-choice-list"><label><input type="radio" name="account-job-state" checked> 재직중</label><label><input type="radio" name="account-job-state"> 취업준비중</label><label><input type="radio" name="account-job-state"> 창업준비중</label><label><input type="radio" name="account-job-state"> 구직중</label><label><input type="radio" name="account-job-state"> 이직준비중</label><label><input type="radio" name="account-job-state"> 재학중</label><label><input type="radio" name="account-job-state"> 창업중</label><label><input type="radio" name="account-job-state"> 기타</label></div><p class="small muted"><i data-lucide="info"></i> 구직상태를 변경하면 취업추천서비스에도 동일하게 반영됩니다.</p></section>
+            <section class="mypage-account-section"><h4>관심정보</h4><div class="mypage-choice-list"><label><input type="checkbox" checked> 채용·구직</label><label><input type="checkbox"> 교육</label><label><input type="checkbox"> 창업</label><label><input type="checkbox"> 대외활동</label><label><input type="checkbox"> 취업역량강화</label><label><input type="checkbox"> 구직상담</label></div></section>
+            <section class="mypage-account-section"><h4>마케팅 정보 수신 설정</h4>
+              <div class="mypage-consent-row"><div><strong>뉴스레터 수신</strong><p class="small muted">매주 잡아바 최신 뉴스를 메일로 발송합니다.</p></div><div class="mypage-choice-list"><label><input type="radio" name="newsletter" checked> 받기</label><label><input type="radio" name="newsletter"> 받지않기</label></div></div>
+              <div class="mypage-consent-row"><div><strong>SMS 알림 수신</strong><p class="small muted">문자로 알림 메시지를 발송합니다.</p></div><div class="mypage-choice-list"><label><input type="radio" name="sms" checked> 받기</label><label><input type="radio" name="sms"> 받지않기</label></div></div>
+              <div class="mypage-consent-row"><div><strong>채용공고 추천 수신</strong><p class="small muted">채용공고 추천 수신 여부</p></div><div class="mypage-choice-list"><label><input type="radio" name="job-push" checked> 받기</label><label><input type="radio" name="job-push"> 받지않기</label></div></div>
+            </section>
+            <div class="mypage-form-actions"><button class="btn btn--outline">취소</button><button class="btn btn--primary">수정</button></div>
           </div>
           <div class="panel" id="a-pw" hidden>
-            <div class="form-row"><label>현재 비밀번호</label><input class="input" type="password" style="max-width:240px"></div>
-            <div class="form-row"><label>새 비밀번호</label><input class="input" type="password" style="max-width:240px"></div>
-            <button class="btn btn--primary btn--sm" style="margin-top:var(--sp-3)">변경</button>
+            <h3 class="mypage-detail-title">비밀번호 변경</h3><p class="mypage-guide">안전한 회원정보 보호를 위해 현재 비밀번호를 확인한 뒤 새 비밀번호를 입력해 주세요.</p>
+            <div class="mypage-account-section"><div class="mypage-account-row"><label for="current-password">현재 비밀번호</label><input class="input" id="current-password" type="password"></div><div class="mypage-account-row"><label for="new-password">새 비밀번호</label><input class="input" id="new-password" type="password"></div><div class="mypage-account-row"><label for="confirm-password">새 비밀번호 확인</label><input class="input" id="confirm-password" type="password"></div></div>
+            <div class="mypage-form-actions"><button class="btn btn--outline">취소</button><button class="btn btn--primary">변경</button></div>
           </div>
           <div class="panel" id="a-out" hidden>
-            <p class="small muted">탈퇴 시 지원·찜·이력서 등 활동 정보가 모두 삭제됩니다.</p>
-            <button class="btn btn--outline btn--sm">회원탈퇴 진행</button>
+            <h3 class="mypage-detail-title">회원탈퇴</h3><div class="mypage-guide"><strong>탈퇴 전 반드시 확인해 주세요.</strong><p>탈퇴하면 이력서·입사지원·관심등록·신청 내역 등 회원 활동정보를 더 이상 이용할 수 없습니다.</p></div>
+            <div class="mypage-account-section"><div class="mypage-account-row"><label for="withdraw-reason">탈퇴 사유</label><select class="select" id="withdraw-reason"><option>탈퇴 사유를 선택해 주세요</option><option>서비스 이용이 불편함</option><option>원하는 정보가 부족함</option><option>기타</option></select></div><div class="mypage-account-row"><label for="withdraw-password">비밀번호 확인</label><input class="input" id="withdraw-password" type="password"></div><label class="mypage-withdraw-check"><input type="checkbox"> 안내사항을 확인했으며 회원탈퇴에 동의합니다.</label></div>
+            <div class="mypage-form-actions"><button class="btn btn--outline">취소</button><button class="btn btn--primary">회원탈퇴 진행</button></div>
           </div>
         </div>
       </div>

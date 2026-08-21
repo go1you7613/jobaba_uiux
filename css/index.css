@@ -80,6 +80,19 @@
   .idx-grid--2,.idx-journey{grid-template-columns:1fr;}
 }
 
+@media(max-width:480px){
+  .idx{padding:36px 16px 60px;}
+  .idx-head{padding-bottom:26px;}
+  .idx-head h1{font-size:28px;}
+  .idx-sec{margin-top:40px;}
+  .idx-sec__head{margin-bottom:16px;}
+  .idx-sec__head h2{font-size:22px;}
+  .idx-card{padding:20px;}
+  .idx-card strong{margin-top:12px;font-size:21px;}
+  .idx-go{margin-top:16px;}
+  .idx-jcard{padding:18px;}
+}
+
 /* 검토중 표시 · 보조 안내문 (로그인 후 메인 섹션) */
 .idx-sec__head h2 .idx-flag{
   margin-left:10px;padding:4px 10px;border:1px solid var(--c-border-strong);border-radius:999px;

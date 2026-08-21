@@ -90,3 +90,10 @@
   .iac-cols{grid-template-columns:1fr;}
   .iac-table{display:block;overflow-x:auto;white-space:nowrap;}
 }
+
+@media (max-width:480px){
+  .iac-col__head{padding:12px 14px;}
+  .iac-menu li{padding:11px 14px;}
+  .iac-chip{padding:3px 8px;font-size:11px;}
+  .iac-table{font-size:12px;}
+}

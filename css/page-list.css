@@ -142,8 +142,16 @@
   .jobcat__grid{grid-template-columns:repeat(4,1fr);}
 }
 @media(max-width:640px){
+  .pagehead{padding:24px 0 20px;}
+  .pagehead h1{font-size:24px;}
+  .jobcat--top,.jobcat{margin-top:20px;}
   .jobcat__grid{grid-template-columns:repeat(3,1fr);}
+  .jobcat__grid{gap:6px;margin-top:12px;}
+  .jobcat__item{min-height:78px;gap:5px;padding:10px 5px;}
+  .jobcat__item svg{width:21px;height:21px;}
+  .jobcat__name{font-size:12px;}
   .searchbox{padding:var(--sp-4);}
+  .list-me{gap:14px;padding:16px;}
 }
 
 /* 칩 안의 건수 — 공공 채용분야는 현행 화면이 이미 건수를 노출한다 */
@@ -263,4 +271,12 @@
 .joblist{grid-template-columns:1fr 1fr;}
 @media(max-width:900px){
   .joblist{grid-template-columns:1fr;}
+}
+
+@media(max-width:640px){
+  .jobcard{padding:16px;}
+  .jobcard__org{margin-top:9px;}
+  .jobcard__title{font-size:16px;}
+  .jobcard__meta{margin-top:9px;}
+  .jobcard__foot{margin-top:12px;padding-top:12px;}
 }

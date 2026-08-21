@@ -375,10 +375,19 @@ a, [data-show], [data-need-login], [data-modal-close]{
   .header__inner{height:auto;flex-wrap:wrap;gap:var(--sp-3);padding:var(--sp-3) 0;}
   .gnb{order:3;width:100%;overflow-x:auto;gap:var(--sp-5);}
   .header__search{display:none;}
+  .section{padding:32px 0;}
+  .section__head{margin-bottom:16px;}
+  .hero{padding:32px 0;}
   .grid--2,.grid--3{grid-template-columns:1fr;}
   .stat-grid{grid-template-columns:repeat(2,1fr);}
   .purpose{grid-template-columns:repeat(2,1fr);}
   .hero__q,.hero__me{font-size:var(--fs-24);}
+}
+
+@media(max-width:480px){
+  .container{width:calc(100% - 32px);}
+  .section{padding:28px 0;}
+  .footer{margin-top:36px;padding:24px 0;}
 }
 
 /* 이동할 화면이 없는 a는 href를 두지 않는다(#로 인한 상단 점프 방지).
@@ -740,11 +749,25 @@ a:not([href]){cursor:default;}
   .lc-util__inner{height:auto;min-height:48px;gap:12px;overflow-x:auto;}
   .lc-util__right{display:none;}
   .lc-sites{gap:var(--sp-3);}
-  .lc-header__inner{height:auto;min-height:82px;flex-wrap:wrap;padding:12px 0;}
-  .lc-logo{flex-basis:220px;}
+  .lc-header__inner{height:auto;min-height:72px;flex-wrap:wrap;padding:10px 0;}
+  .lc-logo{flex-basis:190px;width:190px;height:48px;}
+  .lc-logo__crop{width:190px;height:48px;}
   .lc-header__actions{margin-left:auto;}
-  .lc-gnb{order:3;flex-basis:100%;padding-bottom:4px;}
+  .lc-header__actions button{width:44px;height:44px;}
+  .lc-gnb{order:3;flex-basis:100%;gap:16px;padding-bottom:4px;}
+  .lc-gnb a{font-size:14px;}
+  .lc-open{padding:24px 0;}
+  .lc-open__inner{gap:20px;}
+  .lc-open__title{margin:8px 0 12px;font-size:22px;}
+  .lc-open__side{padding:18px;}
+  .lc-open__meta{gap:10px;margin-top:12px;font-size:13px;}
   .lc-course-grid{grid-template-columns:1fr;}
+  .lc-course__thumb{height:96px;}
+  .lc-course__body{padding:12px 14px;}
   /* 터치 환경에는 hover가 없으므로 설명을 항상 노출한다 */
-  .lc-course__hover{position:static;opacity:1;visibility:visible;padding:0 16px 16px;}
+  .lc-course__hover{position:static;gap:8px;opacity:1;visibility:visible;padding:0 14px 14px;}
+  .lc-course__hover b{display:-webkit-box;overflow:hidden;-webkit-box-orient:vertical;-webkit-line-clamp:2;}
+  .lc-cross{padding:28px 0;}
+  .lc-cross__card{padding:18px;}
+  .lc-footer{margin-top:36px;padding:24px 0;}
 }

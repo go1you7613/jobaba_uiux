@@ -374,13 +374,31 @@ a:hover{color:var(--neutral-text);}
 }
 @media(max-width:768px){
   .utilbar{display:none;}
-  .header__inner{height:auto;min-height:68px;flex-wrap:wrap;padding:12px 0;}
+  .header__inner{height:auto;min-height:68px;flex-wrap:nowrap;padding:10px 0;}
   .gnb{order:3;width:100%;justify-content:flex-start;padding-bottom:3px;}
-  .vs-promos,.vs-mini-row,.vs-target-grid{grid-template-columns:1fr;}
-  .vs-hero{min-height:300px;padding:28px;}
-  .vs-hero__title{font-size:32px;}
+  .vs-promos{grid-template-columns:repeat(2,minmax(0,1fr));gap:10px;}
+  .vs-promo{min-height:82px;gap:10px;padding:14px;}
+  .vs-promo [data-lucide]{width:26px;height:26px;}
+  .vs-promo .vp-title{font-size:15px;}
+  .vs-mini-row,.vs-target-grid{grid-template-columns:1fr;}
+  .vs-hero{min-height:260px;padding:22px;}
+  .vs-hero__title{font-size:28px;}
   .vs-hero__arrow,.vs-affil__arrow{display:none;}
-  .vs-center-head h2{font-size:28px;}
+  .vs-center-head{margin-bottom:20px;}
+  .vs-center-head h2{font-size:22px;}
+  .vs-feat-cover{min-height:250px;padding:22px;}
+  .vs-feat-cover .fc-title{font-size:24px;}
+  .vs-feat-detail .fd-title{font-size:22px;}
+  .vs-mini-card{padding:12px;}
+  .vs-mini-card .mc-thumb{height:72px;}
+  .vs-step{padding:20px 18px;}
+  .vs-step .st-ico{width:46px;height:46px;}
+  .vs-news-lead{min-height:190px;padding:22px;}
+  .vs-news-lead .nl-title{font-size:21px;}
+  .vs-news-item{padding:16px;}
+  .vs-target-card{min-height:160px;padding:18px;}
+  .vs-target-card .vt-icon{width:44px;height:44px;}
+  .vs-target-card strong{margin-top:12px;font-size:18px;}
   .footer__top-inner{
     min-height:auto;flex-direction:column;align-items:flex-start;gap:20px;
     padding-top:24px!important;padding-bottom:24px!important;
@@ -397,6 +415,11 @@ a:hover{color:var(--neutral-text);}
   .footer__brand{align-self:flex-start;}
 }
 @media(max-width:480px){
+  .vs-me{padding:16px;}
+  .vs-me__hello strong{font-size:20px;}
+  .vs-me__facts{gap:6px;}
+  .vs-me__facts li{padding:9px 6px;}
+  .vs-me__facts b{font-size:20px;}
   .footer--portal .footer__links{display:grid;grid-template-columns:1fr 1fr;}
   .footer--portal .footer__links a,
   .footer--portal .footer__links a:first-child{padding:0;border-left:0;}

@@ -273,7 +273,8 @@ body[data-user="member"] .public-detail__side::after{content:"";display:block;he
   .detail-share > span{display:none;}
   .detail-anchor-nav{grid-template-columns:repeat(3,max-content);overflow-x:auto;overscroll-behavior-inline:contain;}
   .detail-anchor-nav a{min-height:46px;min-width:110px;}
-  .jobsum{padding:var(--sp-5);}
+  .jobsum{padding:16px;}
+  .jobsum__title{font-size:20px;}
   .jobsum__cols{grid-template-columns:1fr;gap:var(--sp-4);}
   .jobsum__cta{flex-wrap:wrap;}
   .related-job{padding:var(--sp-4);}
@@ -285,4 +286,13 @@ body[data-user="member"] .public-detail__side::after{content:"";display:block;he
   .corp-detail-side__sticky{grid-template-columns:1fr;}
   .std-foot__grid--side{grid-column:auto;grid-template-columns:1fr;}
   .corp-ai-banner{grid-column:auto;max-width:none;}
+}
+
+@media(max-width:640px){
+  .public-detail__document .detail-head{padding:16px;}
+  .public-detail__body{padding:0 16px 20px;}
+  .docsec{margin-top:20px;}
+  .attach,.public-detail .attach{padding:14px;}
+  .detail-disclaimer{margin-top:20px;padding:14px;}
+  .corp-side-card{padding:14px;}
 }

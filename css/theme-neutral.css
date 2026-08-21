@@ -291,6 +291,8 @@ body.is-search-open{overflow:hidden;}
   .gnb{order:3;width:100%;justify-content:flex-start;padding-bottom:3px;}
   .section__title{font-size:24px;}
   .detail-title{font-size:26px;}
+  .panel__title{font-size:20px;}
+  .card{padding:16px;}
   .footer__top-inner{
     min-height:auto;flex-direction:column;align-items:flex-start;gap:20px;
     padding-top:24px!important;padding-bottom:24px!important;
@@ -306,6 +308,9 @@ body.is-search-open{overflow:hidden;}
   .search-overlay__inner{padding:24px 20px 28px!important;}
 }
 @media(max-width:480px){
+  .section__title{font-size:22px;}
+  .detail-title{font-size:24px;}
+  .card{padding:14px;}
   .footer--portal .footer__links{display:grid;grid-template-columns:1fr 1fr;}
   .footer--portal .footer__links a,
   .footer--portal .footer__links a:first-child{padding:0;border-left:0;}
